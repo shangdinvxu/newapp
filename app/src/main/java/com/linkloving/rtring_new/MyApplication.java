@@ -138,6 +138,7 @@ public class MyApplication extends Application{
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
                 this.registerReceiver(networkConnectionStatusBroadcastReceiver, intentFilter);
+
                 //开始服务
                 startBleService();
                 /** 崩溃处理handler */
