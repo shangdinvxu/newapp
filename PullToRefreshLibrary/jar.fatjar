@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Nov 18 10:48:13 GMT+08:00 2015
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=linkloving_BLE4.0.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~exception/;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~proltrol/;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~utils/;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEHandler$BLEProviderObserverAdapter.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEHandler$IBLEProviderObserver.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEHandler.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEListHandler.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEListProvider$1.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEListProvider$2.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEListProvider.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$1.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$2$1.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$2.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$3.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$4.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider$ProessThread.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BLEProvider.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~BuildConfig.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$attr.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$dimen.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$drawable.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$id.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$layout.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$menu.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$string.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R$style.class;<po|Linkloving_BLE4.0_lib>~com/~example/~android/~bluetoothlegatt/~R.class
+includes=

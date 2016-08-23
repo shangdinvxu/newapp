@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lntsdk_cz_amount">
+        <item >0.01</item>
+        <item >50.00</item>
+        <item >100.00</item>
+        <item >150.00</item>
+        <item >200.00</item>
+        <item >300.00</item>
+    </string-array>
+    <string-array name="complaint_type">
+        <item >充值失败</item>
+        <item >其他投诉</item>
+    </string-array>
+    
+    <string-array name="complaint_dispose_type">
+        <item >原卡补充</item>
+        <item >换卡补充</item>
+    </string-array>
+</resources>

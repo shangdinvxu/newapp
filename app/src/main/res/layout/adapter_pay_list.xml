@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingStart="@dimen/wallet_margin_left"
+    android:paddingEnd="@dimen/wallet_margin_left"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <!--时间行 -->
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3月2日 02:34 pm"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/m00_main_list_item_divider_height"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/m00_home_tab_sep_margin_bottom"
+        android:gravity="right">
+        <!--金额行 -->
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/m00_main_padding_length"
+            android:text="+16.00"
+            android:textSize="@dimen/m00_font_size_28pt"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/m00_main_list_item_divider_height"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/menu_pay_yuan"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginTop="@dimen/m00_main_list_item_divider_height"/>-->
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/middle_gray_alph"
+        android:contentDescription="@string/imageView"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:id="@+id/lntsdk_complaint_select_view"
+    android:orientation="vertical" >
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:background="#efefef" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卡      号 ："
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/lntsdk_complaint_select_card_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:text="25644866521556" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:background="#efefef" />
+    <LinearLayout 
+        android:id="@+id/lntsdk_complaint_select_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="状      态 ：" />
+
+            <TextView
+                android:id="@+id/lntsdk_complaint_select_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FF4500"
+                android:layout_marginLeft="5dp"
+                android:text="登记成功" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="投诉类型:" />
+
+            <TextView
+                android:id="@+id/lntsdk_complaint_select_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:text="充值失败" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="12"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="受理时间：" />
+
+            <TextView
+                android:id="@+id/lntsdk_complaint_select_dotime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:text="2015-09-7" />
+        </LinearLayout>
+
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+            <ImageView
+                android:id="@+id/lntsdk_search_list_item_iv_open_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/lntsdk_index_next" />
+        </RelativeLayout> 
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:background="#efefef" />
+    
+    <LinearLayout 
+        android:id="@+id/lntsdk_complaint_select_info_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        >
+    <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="补充订单编号："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_addrecharge_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344566554"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            >
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值金额："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_recharge_money"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="10元"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值时间："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_recharge_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015-09-07"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            >
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="处理方式："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_dotype"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="原卡补充"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="补充卡号："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_addrecharge_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="456645355"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            >
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联  系  人："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_contact"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="原卡补充"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系电话："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_contect_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13565692955"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            >
+            
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="处理信息："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_complaint_select_doinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="456645355"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述："
+                />
+            <TextView 
+                android:id="@+id/lntsdk_compalint_select_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="哈大家考虑分好几个了开个价分等级考试了公开价格可加快"
+                />
+        </LinearLayout>
+        <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:background="#efefef" />
+    </LinearLayout>
+    
+
+</LinearLayout>

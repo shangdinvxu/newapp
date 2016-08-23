@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp"
+    android:background="@mipmap/bg_set"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/linearLayout_ent_follw"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        >
+            <TextView
+                android:gravity="center"
+                android:id="@+id/ent_name"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="若泰科技"
+                android:layout_alignTop="@+id/ent_head"
+                android:layout_alignParentStart="true" />
+        <ImageView
+            android:background="@color/yellow_title"
+            android:id="@+id/ent_head"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:background="@color/medium_gray2"
+        android:id="@+id/search_group"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search_content_group"
+            android:layout_width="255dp"
+            android:layout_height="40dp"
+            android:hint="@string/relationship_search_hint"
+            android:singleLine="true"
+            android:textColorHint="#E1E1E1"
+            android:paddingLeft="15dp"
+            android:background="@drawable/alarm_setting_content_bg"
+            android:textSize="@dimen/m00_font_size_20pt"
+            android:ems="10" >
+        </EditText>
+
+        <Button
+            android:id="@+id/search_btn_group"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/m00_font_size_22pt"
+            android:textColor="#FF7200"
+            android:background="@drawable/alarm_setting_content_bg"
+            android:text="@string/relationship_search" />
+
+    </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_attention_recyclerView_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

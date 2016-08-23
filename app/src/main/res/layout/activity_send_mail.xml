@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/main_about_send_mail_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_margin="10dp"
+        android:layout_weight="0.41"
+        android:background="@drawable/sns_add_friend_form_say_hi_greet_bg"
+        android:gravity="left"
+        android:inputType="none"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp" />
+
+    <Button
+        android:id="@+id/main_about_send_mail_sendBtn"
+        android:layout_width="172dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/common_login_btn"
+        android:text="@string/general_send"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

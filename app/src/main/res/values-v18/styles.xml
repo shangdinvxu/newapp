@@ -1,0 +1,27 @@
+<resources>
+    <!--PortalActivity-->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/yellow_title</item>
+        <item name="colorPrimaryDark">@color/yellow_title</item>
+        <item name="colorAccent">@color/yellow_title</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/yellow_title</item>
+        <item name="colorPrimaryDark">@color/navigation_bcakground</item>
+        <item name="colorAccent">@color/yellow_title</item>
+
+        <!-- 这一行是为了防止可能出现的异常：
+        java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor.
+         Do not request Window.FEATURE_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--windowActionModeOverlay属性是设置让toolbar重叠在Actionbar上，将其盖住；
+        高版本请用第三行，低版本请用第二行-->
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
+        <!--<item name="windowActionModeOverlay">true</item>-->
+    </style>
+</resources>

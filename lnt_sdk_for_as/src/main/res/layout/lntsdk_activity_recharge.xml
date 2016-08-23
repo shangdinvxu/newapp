@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F5F5F5"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#11C2EE" >
+
+            <ImageView
+                android:id="@+id/lntsdk_recharge_break_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:src="@drawable/lntsdk_back" />
+
+            <TextView
+                android:id="@+id/lntsdk_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/lntsdk_online_recharge"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- 补充列表 -->
+        <LinearLayout
+            android:id="@+id/lntsdk_view_bc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+            
+            <TextView 
+            android:id="@+id/lntsdk_view_bc_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lntsdk_order_record_null"
+            android:textSize="16sp"
+            android:visibility="gone" 
+            />
+
+            <ListView
+                android:id="@+id/lntsdk_bc_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp" >
+            </ListView>
+        </LinearLayout>
+        <!-- 补充列表结束  -->
+
+        <!-- 充值布局 -->
+        <LinearLayout
+            android:id="@+id/lntsdk_view_cz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/lntsdk_progress_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:src="@drawable/lntsdk_wallet_num2" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="@string/lntsdk_choise_recharge_money"
+                android:textColor="#666666"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15sp"
+                android:layout_marginTop="25dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="35dp" >
+
+                <!--
+                <EditText
+                    android:id="@+id/input_cost"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:ems="10"
+                    android:textSize="17sp"
+                    android:gravity="center"
+                    android:inputType="numberDecimal" >
+
+                    <requestFocus />
+                </EditText>
+                -->
+
+                <Spinner
+                    android:id="@+id/lntsdk_spinner1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:gravity="center_horizontal"
+                    android:entries="@array/lntsdk_cz_amount" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/lntsdk_recharge_unit"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/lntsdk_btn_lnt_recharge"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/lntsdk_lan_cheng_o"
+                android:text="@string/lntsdk_btn_recharge"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
+            
+            <!-- 文字提示 -->
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+        		android:layout_marginRight="20dp"
+        		android:layout_marginTop="15dp"
+                >
+
+    <TextView
+        android:id="@+id/lntsdk_cz_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/lntsdk_warm_prompt"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    <TextView 
+        android:id="@+id/lntsdk_hint_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lntsdk_bluetooth_recharge_hint_one"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        />
+    <TextView 
+        android:id="@+id/lntsdk_hint_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lntsdk_bluetooth_recharge_hint_two"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        />
+    </LinearLayout>
+            
+        </LinearLayout>
+        
+        <!-- 充值列表结束  -->
+         
+        
+    </LinearLayout>
+    
+    <include layout="@layout/lntsdk_bottom"/>
+
+   
+
+</RelativeLayout>

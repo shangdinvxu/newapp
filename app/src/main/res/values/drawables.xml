@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="ic_menu_main" type="drawable">@mipmap/ic_menu_main</item>
+    <item name="ic_menu_friends" type="drawable">@mipmap/ic_menu_friends</item>
+    <item name="ic_menu_rank" type="drawable">@mipmap/ic_menu_rank</item>
+    <item name="ic_menu_goal" type="drawable">@mipmap/ic_menu_goal</item>
+    <item name="ic_menu_kefu" type="drawable">@mipmap/ic_menu_kefu</item>
+    <item name="ic_menu_device" type="drawable">@mipmap/ic_menu_device</item>
+    <item name="ic_menu_more" type="drawable">@mipmap/ic_menu_more</item>
+</resources>

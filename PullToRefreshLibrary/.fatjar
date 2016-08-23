@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Jan 27 10:42:50 GMT+08:00 2016
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=PullToRefreshLibrary_fat.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

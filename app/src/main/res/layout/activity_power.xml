@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@mipmap/longsit_activity_switch_bg_img"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="15dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:drawableLeft="@mipmap/pm1_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="@string/menu_power_I"
+            android:textColor="@color/gray_dark_for_text"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/PM1_switch_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/longsit_check_box_selector"
+            android:button="@null"
+            android:gravity="center" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@mipmap/longsit_activity_switch_bg_img"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="15dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:drawableLeft="@mipmap/pm2_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="@string/menu_power_II"
+            android:textColor="@color/gray_dark_for_text"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/PM2_switch_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/longsit_check_box_selector"
+            android:button="@null"
+            android:gravity="center" />
+    </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

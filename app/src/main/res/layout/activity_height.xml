@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.linkloving.rtring_new.logic.UI.launch.register.HeightActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_height"
+        android:layout_marginTop="100px"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:layout_marginTop="50px"
+        android:layout_marginStart="150px"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingLeft="30dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tv_user_height_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="170.0"
+                android:textColor="@color/orange"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tv_user_height_value"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/tv_user_height_value"
+                android:text="cm"
+                android:textColor="@color/orange"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/FrameLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="350dp"
+                android:background="@mipmap/registe_height"/>
+
+            <com.linkloving.rtring_new.logic.UI.launch.view.ScaleHeightRulerView
+                android:id="@+id/scaleWheelView_height"
+                android:layout_width="45dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@android:color/white"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="368px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange"
+        android:text="@string/general_next"/>
+
+</RelativeLayout>

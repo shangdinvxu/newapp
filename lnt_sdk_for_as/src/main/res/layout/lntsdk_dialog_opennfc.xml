@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lntsdk_bg_dialog_black"  
+    android:padding="15dp"
+    android:layout_margin="20dp"
+    android:orientation="vertical" >
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lntsdk_dialog_opennfc_title"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#ffffff" 
+        />
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lntsdk_dialog_opennfc_one"
+        android:textColor="#ffffff" 
+        />
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:background="#000000"
+        >
+        <LinearLayout 
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lntsdk_dialog_opennfc_two"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginTop="5dp"
+            android:text="@string/lntsdk_dialog_opennfc_three"
+            />
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            >
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/lntsdk_btn_check_on_focused_holo_light"
+            />
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lntsdk_dialog_opennfc_four"
+                android:textStyle="bold"
+                android:textColor="#00008B"
+                />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    <Button 
+        android:id="@+id/lntsdk_btn_joinset"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lntsdk_btn_join_set"
+        android:layout_marginTop="20dp"
+        android:text="@string/lntsdk_dialog_opennfc_five"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+    
+    
+
+</LinearLayout>

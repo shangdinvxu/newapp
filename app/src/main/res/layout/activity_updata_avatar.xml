@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/layout_avatar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.linkloving.rtring_new.logic.UI.launch.register.UpdataAvatarActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_avater"
+        android:layout_marginTop="164px"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <com.linkloving.rtring_new.logic.utils.CircleImageView
+        android:id="@+id/user_head"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="200px"
+        android:layout_width="460px"
+        android:layout_height="460px"
+        android:src="@mipmap/register_camera"
+        app:border_width="0dp"
+        app:border_color="@color/light"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/imageView" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_below="@id/user_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:text="@string/register_updata_avater"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <EditText
+        android:id="@+id/nickName"
+        android:layout_below="@id/tv2"
+        android:layout_marginTop="100px"
+        android:layout_width="560px"
+        android:layout_height="112px"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="50px"
+        android:background="@drawable/name_content_bg"/>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="368px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange"
+        android:text="@string/general_next"/>
+
+
+</RelativeLayout>

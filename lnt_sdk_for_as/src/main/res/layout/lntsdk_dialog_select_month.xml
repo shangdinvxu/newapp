@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292C38"
+    android:padding="10dp"
+    android:orientation="vertical" >
+    <!-- <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="选择查询月份"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        /> -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/lntsdk_premonth_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:minWidth="30dp"
+            android:src="@drawable/lntsdk_premonth_button_selector" />
+
+        <TextView
+            android:id="@+id/lntsdk_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="2014-08"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/lntsdk_nextmonth_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:minWidth="30dp"
+            android:src="@drawable/lntsdk_nextmonth_button_selector" />
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+		android:background="@color/white"  
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+        ></LinearLayout>
+    <GridView 
+        android:id="@+id/lntsdk_gv_select_month"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:listSelector="@android:color/white"
+        android:numColumns="4"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        ></GridView>
+    
+
+</LinearLayout>

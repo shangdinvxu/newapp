@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F6F6F6"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#11C2EE" >
+
+            <ImageView
+                android:id="@+id/lntsdk_update_pass_break_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:src="@drawable/lntsdk_back" />
+
+            <TextView
+                android:id="@+id/lntsdk_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/lntsdk_update_password_title"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/lntsdk_corners_bg"
+            android:orientation="vertical" >
+
+            <!-- 原始密码 -->
+
+            <EditText
+                android:id="@+id/lntsdk_update_password_et_old_pass"
+                style="@style/lntsdk_update_password_edit_text"
+                android:hint="@string/lntsdk_update_password_old_pass" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+            <!-- 新密码 -->
+
+            <EditText
+                android:id="@+id/lntsdk_update_password_et_new_pass"
+                style="@style/lntsdk_update_password_edit_text"
+                android:hint="@string/lntsdk_update_password_new_pass" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+            <!-- 确认密码 -->
+
+            <EditText
+                android:id="@+id/lntsdk_update_password_et_sure_pass"
+                style="@style/lntsdk_update_password_edit_text"
+                android:hint="@string/lntsdk_update_password_sure_pass" />
+        </TableLayout>
+
+        <Button
+            android:id="@+id/lntsdk_update_password_btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"
+            android:background="#88da58"
+            android:text="@string/lntsdk_update_password_update"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

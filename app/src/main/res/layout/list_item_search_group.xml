@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:id="@+id/find_group"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/search_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:text="连爱科技"
+        android:textColor="#FF7200"
+        android:textSize="@dimen/m00_font_size_30pt" />
+
+    <TextView
+        android:id="@+id/search_group_people_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_gravity="center|right"
+        android:text="30人"
+        android:textColor="#999999"
+        android:textSize="@dimen/m00_font_size_24pt" />
+    </FrameLayout>
+</RelativeLayout>

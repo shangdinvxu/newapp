@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.linkloving.rtring_new.logic.UI.launch.register.WeightActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_weight"
+        android:layout_marginTop="164px"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <ImageView
+        android:layout_marginTop="36dp"
+        android:layout_above="@+id/scaleWheelView_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/registe_weight"/>
+
+    <com.linkloving.rtring_new.logic.UI.launch.view.ScaleRulerView
+        android:id="@+id/scaleWheelView_weight"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@android:color/white"
+        android:layout_centerVertical="true"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp" />
+
+    <RelativeLayout
+        android:layout_below="@id/scaleWheelView_weight"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TextView
+            android:id="@+id/tv_user_weight_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="65"
+            android:textColor="@color/orange"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_user_weight_value"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/tv_user_weight_value"
+            android:text="kg"
+            android:textColor="@color/orange"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="368px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange"
+        android:text="@string/general_next"/>
+
+</RelativeLayout>

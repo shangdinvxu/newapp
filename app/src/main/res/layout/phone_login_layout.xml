@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_phone"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/alarm_setting_content_bg"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <!--手机号码-->
+                <com.linkloving.rtring_new.logic.UI.launch.register.MyAutoCompleteTextView
+                    android:id="@+id/phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/support_country"
+                    android:background="@drawable/line_et_bg_xml"
+                    android:gravity="center_vertical"
+                    android:hint="@string/login_phone_phonenumber"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"></com.linkloving.rtring_new.logic.UI.launch.register.MyAutoCompleteTextView>
+
+                <TextView
+                    android:id="@+id/support_country"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/textview_orange"
+                    android:drawableBottom="@color/orange"
+                    android:gravity="center"
+                    android:text="@string/login_support_country"
+                    android:textColor="@color/orange"
+                    android:textSize="18dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/check_pwd"
+                    android:background="@drawable/line_et_bg_xml"
+                    android:gravity="center_vertical"
+                    android:hint="@string/login_phone_pwd1"
+                    android:inputType="textPassword"
+                    android:paddingLeft="20dp" />
+
+                <ImageView
+                    android:id="@+id/check_pwd"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/textview_black"
+                    android:src="@mipmap/eye_closed" />
+
+                <!--密码-->
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/login_form_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="@string/login_form_btn_login"
+                    android:textColor="@color/orange"
+                    android:textSize="20dp" />
+                <!--登录按钮-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/linearLayout_phone"
+            android:layout_below="@+id/linearLayout_phone"
+            android:layout_marginTop="39dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/login_message"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/login_form_btn_forgetpsw"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/linearLayout_phone"
+            android:layout_below="@+id/linearLayout_phone"
+            android:layout_marginTop="39dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/login_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/login_email"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

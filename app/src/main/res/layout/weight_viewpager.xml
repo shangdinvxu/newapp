@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--有数据的时候显示出来-->
+        <LinearLayout
+            android:id="@+id/shuju"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@color/step_data_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/title_layout"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/data_count_title"
+                        android:gravity="bottom"
+                        android:text="@string/distance_to_goal"
+                        android:textSize="@dimen/m00_font_size_30pt"
+                        android:textColor="@color/device_blue_bg"
+                        android:layout_marginRight="10px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+                    <TextView
+                        android:id="@+id/step_count"
+                        android:paddingRight="5dp"
+                        android:text="1.0"
+                        android:textSize="@dimen/m00_font_size_36pt"
+                        android:textColor="@color/device_blue_bg"
+                        android:gravity="bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+                    <TextView
+                        android:id="@+id/unit_kg"
+                        android:text="kg"
+                        android:textSize="@dimen/m00_font_size_30pt"
+                        android:textColor="@color/device_blue_bg"
+                        android:gravity="bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:id="@+id/goal"
+                        android:text="@string/edit_target"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/step_data_blue"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/set_weight"
+                        android:layout_weight="1"
+                        android:background="@color/step_data_blue"
+                        android:text="@string/record_weight"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:background="@color/step_data_gray2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@string/shujumingxi"
+                android:textColor="@color/smssdk_lv_item_divider"
+                />
+            <ListView
+                android:id="@+id/listview_step"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+        </LinearLayout>
+
+        <!--&lt;!&ndash;没有数据的时候显示出来&ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:id="@+id/null_data_LL"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical"-->
+            <!--&gt;-->
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:src="@mipmap/null_data" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/textView11"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:text="@string/general_null_data"-->
+                <!--android:textSize="16sp" />-->
+        <!--</LinearLayout>-->
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

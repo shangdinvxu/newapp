@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".logic.UI.main.PortalActivity"
+    tools:showIn="@layout/app_bar_portal">
+
+    <LinearLayout
+        android:id="@+id/linear_date"
+        android:layout_width="match_parent"
+        android:layout_height="128px"
+        android:orientation="vertical">
+        <!--日期-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/data_bg"
+            >
+            <Button
+                android:id="@+id/leftBtn"
+                android:layout_width="96px"
+                android:layout_height="96px"
+                android:layout_marginRight="80px"
+                android:background="@mipmap/main_left_72px" />
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-05-18"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/rightBtn"
+                android:layout_width="96px"
+                android:layout_height="96px"
+                android:layout_marginLeft="80px"
+                android:background="@mipmap/main_right_72px"/>
+        </LinearLayout>
+        <!--分割线-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/menu_deliver"
+                android:contentDescription="@string/imageView" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--com.handmark.pulltorefresh.library.PullToRefreshScrollView  ScrollView-->
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg_gray"
+        android:layout_below="@+id/linear_date">
+        <!--所有栏目-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--未绑定-->
+            <LinearLayout
+                android:id="@+id/linear_unbund"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/portal_height"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/portal_pic"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:paddingBottom="@dimen/m00_btn_load_20_more_margin"
+                    android:paddingTop="@dimen/m00_btn_load_20_more_margin"
+                    android:src="@mipmap/add_device" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_unbund"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="30px"
+                        android:layout_weight="2"
+                        android:gravity="bottom"
+                        android:text="@string/portal_main_gobound"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"></LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--电量-->
+            <LinearLayout
+                android:id="@+id/linear_battery"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/portal_height"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/device_img"
+                    android:layout_width="@dimen/portal_pic"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:src="@mipmap/device_watch" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_battery"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/yellow_title"
+                        android:text=""
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.linkloving.rtring_new.basic.CustomProgressBar
+                            android:id="@+id/progressBar_battery"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="80px"
+                            android:layout_gravity="center"
+                            android:max="100"
+                            app:progressColor="@color/yellow_title"
+                            app:progressRadius="5dp"
+                            app:progressDesc=""
+                            app:isShowDesc="true"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--钱包-->
+            <LinearLayout
+                android:id="@+id/linear_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/portal_pic"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:src="@mipmap/main_wallet" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_wallet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/yellow_title"
+                            android:text="60"
+                            android:textSize="@dimen/m00_font_size_30pt" />
+                        <TextView
+                            android:id="@+id/text_sync"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/yellow_title"
+                            android:text="--"
+                            android:textSize="@dimen/m00_font_size_24pt" />
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--步数-->
+            <LinearLayout
+                android:id="@+id/linear_step"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/portal_height"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/portal_pic"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:src="@mipmap/main_step" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_step"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/yellow_title"
+                        android:text=""
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1">
+
+                        <com.linkloving.rtring_new.basic.CustomProgressBar
+                            android:id="@+id/progressBar_step"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="80px"
+                            android:layout_gravity="center"
+                            android:max="100"
+                            app:progressColor="@color/yellow_title"
+                            app:progressRadius="5dp"
+                            app:progressDesc=""
+                            app:isShowDesc="true"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--距离-->
+            <LinearLayout
+                android:id="@+id/linear_distance"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/portal_height"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/portal_pic"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:src="@mipmap/main_distance" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/yellow_title"
+                        android:text=""
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1">
+
+                        <com.linkloving.rtring_new.basic.CustomProgressBar
+                            android:id="@+id/progressBar_distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="80px"
+                            android:layout_gravity="center"
+                            android:max="100"
+                            app:progressColor="@color/yellow_title"
+                            app:progressRadius="5dp"
+                            app:progressDesc=""
+                            app:isShowDesc="true"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--卡路里-->
+            <LinearLayout
+                android:id="@+id/linear_cal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/portal_height"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/portal_pic"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:src="@mipmap/main_cal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_pic"
+                    android:layout_marginLeft="30px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_cal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/yellow_title"
+                        android:text=""
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1">
+
+                        <com.linkloving.rtring_new.basic.CustomProgressBar
+                            android:id="@+id/progressBar_cal"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="80px"
+                            android:layout_gravity="center"
+                            android:max="100"
+                            app:progressColor="@color/yellow_title"
+                            app:progressRadius="5dp"
+                            app:progressDesc=""
+                            app:isShowDesc="true"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--锻炼-->
+            <LinearLayout
+                android:id="@+id/linear_run"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:visibility="gone"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/main_run" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_run"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2"
+                            android:gravity="bottom"
+                            android:textColor="@color/yellow_title"
+                            android:text=""
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <com.linkloving.rtring_new.basic.CustomProgressBar
+                                android:id="@+id/progressBar_run"
+                                android:layout_width="match_parent"
+                                android:layout_height="15dp"
+                                android:layout_marginEnd="80px"
+                                android:layout_gravity="center"
+                                android:max="100"
+                                app:progressColor="@color/yellow_title"
+                                app:progressRadius="5dp"
+                                app:progressDesc=""
+                                app:isShowDesc="true"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--睡眠-->
+            <LinearLayout
+                android:id="@+id/linear_sleep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_marginTop="2px"
+                >
+                <!--睡眠-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/portal_pic"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:src="@mipmap/main_sleep" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_sleep"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2"
+                            android:textColor="@color/yellow_title"
+                            android:text=""
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1">
+
+                            <com.linkloving.rtring_new.basic.CustomProgressBar
+                                android:id="@+id/progressBar_sleep"
+                                android:layout_width="match_parent"
+                                android:layout_height="15dp"
+                                android:layout_marginEnd="80px"
+                                android:layout_gravity="center"
+                                android:max="100"
+                                app:progressColor="@color/yellow_title"
+                                app:progressRadius="5dp"
+                                app:progressDesc=""
+                                app:isShowDesc="true"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--体重-->
+            <LinearLayout
+                android:id="@+id/linear_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_marginTop="2px"
+                android:elevation="5px"
+                android:layout_marginBottom="10px"
+                >
+                <!--体重-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/portal_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/portal_pic"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:src="@mipmap/main_weight_144px" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/portal_pic"
+                        android:layout_marginLeft="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_weightmy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/yellow_title"
+                            android:text=""
+                            android:textSize="@dimen/m00_font_size_22pt" />
+
+                        <TextView
+                            android:id="@+id/text_weightgoal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/yellow_title"
+                            android:text=""
+                            android:textSize="@dimen/m00_font_size_22pt" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--分割线 因为现在体重是最后一个 所以暂时隐藏起来-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/imageView" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+    <!--</com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
+
+
+</RelativeLayout>

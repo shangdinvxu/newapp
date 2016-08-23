@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.linkloving.rtring_new.logic.UI.launch.register.BrithActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_birth"
+        android:layout_marginTop="164px"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="450px"
+        android:layout_centerVertical="true">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_height="400px"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/birthday"/>
+
+        <com.linkloving.rtring_new.logic.UI.launch.view.DatePicker
+            android:id="@+id/date_picker"
+            android:layout_gravity="center"
+            android:layout_marginLeft="45px"
+            android:layout_marginRight="45px"
+            android:layout_width="match_parent"
+            android:layout_height="400px" />
+
+    </FrameLayout>
+
+
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="368px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange"
+        android:text="@string/general_next"/>
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <!--toolbar中间的title-->
+        <TextView
+            android:id="@+id/title"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            style="@style/widget_title_bar_titleView_style"
+            android:layout_marginRight="?attr/actionBarSize"
+            />
+        <!--toolbar右边的按钮-->
+        <Button
+            android:id="@+id/id_txt_btn"
+            android:layout_width="@dimen/wallet_margin_left"
+            android:layout_height="@dimen/wallet_margin_left"
+            android:background="@null"
+            android:layout_marginEnd="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

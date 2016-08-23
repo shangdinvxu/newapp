@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:padding="6dp">
+	    <!-- 消息的时间 -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:gravity="center_horizontal">
+
+	        <TextView
+	            android:id="@+id/tv_sendtime_comment"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#ffffff"
+	            android:background="#bfbfbf"
+	           	/>
+	    </LinearLayout>
+
+	    <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="0dp" >
+	        
+	        <!-- 头像 -->
+
+            	<ImageView
+                	android:id="@+id/iv_userhead_left"
+                	android:layout_width="50dip"
+            		android:layout_height="50dip"
+            		android:layout_alignParentStart="true"
+                	android:layout_alignParentTop="true"
+                	android:src="@mipmap/logo" />
+	         	
+	         	<!-- 内容 -->
+			<TextView
+				android:id="@+id/tv_chatcontent_comment"
+				android:layout_toEndOf="@id/iv_userhead_left"
+				android:layout_marginStart="10dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="assad"
+				style="@style/chat_content_date_style"
+			android:background="@mipmap/chatfrom_bg_normal"/>
+
+			<!-- 用户名 -->
+	            <TextView 
+	            	android:id="@+id/tv_username_comment"
+	            	android:layout_width="wrap_content"
+	            	android:layout_height="wrap_content"
+	            	android:layout_below="@id/iv_userhead_left"
+	            	android:layout_alignParentStart="true"
+	            	android:singleLine="true"
+	            	/>
+	    </RelativeLayout>
+</LinearLayout>

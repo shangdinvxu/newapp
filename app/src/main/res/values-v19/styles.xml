@@ -1,0 +1,24 @@
+<resources>
+    <!--PortalActivity-->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorAccent">@color/yellow_title</item>
+        <!-- 这一行是为了防止可能出现的异常：
+        java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor.
+         Do not request Window.FEATURE_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <!--带返回的界面专用-->
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/yellow_title</item>
+        <item name="colorPrimaryDark">@color/yellow_title</item>
+        <item name="colorAccent">@color/yellow_title</item>
+    </style>
+</resources>

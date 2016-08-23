@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="codeText" format="string" />
+    <attr name="codeTextColor" format="color" />
+    <attr name="codeTextSize" format="dimension" />
+
+    <declare-styleable name="Lntsdk_CustomCodeView">
+        <attr name="codeText" />
+        <attr name="codeTextColor" />
+        <attr name="codeTextSize" />
+    </declare-styleable>
+    
+</resources>

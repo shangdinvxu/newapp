@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+    <LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:id="@+id/country"
+    android:orientation="horizontal"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    >
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="国家和地区"
+        android:id="@+id/country1"
+        />
+
+    <TextView
+        android:layout_weight="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="中国"
+        android:id="@+id/country2"
+        android:layout_alignBottom="@+id/country1"
+        android:layout_alignTop="@+id/country1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/country"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+   >
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+
+            android:layout_height="60dp">
+       <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="+86"
+                android:id="@+id/firstMa"
+                android:background="@drawable/smssdk_input_bg_focus"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="60dp">
+               <EditText
+                   android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/lastMa"
+                android:background="@drawable/smssdk_input_bg_special_focus"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/clear"
+                android:background="@drawable/smssdk_clear_search"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下一步"
+        android:id="@+id/next"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

@@ -1,0 +1,214 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/lntsdk_activity_bg_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#11C2EE" >
+
+            <ImageView
+                android:id="@+id/lntsdk_login_break_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:src="@drawable/lntsdk_back" />
+
+            <TextView
+                android:id="@+id/lntsdk_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/lntsdk_person_login_title"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+            <RelativeLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                >
+                <TextView 
+                    android:id="@+id/lntsdk_login_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/lntsdk_person_login_register"
+                    android:textColor="#ffffff"
+                	android:textSize="16sp"
+                    android:padding="10dp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/login_layout_view_img"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/person_tv_login_msg"
+                android:layout_width="fill_parent"
+                android:layout_height="165dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/lntsdk_login"
+                android:gravity="center"
+                android:text="@string/lntsdk_person_login_message"
+                android:textColor="@color/white" 
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout 
+            android:id="@+id/login_layout_view_two"
+                android:layout_width="match_parent"
+            	android:layout_height="wrap_content"
+            	android:orientation="horizontal"
+            	android:gravity="center_horizontal"
+            	android:layout_marginTop="20dp"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:background="@drawable/lntsdk_corners_bg"
+                >
+                
+            <TextView 
+                android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/lntsdk_person_login_pass"
+            	android:layout_marginLeft="3dp"
+                />
+            <EditText
+                	android:id="@+id/login_editText_password"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:password="true"
+                    android:labelFor="@id/login_editText_password"
+                    android:paddingLeft="2dp" 
+                    />
+            </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_layout_view_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/lntsdk_corners_bg"
+            android:orientation="vertical" >
+
+            <!-- 登录帐号 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/lntsdk_person_login_account" />
+
+                <EditText
+                    android:id="@+id/person_et_login_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:paddingLeft="2dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+            <!-- 登录密码 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/lntsdk_person_login_pass" />
+
+                <EditText
+                    android:id="@+id/person_et_login_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:paddingLeft="2dp" />
+            </LinearLayout>
+        </TableLayout>
+
+    </LinearLayout>
+        <!-- 登录按钮 -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp" >
+
+            <Button
+                android:id="@+id/person_btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lntsdk_fill_order_btn_submit_normal"
+                android:text="@string/lntsdk_person_login_btn"
+                android:textSize="18sp"
+                android:textColor="@color/white" />
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/person_btn_login"
+                android:layout_alignParentRight="true"
+                >
+            <TextView 
+                android:id="@+id/person_login_qihuan"
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="切换账号"
+                />
+
+            <TextView
+                android:id="@+id/person_login_forget_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="@string/lntsdk_person_login_forget_pass" />
+            </LinearLayout>
+        </RelativeLayout>
+
+</LinearLayout>

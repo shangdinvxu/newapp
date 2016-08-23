@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/wurao_pop_title_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/yellow_title"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/longsit_dialog_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/m00_font_size_30pt" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@mipmap/bg_clock_1080px">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <com.linkloving.rtring_new.logic.UI.device.alarm.PickerView
+                android:id="@+id/hour_pv"
+                android:layout_width="80dp"
+                android:layout_height="160dp"
+                android:layout_marginRight="11dp"></com.linkloving.rtring_new.logic.UI.device.alarm.PickerView>
+
+            <com.linkloving.rtring_new.logic.UI.device.alarm.PickerView
+                android:id="@+id/minute_pv"
+                android:layout_width="80dp"
+                android:layout_height="160dp"
+                android:layout_toEndOf="@+id/hour_pv" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginBottom="15dp">
+
+        <Button
+            android:id="@+id/BACK_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="29dp"
+            android:layout_toStartOf="@+id/OK_btn"
+            android:background="@drawable/alarm_content_bg"
+            android:text="@string/general_back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/m00_font_size_30pt" />
+
+        <Button
+            android:id="@+id/OK_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="53dp"
+            android:background="@drawable/btn_style"
+            android:text="@string/general_ok"
+            android:textColor="@color/white"
+            android:textSize="@dimen/m00_font_size_30pt" />
+    </RelativeLayout>
+</LinearLayout>

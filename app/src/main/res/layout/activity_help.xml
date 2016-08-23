@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:composition="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_title"
+        android:layout_gravity="center"
+        android:layout_margin="0dp"
+        android:gravity="center"
+        android:padding="0dp"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/chart_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <RadioButton
+                android:id="@+id/report_page_activity_circleviews_dayRb"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/main_report_page_top_timetype_radio_btn_day_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                style="@style/text_darkShadow7"
+                android:text="@string/report_day_view"
+                android:textColor="@drawable/main_report_page_top_timetype_radio_btn_textcolor_selector" />
+            <RadioButton
+                android:id="@+id/report_page_activity_circleviews_weekRb"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/main_report_page_top_timetype_radio_btn_week_selector"
+                android:button="@null"
+                android:gravity="center"
+                style="@style/text_darkShadow7"
+                android:text="@string/report_week_view"
+                android:textColor="@drawable/main_report_page_top_timetype_radio_btn_textcolor_selector" />
+            <RadioButton
+                android:id="@+id/report_page_activity_circleviews_monthRb"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/main_report_page_top_timetype_radio_btn_month_selector"
+                android:button="@null"
+                android:gravity="center"
+                style="@style/text_darkShadow7"
+                android:text="@string/report_month_view"
+                android:textColor="@drawable/main_report_page_top_timetype_radio_btn_textcolor_selector" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/yellow_title"
+            android:orientation="vertical"
+            >
+            <com.github.mikephil.charting.charts.CombinedChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <com.linkloving.rtring_new.logic.UI.main.datachatactivity.DetailChartControl
+                android:id="@+id/activity_sport_data_detail_detailChartView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                composition:baseSlice="3600"
+                composition:deepSleepHeight="100dp"
+                composition:lightSleepHeight="50dp"
+                composition:lineWidth="1dp" >
+            </com.linkloving.rtring_new.logic.UI.main.datachatactivity.DetailChartControl>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

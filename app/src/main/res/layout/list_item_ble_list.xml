@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@mipmap/ble_list_item_bg"
+    android:padding="5dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" 
+        android:layout_marginLeft="15dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ble_list_item_img" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical" 
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/activity_sport_data_detail_sleepSumView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" 
+            android:textSize="24sp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent"
+                                 android:layout_height="fill_parent"
+                                 android:layout_marginRight="10dp"
+                                 android:gravity="right|center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="@string/bound_ble_click"
+            android:layout_marginRight="10dip"
+            android:textColor="@color/chat_view_orange"
+            >
+            
+        </TextView>
+        
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/body_info_manCb"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:background="@drawable/common_raido_man_bg"
+            android:button="@drawable/common_raido_man_button_bg"
+            android:text="@string/register_form_view_man"
+            android:textSize="17sp" />
+
+        <RadioButton
+            android:id="@+id/body_info_womanCb"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:checked="true"
+            android:background="@drawable/common_raido_woman_bg"
+            android:button="@drawable/common_raido_woman_button_bg"
+            android:text="@string/register_form_view_woman"
+            android:textSize="17sp" />
+    </RadioGroup>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/underline_set" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/body_info_height"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_reduceHieght"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_reduce_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:background="@mipmap/common_reduce_btn" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_userHeight"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_input_bg"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="0dp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_plusHeight"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_plus_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/common_plus_btn" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/unit_cm"
+            android:textColor="#9A9A9A"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/underline_set" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/body_info_weight"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_reduceWieght"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_reduce_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:background="@mipmap/common_reduce_btn" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_userWeight"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_input_bg"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="0dp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_plusWeight"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_plus_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/common_plus_btn" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/unit_kilogramme"
+            android:textColor="#9A9A9A"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/underline_set" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/body_info_age"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_reduceAge"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_reduce_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:background="@mipmap/common_reduce_btn" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_userAge"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_input_bg"
+            android:gravity="center"
+            android:inputType="number"
+            android:padding="0dp" />
+
+        <LinearLayout
+            android:id="@+id/body_info_plusAge"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/body_plus_btn_bg"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/common_plus_btn" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/unit_age"
+            android:textColor="#9A9A9A"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/underline_set" />
+
+
+
+
+    <Button
+        android:id="@+id/body_info_save_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/common_login_btn"
+        android:text="@string/general_start_check"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+</LinearLayout>

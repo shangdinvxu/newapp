@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bound_xiangxi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bound_scan"
+                android:textColor="@color/m00_text_black_333333_color"
+                android:textSize="24sp" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|top"
+                    android:text="@string/bound_active_notice5"
+                    android:textColor="@color/m00_text_black_333333_color"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@mipmap/bound_step_three_confirm" />
+                
+                 <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="33dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/bound_step_three_hand" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/bound_active_notice7"
+                    android:textColor="@color/m00_text_black_333333_color"
+                    android:textSize="10sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/bound_step_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|top"
+                    android:text="@string/bound_active_notice6"
+                    android:textColor="@color/m00_text_black_333333_color"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="166dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@mipmap/bound_step_three_pin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|bottom"
+                      android:layout_marginBottom="20dp"
+                    android:text="@string/bound_active_notice8"
+                    android:textColor="@color/m00_text_black_333333_color"
+                    android:textSize="10sp" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/scan"
+                style="@style/common_gray_button_style"
+                android:layout_gravity="bottom|center"
+                android:text="@string/bound_scan_sqr"
+                android:textColor="@color/white"
+                android:textSize="@dimen/m00_font_size_28pt"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

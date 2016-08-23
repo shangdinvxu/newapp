@@ -1,0 +1,95 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- DrawerLayout -->
+    <dimen name="mm_up_arrow_margin">-16dp</dimen>
+
+    <dimen name="common_title_height">51dp</dimen>
+
+    <dimen name="slidingmenu_offset">120dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="layout_corner">7.0dip</dimen>
+
+    <!-- GreenDroid UI Tool -->
+    <dimen name="gd_arrow_offset">5dp</dimen>
+    <!-- mobily 二期字体 -->
+    <dimen name="m00_font_size_88pt">60.0sp</dimen>
+    <dimen name="m00_font_size_64pt">42.7sp</dimen>
+    <dimen name="m00_font_size_36pt">24sp</dimen>
+    <dimen name="m00_font_size_30pt">20sp</dimen>
+    <dimen name="m00_font_size_28pt">18.7sp</dimen>
+    <dimen name="m00_font_size_26pt">17.3sp</dimen>
+    <dimen name="m00_font_size_24pt">16sp</dimen>
+    <dimen name="m00_font_size_22pt">14.7sp</dimen>
+    <dimen name="m00_font_size_20pt">13.3sp</dimen>
+    <dimen name="m00_font_size_18pt">12.0sp</dimen>
+    <dimen name="m00_font_size_16pt">10.7sp</dimen>
+    <dimen name="m00_font_size_15pt">10sp</dimen>
+    <dimen name="m00_font_size_14pt">9.3sp</dimen>
+
+    <!-- mobily 二期统一的边间距 -->
+    <dimen name="m00_main_padding_length">6.7dp</dimen>
+    <dimen name="m00_main_list_item_divider_height">6.7dp</dimen>
+    <dimen name="m00_home_tab_height">40.7dp</dimen>
+    <dimen name="m00_home_tab_arrow_margin_bottom">2dp</dimen>
+    <dimen name="m00_category_tab_height">40.7dp</dimen>
+    <dimen name="m00_home_tab_sep_height">30dp</dimen>
+    <dimen name="m00_home_tab_sep_margin_bottom">2dp</dimen>
+
+    <!-- home中 choice的图片高度 -->
+    <dimen name="m00_home_featured_icon_height">100dp</dimen>
+    <dimen name="m00_home_featured_content_height">26dp</dimen>
+
+    <!-- load more 20 按钮margin -->
+    <dimen name="m00_btn_load_20_more_margin">10dp</dimen>
+    <dimen name="m00_btn_load_20_more_padding">3dp</dimen>
+    <!--更多  textview边距  linearlayout高度-->
+    <dimen name="m00_tv_20_more_padding">5dp</dimen>
+    <dimen name="m00_tv_20_more_height">45dp</dimen>
+    <dimen name="m00_tv_20_more_height_margin_top">20dp</dimen>
+    <dimen name="m00_tv_20_more_height_exit">90dp</dimen>
+    <!-- 热词列表高度 -->
+    <dimen name="m03_search_hotword_list_item_height">43.3dp</dimen>
+
+    <!-- 位置 -->
+    <dimen name="m01_arrow_length">10dp</dimen>
+    <dimen name="m00_bottom_menu_height">55.5dp</dimen>
+    <dimen name="m00_title_bar_height">76.7dp</dimen>
+    <dimen name="m06_screen_shot_width">148dp</dimen>
+    <dimen name="m06_screen_shot_item_width">133.3dp</dimen>
+    <dimen name="m06_screen_shot_item_left_width">14.7dp</dimen>
+    <dimen name="m06_screen_shot_height">218.7dp</dimen>
+    <dimen name="m06_app_slider_width">80dp</dimen>
+    <dimen name="m06_screen_shot_view_padding_width">5dp</dimen>
+    <!-- detail screenshot height -->
+    <dimen name="m06_descript_title_height">34.7dp</dimen>
+    <dimen name="m06_descript_sub_view_height">130dp</dimen>
+    <dimen name="m06_screen_shot_view_height">294.7dp</dimen>
+    <dimen name="m06_relevant_view_height">110dp</dimen>
+    <dimen name="m06_comment_height">270dp</dimen>
+    <dimen name="m06_btn_leave_comment_height">44dp</dimen>
+    <dimen name="m06_comment_list_item_height">65dp</dimen>
+    <dimen name="m06_load_more_height">58dp</dimen>
+    <dimen name="m06_load_data_failed_height">300dp</dimen>
+    <dimen name="m06_price_max_width">40dp</dimen>
+    <dimen name="m06_confirmation_dialog_width">220dp</dimen>
+    <dimen name="m06_radio_button_padding">18dp</dimen>
+
+    <!-- 对话框的最小宽度 -->
+    <dimen name="m00_alert_dialog_min_width">300dp</dimen>
+    <!-- credit card margin -->
+    <dimen name="m06_credit_card_cvv_margin">78dp</dimen>
+    <!-- 钱包页面 -->
+    <dimen name="wallet_margin_top">10dp</dimen>
+    <dimen name="wallet_margin_left">20dp</dimen>
+    <!-- 主页面统一item高度 -->
+    <dimen name="portal_height">220px</dimen>
+    <!-- 主页面统一图片 -->
+    <dimen name="portal_pic">144px</dimen>
+</resources>

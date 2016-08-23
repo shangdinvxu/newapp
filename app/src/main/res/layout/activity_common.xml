@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/comment_swipe_refresh_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/comment_linear_liuyan"
+        android:scrollbars="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comment_list_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/comment_linear_liuyan"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/comment_about_comments_edittext"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:maxLength="500"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:singleLine="true"
+            android:textSize="@dimen/m00_font_size_20pt"></EditText>
+
+        <Button
+            android:id="@+id/comment_about_comment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/send"
+            android:textColor="#FF7200"
+            android:textSize="@dimen/m00_font_size_22pt" />
+
+    </LinearLayout>
+
+</RelativeLayout>

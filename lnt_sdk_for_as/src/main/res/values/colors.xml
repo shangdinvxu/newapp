@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 白色 -->
+    <color name="white">#FFFFFF</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    
+    <color name="lntsdk_hui">#dddddd</color>
+    <color name="lntsdk_bai">#ffffff</color>
+    
+    <color name="lntsdk_activity_bg_color">#F5F5F5</color>
+    
+    <color name="line">#ECECEC</color>
+    
+</resources>

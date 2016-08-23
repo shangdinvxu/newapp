@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="220dip">
+    <FrameLayout
+        android:id="@+id/chat"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+            <ImageView
+                android:id="@+id/sleep_chat1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="120px"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/chat_view_orange"
+                android:text="18:00" />
+
+            <ImageView
+                android:id="@+id/line_chat"
+                android:layout_below="@+id/time"
+                android:layout_width="5px"
+                android:layout_height="match_parent"
+                android:src="@color/chat_view_orange" />
+        </RelativeLayout>
+    </FrameLayout>
+</RelativeLayout>

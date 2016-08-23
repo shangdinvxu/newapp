@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--设备界面颜色  8位代表ARGB-->
+    <color name="yellow_title">#ff7700</color>
+    <color name="yellow_title_2">#dd5000</color>
+    <color name="gray_dark_for_text">#666666</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="orange">#FF7700</color>
+    <color name="orangeOver">#FF7700</color>
+    <color name="orangeStart">#FFAA00</color>
+    <color name="transparent">#00000000</color>
+    <!-- 西红柿色 -->
+    <color name="orangered">#FF4500</color>
+    <color name="chat_view_orange">#ffa737</color>
+    <color name="text_light_green">#22dd22</color>
+    <color name="progress_color">#8000ff22</color>
+    <color name="progress_color_battery">#fffc8004</color>
+
+    <!--排行榜界面颜色-->
+    <color name="m00_text_black_333333_color">#333333</color>
+    <color name="medium_gray2">#ff999999</color>
+    <color name="middle_gray1">#ff798089</color>
+    <color name="gray_for_text2">#C4C4C4</color>
+    <color name="gray_for_background">#e7e6e6</color>
+    <!--更多-->
+    <color name="text_bluesky1">#3A87AD</color> <!-- 天空深蓝 -->
+    <color name="sleep_blue">#30C3F9</color> <!-- 睡眠数据蓝色 -->
+    <color name="bg_gray">#A5A5A5</color>
+    <drawable name="smssdk_dialog_btn_nor">#00000000</drawable>
+    <drawable name="smssdk_dialog_btn_pre">#ff282a2b</drawable>
+    <color name="newyellow">#F99D4E</color>
+    <color name="smssdk_white">#ffffffff</color>
+    <color name="smssdk_gray_press">#fff2f2f2</color>
+    <color name="smssdk_transparent">#00000000</color>
+    <color name="smssdk_lv_tv_color">#ff353535</color>
+    <color name="smssdk_lv_title_color">#ff999999</color>
+    <color name="smssdk_lv_item_selector">#f7fcff</color>
+    <color name="smssdk_lv_item_divider">#ffd9d9da</color>
+    <color name="smssdk_black">#ff000000</color>
+    <color name="smssdk_gray">#ff898989</color>
+
+    <!-- 侧滑栏背景黑 -->
+    <color name="navigation_bcakground">#2f2f2f</color>
+    <!-- 侧滑栏点击换背景 -->
+    <color name="click_true">#444444</color>
+    <!-- 侧滑栏头像 -->
+    <color name="dark">#FF222222</color>
+    <color name="light">#FFEEEEEE</color>
+    <!-- 主界面日期背景 -->
+    <color name="data_bg">#3C3537</color>
+
+
+    <!--分割线 -->
+    <color name="middle_gray_alph">#33798089</color>
+    <!--主界面灰色背景 -->
+    <color name="main_bg_gray">#E2E0E1</color>
+    <!--进度条 -->
+    <color name="progress_color_gray">#ffaeacaf</color>
+    <!--item灰白色背景 -->
+    <color name="device_item_bg">#F6F4F5</color>
+    <!--设备页面蓝色背景背景 -->
+    <color name="device_blue_bg">#20c6cf</color>
+    <!--闹钟界面字体灰色 -->
+    <color name="text_gray">#C6C6C6</color>
+
+    <!--步数界面切换周月灰色 -->
+    <color name="step_data_gray">#6B6A6A</color>
+    <!--步数界面切换天的淡蓝色 -->
+    <color name="step_data_blue">#20c6cf</color>
+    <!--步数界面明细天数的黑色 -->
+    <color name="step_data_black">#2E282A</color>
+    <!--步数界面显示数据明细的灰色 -->
+    <color name="step_data_gray2">#6A6667</color>
+
+
+    <!--排行榜自己背景灰色 -->
+    <color name="rank_mygray">#BABABA</color>
+
+
+
+
+
+</resources>

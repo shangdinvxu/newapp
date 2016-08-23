@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- 主页面标题栏里面的控件 -->
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="80"
+        android:icon="@mipmap/ic_menu_friends"
+        android:title=""
+        app:showAsAction="ifRoom"/>
+</menu>

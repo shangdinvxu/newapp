@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout  
+  xmlns:android="http://schemas.android.com/apk/res/android"  
+  android:orientation="vertical"  
+  android:gravity="center_vertical"  
+  android:background="@drawable/lntsdk_bg_dialog_black"  
+  android:layout_width="wrap_content"  
+  android:layout_height="wrap_content">  
+  <ImageView   
+    android:id="@+id/lntsdk_customdialog_img"  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"  
+    android:layout_marginBottom="5dp"
+    />  
+    <LinearLayout 
+        android:id="@+id/lntsdk_connect_dialog_progress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        >
+    <include layout="@layout/lntsdk_progress"/>
+    </LinearLayout>
+  <TextView   
+    android:id="@+id/lntsdk_customdialog_text"  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:layout_gravity="center_horizontal"  
+    android:layout_margin="10dp"
+    android:textSize="18sp"  
+    android:text=""
+    android:textColor="#ffffff" 
+    />  
+      
+</LinearLayout>  

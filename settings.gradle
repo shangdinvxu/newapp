@@ -1,0 +1,3 @@
+include ':app'
+include ':ViewPagerIndicator', ':lnt_sdk_for_as',':PullToRefreshLibrary', ':onkeyshare',':linkloving_ble4.0_lib'
+//, ':LntsdkResourceFile'

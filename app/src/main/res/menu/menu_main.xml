@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+
+    <!--   <item android:id="@+id/action_settings"
+             android:title="@string/action_settings"
+             android:orderInCategory="100"
+             app:showAsAction="always"
+             android:icon="@android:drawable/ic_menu_always_landscape_portrait"/> -->
+
+       <!--  搜索栏  加入群组需要
+       <item android:id="@+id/action_search"
+               android:title="@string/action_settings"
+               android:orderInCategory="100"
+               app:showAsAction="always"
+               app:actionViewClass="android.support.v7.widget.SearchView"/>-->
+
+      <item
+          android:title="hello word"
+          android:icon="@drawable/abc_ic_menu_selectall_mtrl_alpha"
+          >
+            <item android:icon="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                  android:title="hello word"
+                  android:id="@+id/action_cut"
+                  app:showAsAction="never"/>
+            <item android:icon="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                  android:title="hello word"
+                  android:id="@+id/action_cut1"
+                  app:showAsAction="never"/>
+      </item>
+</menu>

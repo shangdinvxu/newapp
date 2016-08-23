@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_set"
+    tools:context="com.linkloving.rtring_c_watch.logic.UI.main.datachatactivity.ChangeWeightActivity">
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:padding="2dp"
+        android:background="@drawable/alarm_setting_content_bg"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/date_linear"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="@string/date"
+                android:gravity="center|left"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/date"
+                android:text="2116-12-05"
+                android:gravity="center|right"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/underline_on"/>
+        <LinearLayout
+            android:id="@+id/weight_linear"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="@string/register_form_view_weight"
+                android:gravity="center|left"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:gravity="center|right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/user_weight"
+                android:text="50"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/unit_kg"
+                android:text="kg"
+                android:gravity="center"
+                android:layout_marginRight="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/save"
+        android:background="@color/orange"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:text="@string/general_save"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp" />
+
+</RelativeLayout>

@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">linkloving</string>
+    <!--注册-->
+    <string name="login_activity_wechat">请安装微信客户端</string>
+    <string name="login_activity_wechat_success">Authorization successful</string>
+    <string name="login_activity_wechat_fail">Authorization failed</string>
+    <string name="login_activity_wechat_cancle">Deauthorize</string>
+    <string name="register_email"><u>Register by email</u></string>
+    <string name="body_activity">"Body Settings"</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="login_message"><u>Log in via SMS</u></string>
+    <string name="login_email"><u>Log in via EMAIL</u></string>
+    <string name="login_QQ">Log in via QQ ID</string>
+    <string name="login_wechat">Log in via QQ ID</string>
+    <string name="comeback">Back</string>
+    <string name="login_forgetpwd"><u>Forgot password</u></string>
+    <string name="login_phone_pwd">6~20 digit password</string>
+    <string name="login_phone_pwd1">Password</string>
+    <string name="login_phone_phonenumber">Your phone number</string>
+    <string name="login_support_country">China</string>
+    <string name="login_content_1">使用连爱,即表示您同意连爱的</string>
+    <string name="login_content_2"><u>使用条款</u></string>
+    <string name="login_content_3"><u>和</u></string>
+    <string name="login_content_4"><u>隐私政策</u></string>
+    <string name="login_yanzhengma">Enter verification code</string>
+    <string name="login_from_email">Your email address</string>
+    <string name="login_other"><u>Sign in via other account</u></string>
+    <string name="login_erification_code">verification code</string>
+    <string name="login_yanzhen_phone">checking...</string>
+    <string name="login_error1">PhoneNumber cannot be empty</string>
+    <string name="login_error2">Please enter the correct mailbox format</string>
+    <string name="login_error3">Password can not be empty</string>
+    <string name="login_error4">Passwords and user names do not match</string>
+    <string name="login_error5">Network error, please check the network after re login</string>
+    <string name="login_error6">Number entered is not correct</string>
+    <string name="login_error7">Email cannot be empty</string>
+    <string name="login_error8">Account does not exist</string>
+    <string name="login_error9">Verification code is the 4 digit</string>
+    <string name="login_error10">This number has already been registered.</string>
+    <string name="login_error11">Nickname cannot be empty</string>
+    <string name="changeinfo">Submitting to server</string>
+    <string name="changeinfook">Successful modification</string>
+
+
+    <!-- LoginActivity -->
+    <string name="error_field_required">This field is required</string>
+    <string name="login_form_exit_app_tip">Are you sure to exit?</string>
+    <string name="login_form_error_message">Login failed!</string>
+    <string name="login_form_error">Error connecting to the server and login,result==null</string>
+    <string name="login_form_loading_login">Logging...</string>
+    <string name="login_form_version_error">Update version error.</string>
+    <string name="login_form_error_psw_tip">Error</string>
+    <string name="login_form_error_psw_message">Invalid login information, please check your Email and Password.</string>
+    <string name="login_form_relogin_text">Switch User</string>
+    <string name="login_form_account">Email</string>
+    <string name="login_form_password">Password</string>
+    <string name="login_form_register">REGISTER</string>
+    <string name="login_form_login">LOGIN</string>
+    <string name="login_form_login_quickly">Fast Login</string>
+    <string name="login_form_qq_login">QQ Log In</string>
+    <string name="login_form_wx_login">微信 登 录</string>
+    <string name="login_form_forgot_password">Forgot Password >></string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="prompt_email">Mailbox</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="register_form_title">Registeration</string>
+    <string name="register_form_view_nickname">Nickname</string>
+    <string name="register_form_view_eMail">Email</string>
+    <string name="register_form_view_password">Password </string>
+    <string name="register_form_view_confirmpsw">Confirm Password </string>
+    <string name="register_form_view_height">Height:</string>
+    <string name="register_form_view_weight">Weight:</string>
+    <string name="register_form_view_age">Age:</string>
+    <string name="register_form_view_man">Male</string>
+    <string name="register_form_view_woman">Female</string>
+    <string name="register_form_view_agreelisence">Accept</string>
+    <string name="register_form_view_look_caluse">Read terms >></string>
+    <string name="register_form_btn_submit">Register</string>
+    <string name="register_form_valid_nick_name">The nickname is necessary! </string>
+    <string name="register_form_valid_mail">Email cannot be empty</string>
+    <string name="register_form_valid_psw">Password cannot be empty</string>
+    <string name="register_form_valid_psw_notenouph">Password should be no less than 6 digit</string>
+    <string name="register_form_valid_psw_not_same">Password is inconsistent before and after</string>
+    <string name="register_form_valid_agree_role">Please read the terms before register</string>
+    <string name="register_form_error_mail_exist">Registeration failed. This email was registered</string>
+    <string name="register_form_error_message">Registeration failed. Unknown error！</string>
+    <string name="register_form_error_height">Registeration failed. Unknown error！</string>
+    <string name="register_form_error_weight">Registeration failed. Unknown error！</string>
+    <string name="register_form_error_age">Registeration failed. Unknown error！</string>
+    <string name="register_form_mail_have_exist">This email was registered</string>
+    <string name="register_form_mail_ok">Email is available</string>
+    <string name="register_form_next_step">Next（1/2）</string>
+    <string name="register_success_title">Registeration completed! </string>
+    <string name="register_success_experience">Come on in</string>
+    <string name="register_success_mail">Email:</string>
+
+    <string name="menu_more">More</string>
+    <string name="menu_exit">Exit</string>
+    <string name="register_continue">Continue</string>
+    <string name="queren">OK</string>
+    <string name="register_agreelisenc_1">Using Linkloving means you have read and agreed these</string>
+    <string name="register_agreelisenc_2">Terms</string>
+    <string name="register_agreelisenc_3">and</string>
+    <string name="register_agreelisenc_4">Private policy</string>
+    <string name="successfully_registered">Successfully Registered！</string>
+    <string name="register_avater">Complete your profile</string>
+    <string name="register_updata_avater">Upload avatar</string>
+    <string name="register_nickname">nickname：</string>
+    <string name="register_sex">Your Sex</string>
+    <string name="register_height">Your Height</string>
+    <string name="register_weight">Your Weight</string>
+    <string name="register_birth">Your Birthday</string>
+
+    <!--短信验证-->
+    <string name="smssdk_back">Back </string>
+    <string name="smssdk_regist">Register with phone number</string>
+    <string name="smssdk_make_sure_country_mobile">Please confirm country and input phone number</string>
+    <string name="smssdk_country">Country</string>
+    <string name="smssdk_next">Next</string>
+    <string name="smssdk_make_sure_mobile_num">Confirm phone number</string>
+    <string name="smssdk_cancel">Cancel</string>
+    <string name="smssdk_ok">OK</string>
+    <string name="smssdk_make_sure_mobile_detail"><Data>We will send &lt;font color=#3cac17>verification code&lt;/font> messages to this number:</Data></string>
+    <string name="smssdk_write_mobile_phone">Please input your phone number</string>
+    <string name="smssdk_write_right_mobile_phone">Please input the correct phone number</string>
+    <string name="smssdk_write_identify_code">Please input verification code</string>
+    <string name="smssdk_send_mobile_detail"><Data>We have already sent &lt;font color=#209526>verification code&lt;/font> messages to this number:</Data></string>
+    <string name="smssdk_smart_verify_already">Smart Verification already</string>
+    <string name="smssdk_smart_verify_tips">Credit phone number, no SMS verification:</string>
+    <string name="smssdk_unreceive_identify_code"><Data>&lt;font color=#a8b8cb>Not receiving the verification code?&lt;/font></Data></string>
+    <string name="smssdk_submit">Submit</string>
+    <string name="smssdk_identify_code">Verification code</string>
+    <string name="smssdk_receive_msg"><Data>Receive SMS takes about &lt;font color=#209526>%s&lt;/font> seconds</Data></string>
+    <string name="smssdk_resend_identify_code">Resend verification code</string>
+    <string name="smssdk_choose_country">Choose country</string>
+    <string name="smssdk_network_error">Network error, please try later</string>
+    <string name="smssdk_country_not_support_currently">Country not support, please choose other</string>
+    <string name="smssdk_search">Search</string>
+    <string name="smssdk_search_contact">Search contact</string>
+    <string name="smssdk_virificaition_code_sent">Verification code has been sent</string>
+    <string name="smssdk_virificaition_code_wrong">Verification code error</string>
+    <string name="smssdk_your_ccount_is_verified">Validation successful</string>
+    <string name="smssdk_user_info_submited">User info has been submitted </string>
+    <string name="smssdk_contacts_in_app">Contacts in App</string>
+    <string name="smssdk_contacts_out_app">Contacts out of App</string>
+    <string name="smssdk_invite">Invite</string>
+    <string name="smssdk_send_invitation">Send invitation</string>
+    <string name="smssdk_not_invite"><Data>&lt;font color=#209526> %s &lt;/font></Data>Uninvited</string>
+    <string name="smssdk_contacts_detail">User Detail</string>
+    <string name="smssdk_contacts_phones">Phone: </string>
+    <string name="smssdk_choice_invite_phones">Choose invite phone number</string>
+    <string name="smssdk_invite_content">Your friends invite you to join SMSSDK, download: http://www.mob.com</string>
+    <string name="smssdk_close_identify_page_dialog">Verification code messages may be a slight delay, sure go back and start again?</string>
+    <string name="smssdk_wait">Wait</string>
+    <string name="smssdk_add_contact">Add</string>
+    <string name="smssdk_get_verifycode_frequentlly">Send verification code too frequently, please try later!</string>
+    <string name="smssdk_get_phone_verifycode_today_frequentlly">I am sorry, the phone number for verification code number too much, please try again tomorrow!</string>
+    <string name="smssdk_send_sounds_identify_code">We will call you after your comfirmation. Voice verification code. Please use message verification code service if you don\'t want to be called.</string>
+    <string name="smssdk_send_sounds">Send voice code</string>
+    <string name="smssdk_make_sure_send_sounds">Delivery confirmation?</string>
+    <string name="smssdk_send_sounds_success">Voice verification code sent successfully</string>
+    <string name="smssdk_country_List">Country List</string>
+    <string name="get_code">GetCode</string>
+    <string name="synchronized_to_device">Synchronized to the device</string>
+    <string name="choose_date">Please select repeat cycle</string>
+    <string name="send_confirm">We will send messages to</string>
+    <string name="send">send</string>
+
+    <!-- ForgotPassword -->
+    <string name="password_modification_success">Password modification success</string>
+    <string name="save_settings_successfully">Save settings successfully</string>
+    <string name="saved_to_local">Saved to local</string>
+    <string name="effective_time_is_invalid">Effective time is invalid</string>
+    <string name="forgot_password_title">Reset Password</string>
+
+
+
+    <!--个人信息-->
+    <string name="nick_name">Nickname</string>
+    <string name="account">Account</string>
+    <string name="pwd">Password</string>
+    <string name="sex">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="lenth">Height</string>
+    <string name="sign">Personal State Message</string>
+    <string name="address">Region</string>
+    <string name="pesonal_activity_title">Personal Information</string>
+    <string name="friendinfo_activity_title">Contacts</string>
+
+
+    <!--周全称-->
+    <string name="monday">monday</string>
+    <string name="tuesday">tuesday</string>
+    <string name="wednesday">wednesday</string>
+    <string name="thursday">thursday</string>
+    <string name="friday">friday</string>
+    <string name="saturday">saturday</string>
+    <string name="sunday">sunday</string>
+    <!--周-->
+    <string name="mon">mon</string>
+    <string name="tues">tues</string>
+    <string name="wed">wed</string>
+    <string name="thurs">thurs</string>
+    <string name="fri">fri</string>
+    <string name="sat">sat</string>
+    <string name="sun">sun</string>
+
+
+    <string name="general_next">Next</string>
+    <string name="general_prompt">Prompt</string>
+    <string name="general_got_it">Got it</string>
+    <string name="general_ok">OK</string>
+    <string name="general_save">Save</string>
+    <string name="general_cancel">Cancel</string>
+    <string name="general_yes">Yes</string>
+    <string name="general_no">No</string>
+    <string name="general_look">Look</string>
+    <string name="general_error">Error</string>
+    <string name="general_faild">Failed</string>
+    <string name="general_change">Change</string>
+    <string name="general_retry">Retry</string>
+    <string name="general_loading">Loading...</string>
+    <string name="general_network_faild">Network is not stable, pls try again!</string>
+    <string name="general_clouding">Synchronizing...</string>
+    <string name="general_clouding_success">Synchronized complete</string>
+    <string name="general_clouding_failure">Synchronized fail</string>
+    <string name="general_wait">Wait...</string>
+    <string name="general_about">About</string>
+    <string name="general_send">Sending...</string>
+    <string name="general_share">Share</string>
+    <string name="general_invild">Invalid</string>
+    <string name="general_delete">Delete</string>
+    <string name="general_not_delete">Can not Delete</string>
+    <string name="general_back">Back</string>
+    <string name="general_tip">Tip</string>
+    <string name="general_male">Male</string>
+    <string name="general_more">More</string>
+    <string name="general_no_more_data">No more data</string>
+    <string name="general_null_data">No more data</string>
+    <string name="general_female">Female</string>
+    <string name="general_submitting">Submitting...</string>
+    <string name="general_nodata">no records</string>
+    <string name="general_sport">Sport</string>
+    <string name="general_sleep">Sleep</string>
+    <string name="general_uploading">Downloading...</string>
+    <string name="general_null_label">This guy say nothing</string>
+    <string name="general_dialog_sync_text">{0}% complete({2} out of {1} data points have been downloaded)</string>
+    <string name="general_sync_time">{0}, {1}tips</string>
+    <string name="general_sycing">Synchronizing...</string>
+    <string name="general_sync_end">Synchronization is complete</string>
+    <string name="general_oading">Upgrading…</string>
+    <string name="general_setting">setting</string>
+
+    <string name="app_start">Welcome to Linkloving</string>
+    <string name="login_form_title">Login Linkloving</string>
+    <string name="login_form_hint_loginname">Email</string>
+    <string name="login_form_hint_loginpassword">Password</string>
+    <string name="login_form_btn_register">REGISTER</string>
+    <string name="login_form_btn_login">LOGIN</string>
+    <string name="login_form_logining">Logging...</string>
+    <string name="login_form_cb_rememberpsw">Remember your name?</string>
+    <string name="login_form_btn_forgetpsw">Forgot password</string>
+    <string name="login_form_btn_forgetpsw_message">Email has been sent to your mailbox!</string>
+    <string name="login_form_version_info">Version: {0}({1})</string>
+    <string name="login_form_validate_login_name_empty">User name is necessary!</string>
+    <string name="login_form_validate_login_psw_length_less_six">Must compelete the password!</string>
+    <string name="login_form_have_latest_version">Have latest version</string>
+    <string name="login_form_have_latest_version_descrption">We strongly recommend that you update to the latest version in order to get better service. Continue to use the older version may cause problems. You can also e-mail us with \"support@linkloving.com\".</string>
+    <string name="login_form_have_latest_version_update_now">Update now!</string>
+    <string name="login_form_have_latest_version_ignore">Ignore</string>
+    <string name="pay_loading">Loading...</string>
+    <string name="pay_no_bound">You have not bund any device!</string>
+    <string name="pay_no_connect">Please connect the bluetooth</string>
+    <string name="pay_no_function">Your device does not apply this function!</string>
+    <string name="pay_isreading">reading balance...</string>
+    <string name="wxsopar_no_au">请授权你的微信帐号！</string>
+
+
+
+    <!-- SendMail -->
+    <string name="main_about_send_mail_title">Feedback</string>
+    <string name="main_about_adv_title">Feedback</string>
+    <string name="main_about_adv_nomore"></string>
+    <string name="main_about_adv_feedback">feedback</string>
+    <string name="main_about_send_mail_content">The email content can not be empty!</string>
+    <string name="main_about_send_adv_content">No content or over 200 words!！</string>
+
+    <!-- ImageViewActivity -->
+    <string name="chat_sendpic_image_view_multitouch_hint">Tip: Supports multi-touch zoom in and out image</string>
+    <string name="chat_sendpic_image_view_sendpic">Send image</string>
+    <string name="chat_sendpic_image_view_imageloading">Image loading...</string>
+    <string name="chat_sendpic_image_view_title">View image</string>
+    <string name="chat_sendpic_image_view_oom_for_rotate">Insufficient memory to rotate the picture is not successful, you can restart the program and try again!</string>
+    <string name="chat_sendpic_image_view_file_path_not_valid">Image path is not valid, please try again after checking the SD card!</string>
+    <string name="chat_sendpic_image_view_image_not_valid">Image not valid or be removed, failed to load.</string>
+    <string name="chat_sendpic_image_view_imageloading2">Image loading...</string>
+    <string name="chat_sendpic_image_view_imagebig_for_memery">Image is so large, you can restart the program and try again!</string>
+    <string name="chat_sendpic_image_view_imagedata_not_valid">Image date is not valid, please try again!</string>
+
+    <!-- CropImage -->
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="saving_image">Saving image</string>
+    <string name="preparing_card">Preparing card</string>
+    <string name="no_storage_card">No storage card</string>
+    <string name="not_enough_space">Not enough space</string>
+
+
+    <!-- 剩余 -->
+    <string name="menu_exit_app">Sign out</string>
+    <string name="menu_exit_mode">Select way to sign out</string>
+    <!-- 剩余 -->
+
+    <!-- 钱包-->
+    <string name="menu_pay">LinkPay</string>
+    <string name="menu_hubei_pay">Credit Card</string>
+    <string name="menu_pay_reading">Loading...</string>
+    <string name="menu_pay_in">Recharge</string>
+    <string name="menu_pay_out">Consumption</string>
+    <string name="menu_pay_unknow">unknown number</string>
+    <string name="menu_pay_read_fail">Load failed</string>
+    <string name="menu_pay_account">Account</string>
+    <string name="menu_pay_balance">Balance： </string>
+    <string name="menu_pay_type">Card Type: </string>
+    <string name="menu_pay_transactions">Transactions</string>
+    <string name="menu_pay_yuan">¥&#160;</string>
+    <string name="menu_pay_yue">Balance&#160;&#160;</string>
+    <string name="menu_pay_chongzhi">recharge</string>
+    <string name="menu_pay_time">Time {0}-{1}-{2} {3}:{4}:{5}</string>
+
+
+    <!-- 提醒-->
+    <string name="menu_notify_call">Call</string>
+    <string name="menu_notify_msg">Text Message</string>
+    <string name="menu_notify_qq">QQ</string>
+    <string name="menu_notify_wx">Wechat</string>
+    <string name="menu_notify_link">Linkloving</string>
+    <string name="menu_notify_sys">System message</string>
+    <!--运动目标设定-->
+    <string name="stored_value">Prestore amount</string>
+    <string name="sport_exercise">Exercise</string>
+    <string name="unit_kilogramme">KG</string>
+    <!-- 电源管理-->
+    <string name="menu_power_I">Power Mode I</string>
+    <string name="menu_power_II">Power Mode II</string>
+    <string name="menu_power_help1"> If not setting, all reminders and vibrition will be turned on. </string>
+    <string name="menu_power_help2">Function of raising hand to show the screen closed in order to save power</string>
+    <string name="menu_power_help3">Function of raising hand to show the screen closed. All reminders by vibrition closed except alarm and countdown.</string>
+    <string name="menu_power_help4">Battery lower than 10%, your watch will automatically enter the power saving mode three</string>
+
+
+    <!-- 更多 -->
+    <string name="portal_activity_more">More</string>
+    <string name="main_more_version_check_nofind">Firmware not found</string>
+    <string name="main_more_version_check_is_latest">Your APP version is latest!</string>
+    <string name="main_more_version">Version</string>
+    <string name="main_more_sycn">Cloudsync</string>
+    <string name="main_more_sycn_title">Cloudsync confirmation</string>
+    <string name="main_more_sycing">Synchronizing...</string>
+    <string name="main_more_sync_end">Complete</string>
+    <string name="main_more_sycn_message">Updated data will be downloaded when Cloudsync. It cost around 30 seconds. Are you sure to do it?</string>
+    <string name="main_more_sycn_fail">Current network is not connected. Please check your network.</string>
+    <string name="main_more_understand">kown more about watch</string>
+    <string name="main_more_faq">FAQ</string>
+    <string name="main_more_adv">咨询反馈</string>
+    <string name="main_more_adv_res">Has reply</string>
+    <string name="main_more_adv_nores">Not reply</string>
+    <string name="main_more_adv_liuyan">SEND</string>
+    <string name="main_more_about">About Us</string>
+    <string name="main_more_rexian">Service hotline</string>
+    <string name="main_more_tiaozhuan">进入充值</string>
+    <string name="main_more_rexian_title">Sure to call service hotline?</string>
+    <string name="main_more_QQ">Service QQ</string>
+    <string name="main_more_QQ_copy">QQ Number has copied!</string>
+    <string name="main_more_app">Please download this app!</string>
+    <string name="main_more_WX">微信公众号</string>
+    <string name="main_more_from_qq_login">From Tencent QQ</string>
+    <string name="main_more_from_wx_login">From WeiXin</string>
+    <string name="main_about_terms_conditions">Terms and Conditions</string>
+    <string name="main_about_privacy_policy">Privacy policy</string>
+    <string name="main_about_weibo">Facebook</string>
+    <string name="main_about_douban">Twitter</string>
+    <string name="main_about_official_website">www.linkloving.com</string>
+    <string name="main_about_mail">support@linkloving.com</string>
+    <string name="main_about_publish_by">Producted by LINKLOVING CO., LTD</string>
+    <string name="main_about_title">More</string>
+    <string name="main_about_us">About Linkloving</string>
+    <string name="user_info_profile_photo">Profile Photo</string>
+    <string name="user_info_nick_name">Nickname</string>
+    <string name="user_info_password">Password</string>
+    <string name="user_info_body">Profile Info</string>
+    <string name="user_info_what_s_up">What\'s Up</string>
+    <string name="user_info_what_s_up_enter_hint">Say something...</string>
+    <string name="user_info_check_child">Home accounts</string>
+    <string name="user_info_child_title">Sub account list</string>
+    <string name="user_info_child_item_not_change">无法切换账号</string>
+    <string name="user_info_child_item_not_change_msg">当前正在使用中的账号无需切换。</string>
+    <string name="user_info_child_item_not_delete_msg">当前正在使用中的账号无法删除.</string>
+    <string name="user_info_child_item_delete_msg">Are you sure to delete {0}?</string>
+    <string name="user_info_child_add_title">Add account</string>
+    <string name="user_info_child_switch">Switch account</string>
+    <string name="user_info_child_switch_message">Are you sure switch to {0}?</string>
+    <string name="user_info_child_account_desc">Member</string>
+    <string name="user_info_main_account_desc">Headman</string>
+    <string name="user_info_mail">Email</string>
+    <string name="user_info_title">Profile</string>
+    <string name="user_info_update_nick_name_title">Change Nickname</string>
+    <string name="user_info_update_nick_name_validate">Nickname is necessary.</string>
+    <string name="user_info_update_user_height">Height(cm)</string>
+    <string name="user_info_update_user_height_not_valid">Please enter a valid height.</string>
+    <string name="user_info_update_user_weight">Weight(kg)</string>
+    <string name="user_info_update_user_weight_not_valid">Please enter a valid weight.</string>
+    <string name="user_info_update_user_age">Age</string>
+    <string name="user_info_update_user_age_not_valid">Please enter a valid age.</string>
+    <string name="user_info_update_user_psw_old_psw">Password</string>
+    <string name="user_info_update_user_psw_new_psw">New Password</string>
+    <string name="user_info_update_user_psw_repeat_new_psw">Confirm Password</string>
+    <string name="user_info_update_psw_title">Change Password</string>
+    <string name="user_info_update_body_title">Profile Info</string>
+    <string name="user_info_update_success">Update successfully</string>
+    <string name="user_info_update_failure">Update failed.</string>
+    <string name="user_info_update_user_psw_old_psw_false">Error Password!</string>
+    <string name="user_info_update_user_psw_new_psw_not_equal">Error Confirmation!</string>
+    <string name="user_info_update_user_psw_length">less than 6 characters!</string>
+    <string name="user_info_update_user_psw_old_equal_new">The new password is the same as the old! </string>
+    <string name="user_info_update_whats_up_count">personal signature{0}tips</string>
+    <string name="user_info_body_info_text">{0}cm, {1}kg, {2}, {3}</string>
+    <string name="user_info_take_photo">Take Photo</string>
+    <string name="user_info_choose_photo">Choose Photo</string>
+    <string name="user_info_avatar_uploading">Avatar uploading...</string>
+    <string name="user_info_avatar_upload_faild1">Avatar update faild, please check your sdcard!</string>
+    <string name="user_info_avatar_upload_faild2">Sorry, your avatar update failed (image is so large)!</string>
+    <string name="user_info_avatar_upload_faild3">Sorry, your avatar update failed (OOM)!</string>
+    <string name="user_info_avatar_upload_faild4">Sorry, your avatar update failed!</string>
+    <string name="user_info_avatar_upload_sucess">Your avatar update sucess!</string>
+    <string name="user_info_avatar_image_not_exists">Avatar not found!</string>
+    <string name="user_info_child_account">please input child account nickname</string>
+    <string name="privacy_setting">Privacy</string>
+    <string name="getting_started">Beginning guideness</string>
+    <string name="unit_settings">Unit</string>
+    <string name="metric_system">Metric</string>
+    <string name="more_inch">Inch</string>
+    <string name="privacy_clause">Privacy clause</string>
+    <string name="service_provision">Service provision</string>
+    <string name="common_problem">common problem</string>
+
+
+    <!-- 排行榜 -->
+    <string name="ranking_rank">{0}th</string>
+    <string name="ranking_title">Ranking</string>
+    <string name="ranking_item_desc"> He defeated {0}% people of the nationwide </string>
+    <string name="ranking_wait_tomorrow">Looking forward to tomorrow.</string>
+    <string name="ranking_no_data">No data</string>
+    <string name="ranking_all">Full Ranking</string>
+    <string name="ranking_ent">Company ranking</string>
+    <string name="ranking_come_from">from</string>
+    <string name="ranking_people_count">Current ranking participation number</string>
+
+    <!--客服中心-->
+    <string name="service_center_title">Service center</string>
+    <string name="service_phone_number">400-998-3282</string>
+    <string name="feesback_point">We will receive feedback within 72 hours to reply to you</string>
+
+    <!-- 设备 -->
+    <string name="watch_setting">Device</string>
+    <string name="long_sit_title">Sedentary reminder</string>
+    <string name="alarm_notify">Alarms</string>
+    <string name="shop">Shop</string>
+    <string name="long_sit_text">Inactive Alert</string>
+    <string name="long_sit_onset_text">Effective Period </string>
+    <string name="long_sit_to">To</string>
+    <string name="long_sit_start_time"> Start time</string>
+    <string name="long_sit_notice_head"> If you sit too long, wristband will slightly vibrate </string>
+    <string name="long_sit_notice_end"> times, Remind you of some exercise </string>
+    <string name="long_sit_end_time">End time</string>
+    <string name="Incoming_tel_title">Call reminder</string>
+    <string name="wurao_notify">Do not disturb</string>
+    <string name="xiaoxi_notify">Notifications</string>
+    <string name="dianyuan_notify">Battery management</string>
+    <string name="find_device">Find Device</string>
+    <string name="firmware_update_title">Firmware update</string>
+    <string name="move_device_title"> Delete device</string>
+    <string name="longsit_dialog_title">Time setting</string>
+    <string name="getting_version_information">Getting version information</string>
+    <string name="update_firmware">Update Firmware</string>
+    <string name="being_written">Being written</string>
+    <string name="start_upgrading">Download completed, start upgrading</string>
+    <string name="long_sit_switch_title">ON/OFF</string>
+    <string name="alarm_activity_manage_title"> Alarm setting </string>
+    <string name="long_sit_start_time_text"> Start time </string>
+    <string name="long_sit_end_time_text"> End time </string>
+    <string name="long_sit_time_error_title"> Invalid </string>
+    <string name="long_sit_time_error_message"> End time must be later than the start time.</string>
+    <string name="goal_title">Goal</string>
+    <string name="goal_check">Detection</string>
+    <string name="goal_step"> Steps </string>
+    <string name="goal_step_error_title"> Formal error</string>
+    <string name="goal_step_error_message"> Target number of steps must be an integer greater than 0. </string>
+    <string name="goal_recommend">RCMD:</string>
+    <string name="goal_notice">5 times vibration means  complete steps target.</string>
+    <string name="goal_sport"> Steps Target </string>
+    <string name="goal_consume">Burn</string>
+    <string name="goal_BMI">BMI</string>
+    <string name="goal_BMI_INDEX">Body Mbum Index</string>
+    <string name="goal_body">Body Shape</string>
+    <string name="goal_body_value">Computed</string>
+    <string name="goal_diy">Custom Tag</string>
+    <string name="setting_success"> Setting completed</string>
+    <string name="title_activity_device_info"> Device information </string>
+    <string name="action_settings">Settings</string>
+    <string name="unbound_success"> Unbundling success</string>
+    <string name="unbound_success_msg"> Unbundling success,Please close Notification</string>
+    <string name="home_state_sit">Sit quietly</string>
+    <string name="home_state_walk">Walk</string>
+    <string name="home_state_run">Run</string>
+    <string name="home_state_active">Activity</string>
+    <string name="common_sleep_light"> Light sleep </string>
+    <string name="common_sleep_sound"> Deep sleep</string>
+    <string name="handup_setting">Do not disturb</string>
+    <string name="power_setting">Power Mode</string>
+    <string name="handup_setting_intro">In "Do not disturb" time:</string>
+    <string name="handup_setting_intro1">1.Close hands display screen function</string>
+    <string name="handup_setting_intro2">2.all vibrations are disabled except alarm and countdown</string>
+    <string name="notification_title">Notifications</string>
+    <string name="notifications_no_res">No Reminder</string>
+    <string name="alarm_help">No Reminder</string>
+    <string name="reminder_step">least step</string>
+    <string name="pm1">PM1</string>
+    <string name="pm1_content_1">pm1 mode:</string>
+    <string name="pm1_content_2">Function of raising hand to show the screen closed</string>
+    <string name="pm2">PM2</string>
+    <string name="pm2_content_1">Pm2 mode:</string>
+    <string name="pm2_content_2">1. Function of raising hand to show the screen closed</string>
+    <string name="pm2_content_3">2. Close All Vibration (Alarm and Stopwatch still work)</string>
+    <string name="pm3">the device will be in pm3 if the power is below 10%</string>
+    <string name="pm3_content_1">Pm3 mode:</string>
+    <string name="pm3_content_2">1.Alarm and countdown will only vibrate once</string>
+    <string name="pm3_content_3">2.all other vibrates will be disable</string>
+
+    <!-- 闹钟 -->
+    <string name="alarm_modify_alarm">Edit Alarm Clock</string>
+    <string name="alarm_repeat">Repeat</string>
+    <string name="alarm_desc_none">None</string>
+    <string name="alarm_desc_weekend">Weekend</string>
+    <string name="alarm_desc_workday"> Workday</string>
+    <string name="alarm_desc_everyday">Every day</string>
+    <string name="alarm_desc_monday">Mon</string>
+    <string name="alarm_desc_tuesday">Tue</string>
+    <string name="alarm_desc_wednesday">Wed</string>
+    <string name="alarm_desc_thursday">Thu</string>
+    <string name="alarm_desc_friday">Fri</string>
+    <string name="alarm_desc_saturday">Sat</string>
+    <string name="alarm_desc_sunday">Sun</string>
+    <string name="alarm_noitice">The watch reminds vibration for nine times indicates alarm clock </string>
+    <string name="alarm_week">Week</string>
+    <string name="alarm_save">Save</string>
+
+    <!-- 单位 -->
+    <string name="unit_mileage">Mileage</string>
+    <string name="unit_step">Step</string>
+    <string name="unit_cal">Calorie</string>
+    <string name="unit_cal_big">Kcal.</string>
+    <string name="unit_cm">Cm</string>
+    <string name="unit_m">Meter</string>
+    <string name="unit_mile">Mile</string>
+    <string name="unit_km">Km</string>
+    <string name="unit_km_metric">Km</string>
+    <string name="unit_km_en">Km</string>
+    <string name="unit_km_per_hour">Km/hr</string>
+    <string name="unit_km_per_hour_metric">Km/hr</string>
+    <string name="unit_year">Year</string>
+    <string name="unit_pound">lb</string>
+    <string name="unit_age">age</string>
+    <string name="unit_year4date">Year</string>
+    <string name="unit_month">Month</string>
+    <string name="unit_month4date">Month</string>
+    <string name="unit_week">Week</string>
+    <string name="unit_day">Day</string>
+    <string name="unit_day4date">Day</string>
+    <string name="unit_hour">Hour</string>
+    <string name="unit_short_hour">H</string>
+    <string name="unit_minute">Minute</string>
+    <string name="unit_second">Second</string>
+
+
+    <!-- 忘记密码 -->
+    <string name="forget_password_find_back">Forgot your password?</string>
+    <string name="forget_password_register_mail">Email</string>
+    <string name="forget_password_notice">(Please enter your registered e-mail to help you recover your account password)</string>
+
+    <!-- 绑定 -->
+    <string name="bound_list">Device List</string>
+    <string name="bound_ble_list">Bluetooth Device List</string>
+    <string name="bound_link_band">Linkloving band</string>
+    <string name="bound_link_watch">Linkloving watch</string>
+    <string name="bound_link_niukouband">Linkloving band 3.0</string>
+    <string name="new_bound_step1">Step 1:Remove your tracker from the wristband and charge the device</string>
+    <string name="new_bound_step2">Step 2: Press "Next", find the same ID with the one on the back of the device in the Bluetooth Device List and press "Bund". When Bounding is successful, the device will vibrate once</string>
+    <string name="new_bound_step3">Please unplug the charger!</string>
+    <string name="bound_ble_refresh">Refresh</string>
+    <string name="bound_ble_click">Bund</string>
+    <string name="bound_failed">Not binding equipment</string>
+    <string name="bound_failed_reason">Bundling failed, please bund the device again!</string>
+    <string name="bound_failed_msg">Your phone doesn\'t have internet which is required during the bundling process. Please access to internet and try again！</string>
+    <string name="bound_illegal_address">Illegal device ID!</string>
+    <string name="bound_illegal_address_msg">Illegal MAC ID!！</string>
+    <string name="bound_title">Bund your Linkloving watch</string>
+    <string name="bound_title_band"> PAIR WRISTBAND </string>
+    <string name="bound_skip">Skip</string>
+    <string name="portal_main_bound_failed_nocharge">Please charging by connecting the cable to a USB power source</string>
+    <string name="portal_main_bound_failed_ble_dis">The bluetooth radio is not responding.  Please exit the App and go to your device Settings. Please turn off and on your bluetooth to reset the connection and try again.</string>
+    <string name="bound_pick_up">Step 1: Charge the device</string>
+    <string name="bound_active">Step 2: Match the ID</string>
+    <string name="bound_active_notice">5v DC</string>
+    <string name="bound_active_notice2">Use power adapter or PC USB port</string>
+    <string name="bound_active_notice3">1.Find the same ID displayed on watch screen in the Bluetooth device list</string>
+    <string name="bound_active_notice4">2.Press </string>
+    <string name="bound_active_notice5">  Bund</string>
+    <string name="bound_active_notice6">b.PIN码绑定方案</string>
+    <string name="bound_active_notice7">Press "Y" to bund the device。</string>
+    <string name="bound_active_notice8">根据提示在手机蓝牙配对页面输入手表上的PIN码即可完成配对。</string>
+    <string name="bound_scan">Step 3: Bund the device</string>
+    <string name="bound_scan_sqr">Cancel({0}S)</string>
+    <string name="bound_string">Bund</string>
+    <string name="bound_dounding">Bunding....</string>
+    <string name="bound_dounding_successful">Bund Successful</string>
+
+    <!-- 设备信息 -->
+    <string name="device_info_title"> Device Info </string>
+    <string name="device_info_address"> Device Code:</string>
+    <string name="device_info_name"> Device Name:</string>
+    <string name="device_info_msg"> Device Info:</string>
+    <string name="device_info_none">Null</string>
+    <string name="device_info_no">NO Device Info</string>
+    <string name="bracelet_title"> Device Info </string>
+    <string name="bracelet_owner">Linkloving Devixe</string>
+    <string name="brace_version">Firmware Vision</string>
+    <string name="bracelet_oad_Portal">New firmware is available for your device, do you like to upgrade now?</string>
+    <string name="bracelet_oad_version_top">Your device\'s firmware is the latest version!</string>
+    <string name="bracelet_oad_reason">Firmware upgrade failed because of the bluetooth connection was closed during the process!</string>
+    <string name="bracelet_oad_keycodeback">Please do not operate during the upgrade!</string>
+    <string name="bracelet_oad_failed_battery">The device is required to have at least 30% power for firmware upgrade, please charge your device first!</string>
+    <string name="bracelet_down_file_fail">File downloading failed!</string>
+    <string name="bracelet_oad_syn">Synchronous Data...</string>
+    <string name="bracelet_update">File downloading failed!</string>
+    <string name="bracelet_mac_address"> MAC:{0}</string>
+    <string name="bracelet_version"> Firmware:{0}</string>
+    <string name="bracelet_battery">Battery {0}%</string>
+    <string name="bracelet_sync_time">Last sync time</string>
+    <string name="bracelet_unbound">Disconnect</string>
+    <string name="bracelet_oad">Update</string>
+    <string name="bracelet_oad_msg">Undate it or not?</string>
+    <string name="bracelet_oad_failed">Undate Failed</string>
+    <string name="bracelet_oad_failed_msg">Please keep your phone network work when update!</string>
+    <string name="bracelet_help">Help</string>
+    <string name="bracelet_sync_format">MM-dd,yyyy HH:mm:ss</string>
+    <string name="bracelet_sync_none"> [Never been synchronized]</string>
+    <string name="bracelet_unbound_msg">Unbund it or not?</string>
+    <string name="bracelet_unbound_failed">Unbund Failed</string>
+    <string name="bracelet_unbound_failed_msg">Please keep your phone network work when unbund!</string>
+    <string name="share_content_short">Share</string>
+    <string name="share_content_fail">Share Success</string>
+    <string name="evenote_title">连爱手环,动起来!</string>
+    <string name="bracelet_bound">bund success!</string>
+    <string name="share_content">Share the sports situation, and look forward to your joining...</string>
+    <string name="debug_device_set_success">DEBUG(设备反馈): 设置用户信息成功!</string>
+    <string name="debug_device_unbound_failed"> Unbundling failed!</string>
+
+    <!-- 主页面 -->
+    <string name="menu_clock">Alarms</string>
+    <string name="menu_sedentary">Sedentary</string>
+    <string name="menu_body">Profile Info</string>
+    <string name="menu_sport_data">Trends</string>
+    <string name="menu_goal">GoalSetting</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_wxsport">Wechat Sport</string>
+    <string name="portal_main_sync_data">MM-dd,yyyy HH:mm</string>
+    <string name="portal_main_bound_failed">Bounding Failed</string>
+    <string name="portal_main_bound_success">Successfully Bunding!</string>
+    <string name="portal_main_unbound">Unbund</string>
+    <string name="portal_main_gobound">Bund Device</string>
+    <string name="portal_main_isbounding">Bunding..</string>
+    <string name="portal_main_bounding">Bunding!Please pay attention to  the screen of Watch!</string>
+    <string name="portal_main_unbound_msg">You have not bunded the device, please bund one first. </string>
+    <string name="portal_main_battery_low"> Low Power </string>
+    <string name="portal_main_battery_low_msg">Your wristband current consumption is less than 10%, please charge as soon as possible!</string>
+    <string name="portal_main_battery_ble_timeout">Bluetooth scan timeout, please try again later.</string>
+    <string name="portal_main_has_bound_drop">Device has been associated user ID ({0}) You can not bund the device again, please try again after the device unbundling!</string>
+    <string name="portal_main_has_bound">Your account has been bound to the other mobile phone devices, this binding can not continue, please try again after landing!</string>
+    <string name="portal_main_has_bound_other">Your device has been bound account {0}, please try again again after notifying this account to unbound equipment!</string>
+    <string name="portal_main_local_sport_data_save_success">Offline storage: the day real-time aggregated data has been successfully saved.</string>
+    <string name="portal_main_state_connecting">Connecting...</string>
+    <string name="portal_main_state_unbound">Unbund</string>
+    <string name="portal_main_state_connected">Connected</string>
+    <string name="portal_main_state_unconnect">Disconnected</string>
+    <string name="portal_main_data_loading">Data loading...</string>
+    <string name="portal_main_data_calculating">Data calculating...</string>
+    <string name="portal_main_date_format_error">Date format error!</string>
+    <string name="portal_main_data_chose">select date</string>
+    <string name="portal_main_finish">Complete</string>
+    <string name="portal_main_goal">Goal {0} steps</string>
+    <string name="portal_main_history_data_saving">Historical summary data saving...</string>
+    <string name="portal_main_sport_data_saving">Sport data saving...</string>
+    <string name="portal_main_sleep_data_saving">Sleep data saving...</string>
+    <string name="portal_main_waiting_tomorrow"> Please look forward the coming of tomorrow</string>
+    <string name="portal_main_today">Today</string>
+    <string name="portal_main_timing">Calibrating world time standard...</string>
+    <string name="portal_main_timing_failed">Calibrating failed, please check your network!</string>
+    <string name="portal_main_be_bounded_hint">This wristband has been bound to the user {0}, bund failed! </string>
+    <string name="portal_main_new_feedback_msg">you have new feedbacks</string>
+    <string name="update_title">Notice</string>
+    <string name="update_message">Discover the new version already exists on the SD card, if not by downloading directly from the local installation?</string>
+    <string name="loadmore">Pull down to load more...</string>
+    <string name="refresh_time">set time successful...</string>
+    <string name="refresh_data">syncdata...left{0}</string>
+
+
+    <!-- 日明细数据 -->
+    <string name="detail_sport_data_title">Detail data</string>
+    <string name="detail_sport_data_image_loading">Picture preparing...</string>
+    <string name="detail_sport_data_refresh_range">Refresh: Date Range:</string>
+    <string name="detail_sport_data_waiting_tomorrow"> Please look forward the coming of tomorrow</string>
+    <string name="detail_sport_data_today">Today</string>
+    <string name="detail_sport_data_ydl">Walk</string>
+    <string name="detail_sport_data_wcmb">Completed</string>
+    <string name="detail_sport_data_hdsj">Time</string>
+    <string name="detail_sport_data_pjsd">Speed</string>
+    <string name="detail_sport_data_ydjl">Distance</string>
+    <string name="detail_sport_data_nlxh">Calory </string>
+    <string name="detail_sport_data_pbjl">Distance</string>
+    <string name="detail_sport_data_sssj">Deep sleep</string>
+    <string name="detail_sport_data_qssj">Light sleep</string>
+    <string name="detail_sport_data_sm">Sleep</string>
+    <string name="detail_sport_data_rs">Go to bed</string>
+    <string name="detail_sport_data_qc">Get up</string>
+    <string name="detail_sport_data_content_reading">Loading...</string>
+    <string name="detail_sport_data_run_time">跑步用时</string>
+    <string name="common_distance_unit_metres">"meter "</string>
+    <string name="detail_sport_data_sum_main_walk">Walk</string>
+    <string name="detail_sport_data_sum_main_run">Run</string>
+    <string name="detail_sport_data_sum_main_sleep">Sleep</string>
+    <string name="summarizing_data">loading...</string>
+    <string name="date">Date:</string>
+    <string name="data_by_week">Weekly Data</string>
+    <string name="data_by_month">Monthly Data</string>
+    <string name="data_by_year">Year Data</string>
+    <string name="change_weight_activity">Modify Weight</string>
+    <string name="change_weight_goal">Target Weight</string>
+    <string name="report_data_reading">Week / Month report data reading...</string>
+    <string name="report_steps">Steps</string>
+    <string name="report_distance"> Distance </string>
+    <string name="report_calories">Calory</string>
+    <string name="report_sleep">Sleep</string>
+    <string name="report_week_view">By Week</string>
+    <string name="report_month_view">By Month</string>
+    <string name="report_day_view">By Day</string>
+    <string name="report_day_activte_lengend_step_work">Walk（Steps）</string>
+    <string name="report_day_activte_lengend_step_run">Run（Steps）</string>
+    <string name="report_day_activte_lengend_distance_work">Walk（meters）</string>
+    <string name="report_day_activte_lengend_distance_run"> Run（meters）</string>
+    <string name="report_day_activte_lengend_sleep"> Light sleep（hour）</string>
+    <string name="report_day_activte_lengend_deepsleep"> Deep sleep（hour）</string>
+    <string name="report_day_activte_lengend_ca_work">Walk（Kcal）</string>
+    <string name="report_day_activte_lengend_ca_run">Run（Kcal）</string>
+    <string name="date_picker_back2today">Back  to today</string>
+    <string name="date_picker_activity_title">Choose date</string>
+    <string name="date_picker_out_time">You have choose a invalid date!</string>
+
+    <!-- 身体信息 -->
+    <string name="body_info_register"> Profile Info </string>
+    <string name="body_info_modify"> Profile Info </string>
+    <string name="body_info_unknow">Null</string>
+    <string name="body_info_mubiao">Goal is necessary!</string>
+    <string name="body_info_height_is_necessary"> height is necessary!</string>
+    <string name="body_info_weight_is_necessary">weight is necessary!</string>
+    <string name="body_info_age_is_necessary">age is necessary!</string>
+    <string name="body_info_height_recommend">recommend height is between 60cm to 272 cm. </string>
+    <string name="body_info_weight_recommend">Recommend weight is between 20 kgs to 453 kgs </string>
+    <string name="body_info_age_recommend">Age should be between 12 and 114 years old.</string>
+    <string name="body_info_age">Age</string>
+    <string name="body_info_weight">Weight(kg)</string>
+    <string name="body_info_height">Height(cm)</string>
+    <string name="body_info_bmi">BMI:</string>
+    <string name="body_info_body_type">,Body shape</string>
+    <string name="body_info_slim">Slim</string>
+    <string name="body_info_normal">normal</string>
+    <string name="body_info_overweight">overweight</string>
+    <string name="body_info_mildly_obese">Mildly obese</string>
+    <string name="body_info_moderately_obese">Moderately obese</string>
+    <string name="body_info_severe_obesity">Severe obese</string>
+    <string name="general_start_check">start to experience</string>
+
+    <!--里程-->
+    <string name="today">today</string>
+    <string name="yesterday">yesterday</string>
+    <string name="lastmonth">lastmonth</string>
+    <string name="thismonth">thismonth</string>
+    <string name="lastweek">lastweek</string>
+    <string name="thisweek">thisweek</string>
+    <string name="lastyear">lastyear</string>
+    <string name="thisyear">thisyear</string>
+    <string name="cal_title">CAL</string>
+    <string name="count_title">Time Spent</string>
+    <string name="step_count">Step Count</string>
+    <string name="distance_count">Distance Count</string>
+    <string name="shujumingxi">data book</string>
+    <string name="edit_target">Edit target</string>
+    <string name="weight">Weight</string>
+    <string name="record_weight">Record weight</string>
+    <string name="distance_to_goal">Distance to goal</string>
+    <string name="achieve_target">Congratulations on reaching your goal</string>
+
+    <!-- 关系圈 -->
+    <string name="relationship">Friend</string>
+    <string name="relationship_concern_about">Following</string>
+    <string name="relationship_concern_me">Followers</string>
+    <string name="relationship_comments">Comment</string>
+    <string name="relationship_comment">Comment</string>
+    <string name="relationship_search">Find</string>
+    <string name="relationship_nearby">Nearby</string>
+    <string name="relationship_best_record">Best recording</string>
+    <string name="relationship_current_steps">Day recording</string>
+    <string name="relationship_comment_empty">Comment can not be empty!</string>
+    <string name="relationship_reply_empty">Replty can not be empty!</string>
+    <string name="relationship_not_reply_self">Can not reply yourself!</string>
+    <string name="relationship_comment_failed">Comment fail!</string>
+    <string name="relationship_reply_failed">Reply fail!</string>
+    <string name="relationship_reply">Reply</string>
+    <string name="relationship_search_condition_empty">Key word can not be empty!</string>
+    <string name="relationship_user_info">Friend info</string>
+    <string name="relationship_cancel_attention_failed">Cancel follow fail!</string>
+    <string name="relationship_attention_failed">Follow fail!</string>
+    <string name="relationship_attention_success">Follow complete!</string>
+    <string name="relationship_cancel_attention_success">Unfollow complete!</string>
+    <string name="relationship_attention">Follow</string>
+    <string name="relationship_cancel_attention">Unfollow</string>
+    <string name="relationship_search_empty">No match info</string>
+    <string name="relationship_search_hint">Enter email or nickname</string>
+    <string name="relationship_hot_comments">Comments</string>
+
+
+    <!--朋友圈-->
+    <string name="myfans">Follower</string>
+    <string name="myattention">Follow</string>
+    <string name="my_message">Message</string>
+    <string name="find_friend">New friend</string>
+    <string name="near_people">Nearby</string>
+    <string name="find_qunzu">Group</string>
+    <string name="attention_activity_title">Follow</string>
+
+    <!-- 群组 -->
+    <string name="relationship_search_people_count">{0} people</string>
+    <string name="relationship_search_group_inputpsd">Password Required</string>
+    <string name="relationship_search_group_psderror">Password Error</string>
+    <string name="relationship_search_group_success">Success!</string>
+    <string name="relationship_search_group_continue">Continue..</string>
+    <string name="relationship_search_group_features">Group Features</string>
+    <string name="relationship_search_group_success1">You can opt out / leave this group any time by going to Menu – More – Exit Group Name.</string>
+    <string name="relationship_search_group_success2">Check out the group leaderboard and messages from the group manager at Menu – More – About Group</string>
+    <string name="relationship_search_group_msg">By joining this group, your nickname, email, gender, and daily step totals will be shared with the group admin.</string>
+    <string name="relationship_search_group_nopasword">Password is necessary.</string>
+    <string name="relationship_search_group_errpasword">Please enter the correct password.</string>
+    <string name="relationship_search_join_group_message">Do you want to join \"{0}\" group ?</string>
+    <string name="relationship_search_already_group_message">You have been in \"{0}\" group.</string>
+    <string name="relationship_search_already_group_message_other">You have been in \"{0}\" group, please exit it to join other groups.</string>
+    <string name="relationship_search_join_succeed">Join succeeded!</string>
+    <string name="relationship_search_join_failure">Join failed!</string>
+    <string name="main_more_exit_ent">Exit Group</string>
+    <string name="main_more_exit_ent_message">Are you sure to exit \"{0}\" group ?</string>
+    <string name="main_more_exit_ent_success">Exit successfully!</string>
+    <string name="main_more_exit_ent_faliure">Exit failure!</string>
+    <string name="main_more_exit">Exit</string>
+    <string name="main_more_exit_group">Group</string>
+    <string name="group_details">Group details</string>
+    <string name="ent_name">Group Name</string>
+    <string name="ent_address">Group Address</string>
+
+    <!-- 附近的人 -->
+    <string name="nearby_title">Nearby</string>
+    <string name="nearby_empty">No nearby</string>
+    <string name="nearby_unit_m">m</string>
+    <string name="nearby_unit_km">km</string>
+    <string name="nearby_list_item_distance_desc">Less than {0} | {1}</string>
+    <string name="nearby_5_minute_ago">Less than 5 min</string>
+    <string name="nearby_10_minute_ago">Less than 10 min</string>
+    <string name="nearby_30_minute_ago">Less than 30 min</string>
+    <string name="nearby_1_hour_ago">Less than 1 hour</string>
+    <string name="nearby_2_hour_ago">Less than 2 hour</string>
+    <string name="nearby_3_hour_ago">Less than 3 hour</string>
+    <string name="nearby_4_hour_ago">Less than 4 hour</string>
+    <string name="nearby_5_hour_ago">Less than 5 hour</string>
+    <string name="nearby_6_hour_ago">Less than 6 hour</string>
+    <string name="nearby_7_hour_ago">Less than 7 hour</string>
+    <string name="nearby_8_hour_ago">Less than 8 hour</string>
+    <string name="nearby_9_hour_ago">Less than 9 hour</string>
+    <string name="nearby_10_hour_ago">Less than 10 hour</string>
+    <string name="nearby_11_hour_ago">Less than 11 hour</string>
+    <string name="nearby_12_hour_ago">Less than 12 hour</string>
+    <string name="nearby_13_hour_ago">Less than 13 hour</string>
+    <string name="nearby_14_hour_ago">Less than 14 hour</string>
+    <string name="nearby_15_hour_ago">Less than 15 hour</string>
+    <string name="nearby_16_hour_ago">Less than 16 hour</string>
+    <string name="nearby_17_hour_ago">Less than 17 hour</string>
+    <string name="nearby_18_hour_ago">Less than 18 hour</string>
+    <string name="nearby_19_hour_ago">Less than 19 hour</string>
+    <string name="nearby_20_hour_ago">Less than 20 hour</string>
+    <string name="nearby_21_hour_ago">Less than 21 hour</string>
+    <string name="nearby_22_hour_ago">Less than 22 hour</string>
+    <string name="nearby_23_hour_ago">Less than 23 hour</string>
+    <string name="nearby_1_day_ago">Less than 1 day</string>
+    <string name="nearby_2_day_ago">Less than 2 days</string>
+    <string name="nearby_3_day_ago">Less than 3 days</string>
+    <string name="nearby_4_day_ago">Less than 4 days</string>
+    <string name="nearby_5_day_ago">Less than 5 days</string>
+    <string name="nearby_6_day_ago">Less than 6 days</string>
+    <string name="nearby_1_week_ago">Less than 1 week</string>
+    <string name="nearby_2_week_ago">Less than 2 weeks</string>
+    <string name="nearby_3_week_ago">Less than 3 weeks</string>
+    <string name="nearby_1_month_ago">Less than 1 month</string>
+    <string name="nearby_too_long_ago">Never!</string>
+
+    <!-- 签名档 -->
+    <string name="whats_up_history_edit">Edit</string>
+    <string name="whats_up_history_delete">Delete</string>
+    <string name="whats_up_history_delete_msg">Are sure delete?</string>
+    <string name="whats_up_history_comments">Comment</string>
+    <string name="whats_up_history_title">All what\'s up</string>
+    <string name="whats_up_history_add">Send</string>
+    <string name="whats_up_history_date">yyyy-MM-dd</string>
+    <string name="whats_up_history_comments_empty">Comment should not empty!</string>
+    <string name="whats_up_history_add_whats_up">Add what\'s up</string>
+    <string name="whats_up_history_edit_whats_up">Edit  what\'s up</string>
+    <string name="whats_up_detail_comments">Comment</string>
+    <string name="whats_up_detail_sendMsg">Messages</string>
+    <string name="whats_up_detail_title">What\'s up</string>
+    <string name="whats_up_detail_reply">Reply</string>
+    <string name="whats_up_detail_null_data">No comments</string>
+
+
+
+
+    <!-- 6.0权限 -->
+    <string name="permission_ble">打开位置权限才可以使用连爱蓝牙功能哦~</string>
+
+    <!-- 控件contentDescription 不需要翻译-->
+    <string name="imageView">imageView</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_long_sit">LongSitActivity</string>
+    <string name="title_activity_hand_up">HandUpActivity</string>
+    <string name="title_activity_incoming_tel">IncomingTel</string>
+    <string name="title_activity_power">PowerActivity</string>
+    <string name="title_activity_firmware_update">FirmwareUpdateActivity</string>
+    <string name="title_activity_set_alarm">SetAlarmActivity</string>
+    <string name="title_activity_ranking">RankingActivity</string>
+    <string name="title_activity_move_device">MoveDeviceActivity</string>
+    <string name="title_activity_login_page">LoginPageActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_body">BodyActivity</string>
+    <string name="title_activity_registered_success">RegisteredSuccessActivity</string>
+    <string name="title_activity_spor_goal_setting">SporGoalSetting</string>
+    <string name="title_activity_customer_service">CustomerServiceActivity</string>
+    <string name="title_activity_register_phone">RegisterPhoneActivity</string>
+    <string name="title_activity_bound">BoundActivity</string>
+    <string name="title_activity_bound_activity_2">BoundActivity_2</string>
+    <string name="title_activity_blelist">BLEListActivity</string>
+    <string name="title_activity_common_web">CommonWebActivity</string>
+    <string name="title_activity_more">MoreActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="title_activity_send_mail">SendMailActivity</string>
+</resources>

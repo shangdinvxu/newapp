@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_set"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/bg_clock_1080px">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/bg_clock_1080px">
+
+            <com.linkloving.rtring_new.logic.UI.device.alarm.PickerView
+                android:id="@+id/hour_pv"
+                android:layout_width="80dp"
+                android:layout_height="160dp"
+                android:layout_marginRight="12dp"></com.linkloving.rtring_new.logic.UI.device.alarm.PickerView>
+
+            <com.linkloving.rtring_new.logic.UI.device.alarm.PickerView
+                android:id="@+id/minute_pv"
+                android:layout_width="80dp"
+                android:layout_height="160dp"
+                android:layout_toRightOf="@id/hour_pv" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frame_layout"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/alarm_setting_content_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="7"
+                android:gravity="center_horizontal"
+                android:text="@string/alarm_repeat"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/m00_font_size_30pt" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/underline_on" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_monday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_tuesday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_wednessday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_wednesday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_thursday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_friday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_saturday"
+                android:textColor="@color/white" />
+
+            <CheckBox
+                android:id="@+id/set_alarm_change_alarm_dialog_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_check_box_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_sunday"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_savetime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/btn_style"
+        android:text="@string/alarm_save"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/m00_font_size_30pt" />
+</RelativeLayout>

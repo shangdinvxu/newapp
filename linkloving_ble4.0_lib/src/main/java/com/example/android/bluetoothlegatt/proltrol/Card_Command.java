@@ -1,0 +1,162 @@
+package com.example.android.bluetoothlegatt.proltrol;
+
+
+/**
+ * @author cherry
+ * 一卡通相关指令
+ */
+public abstract class Card_Command {
+	
+	
+	//************************************第一流程AID
+	/**
+	 * 苏州卡AID
+	 */
+	public static final byte[] SUZHOU_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x00,(byte) 0x00,(byte) 0x02,(byte) 0x00,(byte) 0xDF,(byte) 0x01};
+	/**
+	 * 大唐镇江AID
+	 */
+	public static final byte[] DATANG_ZHENJIANG_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x09,(byte) 0x00,(byte) 0xA0,(byte) 0x00,(byte) 0x00,(byte) 0x00,(byte) 0x03,(byte) 0x86,(byte) 0x98,(byte) 0x07,(byte) 0x01};
+	/**
+	 * 大唐交通联合AID
+	 */
+	public static final byte[] DATANG_JIAOTONG_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x08,(byte) 0x00,(byte) 0xA0,(byte) 0x00,(byte) 0x00,(byte) 0x06,(byte) 0x32,(byte) 0x01,(byte) 0x01,(byte) 0x05};
+	/**
+	 * 大唐北京通AID
+	 */
+	public static final byte[] DATANG_BEIJING_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x0B,(byte) 0x00,(byte) 0xD1,(byte) 0x56,(byte) 0x00,(byte) 0x00,(byte) 0x01,(byte) 0x43,(byte) 0x4D,(byte) 0x43,(byte) 0x43,(byte) 0x47,(byte) 0x44};
+	/**
+	 * 大唐互联互通AID
+	 */
+	public static final byte[] DATANG_HULIAN_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x08,(byte) 0x00,(byte) 0xA0,(byte) 0x00,(byte) 0x00,(byte) 0x06,(byte) 0x32,(byte) 0x01, (byte) 0x01,(byte) 0x05};
+	/**
+	 * 柳州市民卡AID
+	 */
+	public static final byte[] LIUZHOU_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x10,(byte) 0x00,(byte) 0xD1,(byte) 0x56,(byte) 0x01,(byte) 0x01,(byte) 0x01,(byte) 0x00,(byte) 0x62,(byte) 0x6F,(byte) 0x6C,(byte) 0x7A, (byte) 0x00,(byte) 0x00,(byte) 0x45,(byte) 0x50,(byte) 0x01,(byte)0x01};
+	/**
+	 * 恒宝钱包AID
+	 */
+	public static final byte[] HENGBAO_QIANBAO_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x10,(byte) 0x00,(byte) 0xD1,(byte) 0x56,(byte) 0x00,(byte) 0x00,(byte) 0x40,(byte) 0x10,(byte) 0x00,(byte) 0x30,(byte) 0x00,(byte) 0x00,(byte) 0x00,(byte) 0x02,(byte) 0x00,(byte) 0x00,(byte) 0x00,(byte) 0x00};
+	/**
+	 * 恒宝现金AID
+	 */
+	public static final byte[] HENGBAO_XIANJIN_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x08,(byte) 0x00,(byte) 0xA0,(byte) 0x00,(byte) 0x00,(byte) 0x03,(byte) 0x33,(byte) 0x01,(byte) 0x01,(byte) 0x06};
+	/**
+	 * 恒宝---羊城通AID
+	 */
+	public static final byte[] YANGCHENG_AID = {(byte) 0x00,(byte) 0xA4,(byte) 0x04,(byte) 0x00,(byte) 0x08,(byte) 0x00,(byte) 0x59,(byte) 0x43,(byte) 0x54,(byte) 0x2E,(byte) 0x55, (byte) 0x53,(byte) 0x45,(byte) 0x52};
+	/**
+	 * 恒宝---绵阳现金卡AID
+	 */
+	public static final byte[] MIANYANG_XJ_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x08,(byte)0x00,(byte)0xA0,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x33,(byte)0x01,(byte)0x01,(byte)0x06};
+	/**
+	 * 恒宝---绵阳借记卡AID
+	 */
+	public static final byte[] MIANYANG_JIEJI_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x08,(byte)0x00,(byte)0xA0,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x33,(byte)0x01,(byte)0x01,(byte)0x06};
+	/**
+	 * 恒宝---绵阳贷记卡AID
+	 */
+	public static final byte[] MIANYANG_DAIJI_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x08,(byte)0x00,(byte)0xA0,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x33,(byte)0x01,(byte)0x01,(byte)0x02};
+	/**
+	 * 恒宝---正元AID
+	 */
+	public static final byte[] ZHENGYUAN_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x0C,(byte)0x00,(byte)0x60,(byte)0x52,(byte)0x5B,(byte)0x9D,(byte)0x66,(byte)0x41,(byte)0x50,(byte)0x50,(byte)0x15,(byte)0x00,(byte)0x08,(byte)0x01};
+	/**
+	 * 湖北---数码视讯AID
+	 */
+	public static final byte[] HUBEISHIXUN_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x08,(byte)0x00,(byte)0xA0,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x33,(byte)0x01,(byte)0x01,(byte)0x02};  
+	/**
+	 * 云南---富滇银行AID
+	 */
+	public static final byte[] YUNNANFUDIAN_AID = {(byte)0x00,(byte)0xA4,(byte)0x04,(byte)0x00,(byte)0x08,(byte)0x00,(byte)0xA0,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x33,(byte)0x01,(byte)0x01,(byte)0x02}; 
+	
+	//************************************AID 后续流程
+	
+	/**
+	 * AID 后续操作1
+	 */
+	public static final byte[] AID_STEP1 = {(byte)0x00,(byte)0xA4,(byte)0x00,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0xDD,(byte)0xF1};
+	/**
+	 * AID 后续操作2
+	 */
+	public static final byte[] AID_STEP2 = {(byte)0x00,(byte)0xA4,(byte)0x00,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0xAD,(byte)0xF3};
+	
+	//************************************第二流程checkpin(目前只有苏州有这个流程)
+	
+	/**
+	 * 苏州卡checkpin
+	 */
+	public static final byte[] SUZHOU_CHECKPIN = {(byte)0x00,(byte)0x20,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x00,(byte)0x12,(byte)0x34,(byte)0x56};
+	
+	//************************************第三流程 读余额
+	
+	/**
+	 * 苏州 余额
+	 */
+	public static final byte[] SUZHOU_BALANCE = {(byte)0x80,(byte)0x5C,(byte)0x00,(byte)0x01,(byte)0x00,(byte)0x04};
+	/**
+	 * 柳州 余额
+	 */
+	public static final byte[] LIUZHOU_BALANCE = {(byte)0x80,(byte)0x5C,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x04};
+	/**
+	 * 大唐 余额--目前通用
+	 */
+	public static final byte[] DATANG_BEIJING_BALANCE = {(byte)0x80,(byte)0x5C,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x04};
+	/**
+	 * 恒宝钱包 余额
+	 */
+	public static final byte[] HENGBAO_QIANBAO_BALANCE = {(byte)0x80,(byte)0x5C,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x04};
+	/**
+	 * 恒宝现金 余额
+	 */
+	public static final byte[] HENGBAO_XIANJIN_BALANCE = {(byte)0x80,(byte)0xCA,(byte)0x9F,(byte)0x79,(byte)0x00,(byte)0x09};
+	/**
+	 * 恒宝羊城 余额
+	 */
+	public static final byte[] YANGCHENG_BALANCE = {(byte)0x80,(byte)0x5C,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x04};
+	/**
+	 * 恒宝绵阳  余额
+	 */
+	public static final byte[] MIANYANG_BALANCE = {(byte)0x80,(byte)0xCA,(byte)0x9F,(byte)0x79,(byte)0x00,(byte)0x09};
+	/**
+	 * 恒宝正元  余额
+	 */
+	public static final byte[] ZHENGYUAN_BALANCE = {(byte)0x00,(byte)0x5C,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x03};
+	
+	/**
+	 * 湖北---数码视讯  余额
+	 */
+	public static final byte[] HUBEI_CARD = {(byte)0x00,(byte)0xB2,(byte)0x03,(byte)0x0C,(byte)0x00,(byte)0x0E};
+	/**
+	 * 云南---银行  余额
+	 */
+	public static final byte[] YUNNAN_FUDIAN_CARD = {(byte)0x80,(byte)0xCA,(byte)0x9F,(byte)0x79,(byte)0x00,(byte)0x09};
+	
+	/**
+	 * 云南---银行  关闭非接
+	 */
+	public static final byte[] YUNNAN_FUDIAN_CLOSE = {(byte)0x80,(byte)0xFE,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00}; //80 FE 00 00 00
+	
+	/**
+	 * 云南---银行  打开非接
+	 */
+	public static final byte[] YUNNAN_FUDIAN_OPEN = {(byte)0x80, (byte)0xFE, (byte)0x00, (byte)0x01, (byte)0x00,(byte)0x00}; //80 FE 00 01 00
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

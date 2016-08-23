@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_gray"
+    android:orientation="vertical"
+    >
+    <!--同步成功的提示-->
+    <LinearLayout
+        android:id="@+id/Synchronize_device"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_Synchronize_device"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!--闹钟1-->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="336px"
+        android:layout_below="@+id/Synchronize_device"
+        android:layout_marginBottom="20px"
+        android:elevation="10px"
+        android:background="@color/device_item_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_showtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_weight="1"
+                    android:text="07:00"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/m00_font_size_64pt" />
+
+                <ImageView
+                    android:id="@+id/img_switch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="54px"
+                    android:src="@mipmap/btn_off" />
+            </LinearLayout>
+
+        <!--频率-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            >
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_monday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_monday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_tuesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_tuesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_wednessday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_wednesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_thursday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_thursday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_friday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_friday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_saturday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_saturday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_sunday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_sunday"
+                android:textColor="@color/text_gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--闹钟2-->
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="336px"
+        android:layout_below="@+id/linearLayout"
+        android:background="@color/device_item_bg"
+        android:layout_marginBottom="20px"
+        android:elevation="10px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_showtime1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_weight="1"
+                android:text="07:00"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/m00_font_size_64pt" />
+
+            <ImageView
+                android:id="@+id/img_switch1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="54px"
+                android:src="@mipmap/btn_off" />
+        </LinearLayout>
+
+        <!--频率-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            >
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_monday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_monday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_tuesday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_tuesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_wednessday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_wednesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_thursday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_thursday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_friday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_friday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_saturday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_saturday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_sunday1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_sunday"
+                android:textColor="@color/text_gray" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--闹钟3-->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="336px"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/device_item_bg"
+        android:layout_marginBottom="20px"
+        android:elevation="10px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_showtime2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_weight="1"
+                android:text="07:00"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/m00_font_size_64pt" />
+
+            <ImageView
+                android:id="@+id/img_switch2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="54px"
+                android:src="@mipmap/btn_off" />
+        </LinearLayout>
+
+        <!--频率-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            >
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_monday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_monday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_tuesday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_tuesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_wednessday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_wednesday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_thursday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_thursday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_friday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_friday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_saturday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_saturday"
+                android:textColor="@color/text_gray" />
+
+            <CheckBox
+                android:id="@+id/alarm_change_alarm_dialog_sunday2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="false"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/alarm_desc_sunday"
+                android:textColor="@color/text_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

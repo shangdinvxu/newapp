@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:padding="6dp" >
+	    
+		<!-- 消息的时间 -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" 
+	        android:gravity="center_horizontal">
+	
+	        <TextView
+            android:id="@+id/tv_sendtime_comment_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:background="#bfbfbf"/>
+	        
+	    </LinearLayout>
+	
+	    <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp" >
+	        
+            <ImageView
+             	android:id="@+id/iv_userhead_comment_list"
+                android:layout_width="50dip"
+            	android:layout_height="50dip"
+            	android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" 
+                android:src="@mipmap/mini_avatar_shadow_rec" />
+	        
+ 			<!-- 内容 -->
+ 			<TextView 
+	            android:id="@+id/tv_chatcontent_comment_list"
+	            android:layout_toStartOf="@id/iv_userhead_comment_list"
+	            android:layout_marginEnd="10dp"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@mipmap/chatto_bg_normal"
+	            android:textSize="15sp"
+	            android:textColor="#ff000000"
+	            android:gravity="left|center"
+	            android:minHeight="50dp"
+	            android:lineSpacingExtra="2dp"
+	            android:clickable="true"
+	            android:focusable="true"/>   
+	                 
+	        <!-- 用户名 -->         
+	        <TextView 
+	            android:id="@+id/tv_username_comment_list"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/iv_userhead_comment_list"
+	            android:layout_alignParentEnd="true"
+	            android:layout_toEndOf="@id/tv_chatcontent_comment_list"
+	            android:textSize="15sp"
+	            android:gravity="center"
+	            android:textColor="@color/white"/>
+	        
+	    </RelativeLayout>
+
+</LinearLayout>

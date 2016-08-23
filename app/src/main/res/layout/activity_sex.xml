@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.linkloving.rtring_new.logic.UI.launch.register.SexActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_sex"
+        android:layout_marginTop="164px"
+        android:textSize="@dimen/m00_font_size_28pt"/>
+
+    <RadioGroup
+        android:id="@+id/sexGroup"
+        android:layout_below="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200px"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/body_info_manCb"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:background="@drawable/reg_raido_man_bg"
+                android:button="@null"
+                android:checked="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/body_info_womanCb"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:checked="true"
+                android:background="@drawable/reg_raido_woman_bg"
+                android:button="@null"
+                />
+        </LinearLayout>
+
+
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="368px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange"
+        android:text="@string/general_next"/>
+
+
+</RelativeLayout>

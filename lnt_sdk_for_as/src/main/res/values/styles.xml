@@ -1,0 +1,74 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+
+    <!-- Application theme. -->
+    <style name="AppStartTheme" parent="android:style/Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="dialog" parent="@android:style/Theme.Dialog"> 
+   
+    <!-- 去黑边 --> 
+    <item name="android:windowFrame">@null</item> 
+    <!-- 设置是否可滑动 --> 
+    <item name="android:windowIsFloating">true</item> 
+    <!-- 设置是否透明 --> 
+    <item name="android:windowIsTranslucent">false</item> 
+    <!-- 无标题 --> 
+    <item name="android:windowNoTitle">true</item> 
+    <!-- 背景 --> 
+    <item name="android:background">@null</item> 
+    <!-- 窗口背景 --> 
+    <item name="android:windowBackground">@android:color/transparent</item> 
+    <!-- 是否变暗 --> 
+    <item name="android:backgroundDimEnabled">false</item> 
+    <!-- 点击空白部分activity不消失 --> 
+</style>
+
+    <!-- 等待框 -->
+    <style name="dialog_wait" parent="@android:style/Theme.Dialog">
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@drawable/lntsdk_bg_dialog_black</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    <style name="Lntsdk_CustomDialog" parent="android:style/Theme.Dialog">  
+        <!--背景颜色及透明程度--> 
+        <item name="android:windowBackground">@android:color/transparent</item>  
+        <!--是否有标题 --> 
+        <item name="android:windowNoTitle">false</item>  
+        <!--是否浮现在activity之上--> 
+        <item name="android:windowIsFloating">true</item>  
+        <!--是否模糊--> 
+        <item name="android:backgroundDimEnabled">true</item> 
+        
+    </style>
+    
+    <style name="lntsdk_update_password_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:background">@drawable/lntsdk_corners_bg</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+    
+    <style name="StyleProgressBarMini" parent="@android:style/Widget.ProgressBar.Horizontal">
+		<item name="android:maxHeight">50dip</item>
+		<item name="android:minHeight">5dip</item>
+		<item name="android:indeterminateOnly">false</item>
+		<item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+		<item name="android:progressDrawable">@drawable/lntsdk_shape_progressbar_mini</item>
+	</style>
+    
+</resources>

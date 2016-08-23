@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/linear_message"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp">
+
+        <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+            android:id="@+id/relativeLayout">
+            <com.linkloving.rtring_new.logic.utils.CircleImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/head"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:border_width="2dp"
+                app:border_color="@color/light"
+                android:src="@mipmap/default_avatar_m"
+                android:contentDescription="@string/imageView" />
+            <TextView
+                android:id="@+id/comments_item_unread_text"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/unread_bg1"
+                android:layout_gravity="right|top"
+                android:gravity="center"
+                android:text="7"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout6">
+            <LinearLayout
+                android:gravity="center|bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--昵称,加上群组名称,时间-->
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/relativeLayout"
+            android:id="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="happy"
+                android:textSize="@dimen/m00_font_size_30pt" />
+            <!--最新一条的评论-->
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:paddingRight="20dp"
+                android:id="@+id/comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ddddddddddddddddddddddddddddddddddddddd"
+                android:textColor="#636363"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/time"
+            android:gravity="center|right"
+            android:paddingRight="20dp"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:text="10:30"
+            android:layout_above="@+id/linearLayout5"
+            android:layout_alignEnd="@+id/linearLayout5" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/menu_deliver"
+        android:contentDescription="@string/imageView"/>
+
+</LinearLayout>

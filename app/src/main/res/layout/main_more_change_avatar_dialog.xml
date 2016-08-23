@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_more_change_avatar_dialog_pop_layout"
+        style="@style/ChoiceItemPopWindow_bg_style" >
+
+        <Button
+            android:id="@+id/main_more_change_avatar_dialog_btn_take_photo"
+            style="@style/ChoiceItemPopWindow_common_btn_style"
+            android:text="@string/user_info_take_photo"
+            />
+
+        <Button
+            android:id="@+id/main_more_change_avatar_dialog_btn_pick_photo"
+            style="@style/ChoiceItemPopWindow_common_btn_style"
+            android:layout_marginTop="10dip"
+            android:text="@string/user_info_choose_photo"
+             />
+
+        <Button
+            android:id="@+id/main_more_change_avatar_dialog_btn_cancel"
+            style="@style/ChoiceItemPopWindow_cancel_btn_style"
+            android:layout_marginTop="15dip"
+            android:text="@string/general_cancel"
+             />
+    </LinearLayout>
+
+</RelativeLayout>
