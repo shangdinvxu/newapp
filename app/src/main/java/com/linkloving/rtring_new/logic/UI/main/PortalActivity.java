@@ -310,13 +310,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         //自动下拉刷新
         mScrollView.autoRefresh();
-        mScrollViewRefreshingHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Message ms = new Message();
-                mScrollViewRefreshingHandler.sendMessageDelayed(ms, 10000);
-            }
-        });
 
 //        new AsyncTask<Object, Object, SportRecordUploadDTO>() {
 //            @Override
@@ -433,14 +426,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     provider.setCurrentDeviceMac(s);
                     //开始同步
                     BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
-                    // 启动超时处理handler
-                    mScrollViewRefreshingHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Message ms = new Message();
-                            mScrollViewRefreshingHandler.sendMessageDelayed(ms, 10000);
-                        }
-                    });
                 }
             }
         });
@@ -575,7 +560,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
          * 查询是否有反馈信息
          */
         CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_FEEDBACK_QUERY, NoHttpRuquestFactory.queryfeedbackMsg(userEntity.getUser_id() + ""), httpCallback);
-
         /**
          * 获取消息未读数
          */
@@ -626,16 +610,15 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
             if(modelInfo!=null) {
                 if (modelInfo.getFiscard() == 0) { //不支持金融卡
-                    Toast.makeText(PortalActivity.this, R.string.pay_no_function, Toast.LENGTH_LONG).show();
+                    Snackbar.make(drawer, getString(R.string.pay_no_function), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                 } else {
 
                     if (provider.isConnectedAndDiscovered()) {
                         if(isReadCard){
-                            Toast.makeText(PortalActivity.this, getString(R.string.pay_isreading), Toast.LENGTH_SHORT).show();
+                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                         }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
                         }
-
                     } else {
                         Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
                     }
@@ -825,16 +808,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         int num = MyApplication.getInstance(this).getCommentNum();
         if (id == R.id.action_settings) {
             MyLog.e(TAG, "点击了设置");
-
-//            BleService.getInstance(PortalActivity.this).getCurrentHandlerProvider().SetDeviceTime(PortalActivity.this);
-//            if(num > 0){
             item.setTitle(ToolKits.getUnreadString(num));
             //跳转到评论页面
-//                Intent intent =new Intent(PortalActivity.this,FriendActivity.class);
-//                startActivity(intent);
             IntentFactory.start_FriendActivity(PortalActivity.this, JUMP_FRIEND_TAG_TWO);
-//            }
-
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -1032,15 +1008,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         Run_ProgressBar.setCurProgress((int) Math.ceil(runtime * 100 * 1.0f / runtime_goal));
         Sleep_ProgressBar.setCurProgress((int) Math.ceil(sleeptime * 100 * 1.0f / sleeptime_goal));
         Cal_ProgressBar.setCurProgress((int) Math.ceil(calValue * 100 * 1.0f / cal_goal));
-        //进度条旁边的百分比
-//        text_Wallet_Progress.setText((int) (Math.ceil(Float.parseFloat(money) * 100 * 1.0f / money_goal)) + "%");
-//        text_Step_Progress.setText((int) Math.ceil(step * 100 * 1.0f / step_goal) + "%");
-//        text_Distance_Progress.setText((int) Math.ceil(distance * 100 * 1.0f / distace_goal) + "%");
-//        text_Run_Progress.setText((int) Math.ceil(runtime * 100 * 1.0f / runtime_goal) + "%");
-//        text_Sleep_Progress.setText((int) Math.ceil(sleeptime * 100 * 1.0f / sleeptime_goal) + "%");
-//        text_Cal_Progress.setText((int) Math.ceil(calValue * 100 * 1.0f / cal_goal) + "%");
-//        MyWeight_Progress.setText((int) Math.ceil(weight * 100 * 1.0f / weight_goal) + "%");
-
         refreshBatteryUI();
     }
 
@@ -1071,19 +1038,15 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     text_Battery.setText( MessageFormat.format(getString(R.string.bracelet_battery), battery));//根据电量显示不同的文字提示
 
                     Battery_ProgressBar.setCurProgress((int) (Math.ceil(battery * 100 * 1.0f / 100)));
-//                    text_Battery_Progress.setText((int) (Math.ceil(battery * 100 * 1.0f / 100)) + "%");
                 }
             } else if (provider.isConnecting()) { //正在连接
                 refreshBattery(PortalActivity.this.getString(R.string.portal_main_state_connecting));
-//                Battery_ProgressBar.setIndeterminate(true);
             } else {  //蓝牙未连接上
                 refreshBattery(PortalActivity.this.getString(R.string.portal_main_state_unconnect));
-//                Battery_ProgressBar.setIndeterminate(false);
             }
         } else {
             //未绑定
             refreshBattery(PortalActivity.this.getString(R.string.portal_main_state_connecting));
-//            Battery_ProgressBar.setIndeterminate(true);
         }
     }
 
@@ -1096,7 +1059,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         //提示词
         text_Battery.setText(msg + " ");//根据电量显示不同的文字提示
         Battery_ProgressBar.setCurProgress((int) (Math.ceil(0 * 100 * 1.0f / 100)));
-//        text_Battery_Progress.setText((int) (Math.ceil(0 * 100 * 1.0f / 100)) + "%"); // 0%
     }
 
     /**
@@ -1177,7 +1139,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         MyLog.e(TAG, "deviceId上传成功..."+ value);
                         UserEntity userEntity = new Gson().fromJson(value, UserEntity.class);
                         MyApplication.getInstance(PortalActivity.this).setLocalUserInfoProvider(userEntity);
-//                        CallServer.getRequestInstance().add(BleService.this, false, CommParams.HTTP_DOWN_USERENETTY, HttpHelper.createUserEntityRequest(userEntity.getUser_id() + ""), httpCallback);
                         break;
 
                     case CommParams.HTTP_UPDATA_MODELNAME:
@@ -1313,6 +1274,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void updateFor_handleScanTimeOutMsg() {
             MyLog.e(TAG, "updateFor_handleScanTimeOutMsg");
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
         /**********BLE连接失败*********/
@@ -1320,6 +1284,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_handleConnectFailedMsg() {
             //连接失败
             MyLog.e(TAG, "updateFor_handleConnectFailedMsg");
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
         /**********BLE连接成功*********/
@@ -1335,6 +1302,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             //蓝牙断开的显示
             refreshBatteryUI();
             isReadCard = false;
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
         /**********0X13命令返回*********/
@@ -1459,21 +1429,29 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                 if (dataFromServer.getErrorCode() != 10020) {
                                     JSONObject object = JSON.parseObject(value);
                                     String version_code = object.getString("version_code");
+                                    int priority = object.getIntValue("priority"); //0为不提示 1只提示 2强制更新
                                     if (Integer.parseInt(version_code, 16) > Integer.parseInt(vo.version, 16)) {
-                                        PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
-                                        AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
-                                                .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
-                                                .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
-                                                .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
-                                                        new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this,DeviceActivity.DEVICE_UPDATE));
-                                                            }
-                                                        })
-                                                .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
-                                                .create();
-                                        dialog.show();
+                                        if(priority==1){
+                                            AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
+                                                    .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
+                                                    .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
+                                                    .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
+                                                            new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+                                                                }
+                                                            })
+                                                    .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
+                                                    .create();
+                                            if(System.currentTimeMillis()/1000 -PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24*3600 ){
+                                                PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
+                                                dialog.show();
+                                            }
+                                        }
+                                        if(priority==2){
+                                            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+                                        }
                                     }
                                 }
                             }
@@ -1484,6 +1462,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
                         }
                     });
+                }
+                if (mScrollView.isRefreshing()){
+                    mScrollView.onRefreshComplete();
                 }
             }
         }

@@ -1307,12 +1307,11 @@ public  class BLEProvider
 	   }
    }
    
-   private void getSportDataNew(int cmd) throws BLException, LPException
+   private void getSportDataNew() throws BLException, LPException
    {
 //	   	  INDEX_SYNC_SPORT_DATA_NEW
-	     OwnLog.i(TAG, "0x13time:"+getTimestemp());
-	     OwnLog.i(TAG, "utctime:"+getServertime());
 	      //////////////////*********1112修改**************///////////////////
+	      // 如果取到的手环时间判断为重置后的 则把同步上来的数据时间加上时间差
 	      int detail=0;
 	      if(getTimestemp()<365*24*3600){
 	    	  detail = (int)(getServertime()/1000) -getTimestemp();
@@ -1324,19 +1323,14 @@ public  class BLEProvider
 	      int temp = 0;
 	      Message msg;
 	      List<LPSportData> tmpSportDataList = null;
-//	     OwnLog.d(TAG, "..........................sport data length......................................"+dataLen);
-	      
 	      while(true)
 	      {
 	    	  if(tmpSportDataList == null)
 	    	  { 
-	    		 tmpSportDataList = mLepaoProtocalImpl.getSportDataNew(0xfF, 0x7F,detail);
-	    		OwnLog.i(TAG, "detail:"+detail);
-	    		  
-	    		//  sportData.addAll(tmpSportDataList);
+	    		  tmpSportDataList = mLepaoProtocalImpl.getSportDataNew(0xfF, 0x7F,detail);
 	    		  if(!tmpSportDataList.isEmpty())
 	    		  {
-	    			  // 同步方式的保存通知
+	    			  // 同步方式的保存运动数据
 	    			  saveSportSync2DB(tmpSportDataList);
 	    			  
 	    			  len = tmpSportDataList.get(0).getDataLen()*6;
@@ -1376,10 +1370,8 @@ public  class BLEProvider
 				
 	    		  if(tmpSportDataList.size() > 0)
 		          {
-//	    			  
-	    			 OwnLog.d(TAG, "..................dataLen..........................."+tmpSportDataList.get(0).getDataLen());
-					 OwnLog.d(TAG, "..................recvLen.........................."+(tmpSportDataList.get(0).getRevLen() - 13)/ 6);
-					  
+	    			  OwnLog.d(TAG, "..................dataLen..........................."+tmpSportDataList.get(0).getDataLen());
+					  OwnLog.d(TAG, "..................recvLen.........................."+(tmpSportDataList.get(0).getRevLen() - 13)/ 6);
 //					  msg =  mHandler.obtainMessage(MSG_BLE_DATA,cmd,0,tmpSportDataList);
 //					  msg.sendToTarget();
 					  // 同步方式的保存数据
@@ -1577,6 +1569,7 @@ public  class BLEProvider
 		   this.index = index;
 		   this.oad_data=data;
 	   }
+
 	   public ProessThread(Context context,byte notificationUID,int index,byte[] title,byte[] text) 
 	   {
 		   mContext = context;  
@@ -1599,13 +1592,13 @@ public  class BLEProvider
 		   super.run();
 		    if(mHandler == null)
 		    {
-		    	OwnLog.e(TAG, "init failed mHandler is null!!!!!!!!!!!!!!!!!!");
+		    	 OwnLog.e(TAG, "init failed mHandler is null!!!!!!!!!!!!!!!!!!");
 		         return;
 		    }
 		    
 		    if(!init(mContext))//, mHandler))
 	    	{
-			   OwnLog.e(TAG, "init failed!!!!!!!!!!!!!!!!!!");
+			    OwnLog.e(TAG, "init failed!!!!!!!!!!!!!!!!!!");
 	    		return;
 	    	}
 		   
@@ -1623,7 +1616,7 @@ public  class BLEProvider
 				{
 				    case INDEX_SYNC_SPORT_DATA_NEW:
 				    	Log.d(TAG, ".................INDEX_SYNC_SPORT_DATA_NEW................");
-				    	getSportDataNew(INDEX_SYNC_SPORT_DATA_NEW);
+				    	getSportDataNew();
 				    	break;
 				    case INDEX_UNBOUND_DEVICE:  //执行解绑
 				    	Log.e(TAG, ".................INDEX_UNBOUND_DEVICE................");

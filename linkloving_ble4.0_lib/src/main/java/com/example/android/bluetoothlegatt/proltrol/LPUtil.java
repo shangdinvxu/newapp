@@ -116,7 +116,21 @@ public class LPUtil {
 	public static String deviceDuration2String(int duration) {
 		return "" + (duration / 2) + "m" + (duration % 2 * 30) + "s";
 	}
-	
+
+	/**
+	 * 检查checksum 合法性
+	 * @param revData
+	 * @return
+	 */
+	public static boolean checksum(byte[] revData) {
+		int  sum = 0;
+		for( int i = 0; i < revData.length-2; ++i )
+			sum += ( revData[i] & 0xFF );
+		if(sum ==LPUtil.makeShort(revData[revData.length-2],revData[revData.length-1]) )
+			return true;
+		return false;
+	}
+
 	public static byte[] trans(byte[] data){
 		byte[] new_data =null;
 		if(data[1] != (byte)0x00){

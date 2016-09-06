@@ -67,10 +67,8 @@ public class CmdFinder
 		}
 	}
 	
-	public void clearData(boolean canclear){
-		if(canclear){
-			cmd = null ;
-		}
+	public void clearData(){
+		cmd = null ;
 	}
 	
     //java 合并两个byte数组  
