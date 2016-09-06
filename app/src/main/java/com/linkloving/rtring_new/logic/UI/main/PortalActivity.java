@@ -125,9 +125,9 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter.OnRecyclerViewListener{
+    private static final String TAG = PortalActivity.class.getSimpleName();
 
     private SimpleDateFormat sdf = new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD);
-    private static final String TAG = PortalActivity.class.getSimpleName();
     private static final int REQUSET_FOR_PERSONAL = 1;
     private static final int LOW_BATTERY = 3;
     private static final int JUMP_FRIEND_TAG_TWO = 2;
@@ -180,6 +180,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     private LocationClient mLocationClient;
     private MyLocationListener mMyLocationListener;
     private String User_avatar_file_name;
+
     private UserEntity userEntity;
     private BLEHandler.BLEProviderObserverAdapter bleProviderObserver;
     private BLEProvider provider;
@@ -188,8 +189,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     String startDateString;
     String endDateString;
     String timeNow;
-    int COUNT_MODELNAME = 0; //防止用户多次强制进入设备页面
-    boolean isReadCard = false; //防止主界面没读卡完毕用户就点击金额导致读取失败
+    boolean isReadingCard = false; //防止主界面没读卡完毕用户就点击金额导致读取失败
     //目标值
     private int step_goal, distace_goal, cal_goal, runtime_goal;
     private float sleeptime_goal, weight_goal;
@@ -203,6 +203,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             if (mScrollView.isRefreshing())
                 mScrollView.onRefreshComplete();
             super.handleMessage(msg);
+        }
+    };
+    Runnable mScrollViewRefreshingRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Message ms = new Message();
+            mScrollViewRefreshingHandler.sendMessageDelayed(ms, 15000);
         }
     };
 
@@ -281,7 +288,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         AppManager.getAppManager().addActivity(this);
         ButterKnife.inject(this);
         contentLayout = (ViewGroup) findViewById(R.id.main);
-        COUNT_MODELNAME = 0;
         userEntity = MyApplication.getInstance(this).getLocalUserInfoProvider();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
@@ -310,7 +316,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         //自动下拉刷新
         mScrollView.autoRefresh();
-
 //        new AsyncTask<Object, Object, SportRecordUploadDTO>() {
 //            @Override
 //            protected void onPreExecute() {
@@ -426,6 +431,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     provider.setCurrentDeviceMac(s);
                     //开始同步
                     BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
+                    mScrollViewRefreshingHandler.post(mScrollViewRefreshingRunnable);
                 }
             }
         });
@@ -614,7 +620,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 } else {
 
                     if (provider.isConnectedAndDiscovered()) {
-                        if(isReadCard){
+                        if(isReadingCard){
                             Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                         }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
@@ -685,19 +691,17 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
      */
     private void refreshHeadView() {
 
-        MyLog.i(TAG,"刷新头像和昵称,等数据");
         //图像以后设置
-        UserEntity u = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-        if (u == null) {
-            MyLog.i(TAG,"获得的UserEntity是空的");
+        UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
+        if (userEntity == null) {
             return;
         }
-        MyLog.i(TAG, "获得的UserEntity的名字=" + u.getUserBase().getNickname());
-        user_name.setText(u.getUserBase().getNickname());
-        User_avatar_file_name = u.getUserBase().getUser_avatar_file_name();
+        MyLog.i(TAG, "获得的UserEntity的名字=" + userEntity.getUserBase().getNickname());
+        user_name.setText(userEntity.getUserBase().getNickname());
+        User_avatar_file_name = userEntity.getUserBase().getUser_avatar_file_name();
         if (User_avatar_file_name != null) {
-            String url = NoHttpRuquestFactory.getUserAvatarDownloadURL(PortalActivity.this, u.getUser_id() + "", u.getUserBase().getUser_avatar_file_name(), true);
-            User_avatar_file_name = u.getUserBase().getUser_avatar_file_name();
+            String url = NoHttpRuquestFactory.getUserAvatarDownloadURL(PortalActivity.this, userEntity.getUser_id() + "", userEntity.getUserBase().getUser_avatar_file_name(), true);
+            User_avatar_file_name = userEntity.getUserBase().getUser_avatar_file_name();
             DisplayImageOptions options;
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)//设置下载的图片是否缓存在内存中
@@ -1301,7 +1305,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             MyLog.e(TAG, "updateFor_handleConnectLostMsg");
             //蓝牙断开的显示
             refreshBatteryUI();
-            isReadCard = false;
+            isReadingCard = false;
             if (mScrollView.isRefreshing()){
                 mScrollView.onRefreshComplete();
             }
@@ -1311,9 +1315,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
             MyLog.e(TAG, "updateFor_notifyFor0x13ExecSucess_D");
-            isReadCard = true;
-//            //保存localvo
-//            PreferencesToolkits.updateLocalDeviceInfo(PortalActivity.this, latestDeviceInfo);
+            isReadingCard = true;
+            mScrollViewRefreshingHandler.removeCallbacks(mScrollViewRefreshingRunnable);
         }
 
         @Override
@@ -1610,14 +1613,14 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             PreferencesToolkits.setLocalDeviceInfoVo(PortalActivity.this, localvo);
             //此时调用是为了刷新金额
             refreshMoneyView();
-            isReadCard = false;
+            isReadingCard = false;
         }
     }
 
     private void getMoneyfromDevice() {
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
         if (userEntity.getDeviceEntity() == null || userEntity.getDeviceEntity().getCard_number() == null) {
-            isReadCard = false;
+            isReadingCard = false;
             return;
         } else {
             String card = userEntity.getDeviceEntity().getCard_number();
@@ -1655,7 +1658,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             PreferencesToolkits.setLocalDeviceInfoVo(PortalActivity.this, localvo);
                             //此时调用是为了刷新金额
                             refreshMoneyView();
-                            isReadCard = false;
+                            isReadingCard = false;
                         }
 
                         @Override
@@ -1666,7 +1669,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 }
             }else{
                 //若都不是
-                isReadCard = false;
+                isReadingCard = false;
             }
         }
     }
