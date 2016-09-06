@@ -164,7 +164,8 @@ public class DetailChartControl extends RelativeLayout {
     {
         DisplayMetrics dm = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;//用屏幕的宽度
+//        int width = dm.widthPixels;//用屏幕的宽度
+        int width = linearLayout.getWidth();
         imageWidth =dataView.getWidth();
         xScale = (float) width / (120*30f);// 30小时一屏,120是一个小时的时间片(30s一片)  每个时间片所占的像素
         xlineScale = (60*30f) / (float) imageWidth;// 每个像素xxx分钟

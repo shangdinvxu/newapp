@@ -536,7 +536,7 @@ public class SleepDataActivity extends ToolBarActivity implements View.OnClickLi
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false); //是否显示X坐标轴及对应的刻度竖线，默认是true
+        xAxis.setDrawAxisLine(true); //是否显示X坐标轴及对应的刻度竖线，默认是true
         xAxis.setSpaceBetweenLabels(0);
         //X坐标点描述的颜色
         xAxis.setTextColor(Color.WHITE);
