@@ -106,18 +106,6 @@
     <string name="lntsdk_connect_sh_connect_fail_retry">手环连接失败是否重连</string>
     <string name="lntsdk_connect_sh_get_battery_fail">手环电量获取失败</string>
     
-    <!-- 充值页面 -->
-    <string name="lntsdk_charge_wait">请稍候...</string>
-    <string name="lntsdk_charge_donot_move_away">请勿移开卡片</string>
-    <string name="lntsdk_charge_platform_error">平台数据出错</string>
-    <string name="lntsdk_charge_not_support">此手机暂不支持该功能</string>
-    <string name="lntsdk_charge_power_up_fail">上电失败</string>
-    <string name="lntsdk_charge_power_up_fail_linklove">连爱手环上电失败</string>
-    <string name="lntsdk_charge_sh_differ">连接的该手环与补充订单卡号不一致请解绑后重新连接</string>
-    <string name="lntsdk_charge_cardno_differ">此卡与补充订单卡号不一致请更换卡片</string>
-    <string name="lntsdk_charge_charging">正在充值</string>
-    <string name="lntsdk_charge_charging_donot_move_away">充值过程中请不要移开卡片</string>
-    
     <!-- 支付页面 -->
     <string name="lntsdk_recharge_order_pay_success">支付成功</string>
     <string name="lntsdk_recharge_open_nfc">请开启NFC功能</string>
