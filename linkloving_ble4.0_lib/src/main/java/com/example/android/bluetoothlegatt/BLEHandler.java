@@ -53,8 +53,7 @@ public abstract class BLEHandler extends Handler {
 		public void updateFor_notifyForGetHistoryDayDatasSucess_D(
 				List<LPSportRecorder> historyDayDatas);
 
-		public void updateFor_notifyFor0x13ExecSucess_D(
-				LPDeviceInfo latestDeviceInfo);
+		public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo);
 
 		public void updateFor_notifyForModelName(LPDeviceInfo latestDeviceInfo);
 
@@ -211,8 +210,7 @@ public abstract class BLEHandler extends Handler {
 
 	}
 
-	public static abstract class BLEProviderObserverAdapter implements
-			IBLEProviderObserver {
+	public static abstract class BLEProviderObserverAdapter implements IBLEProviderObserver {
 		protected abstract Activity getActivity();
 
 		@Override
@@ -1057,12 +1055,9 @@ public abstract class BLEHandler extends Handler {
 	 *            最新设备信息对象
 	 */
 	protected void notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
-		OwnLog.i(TAG,
-				"0x13bleProviderObserver:" + bleProviderObserver == null ? "null"
-						: "not null");
+		OwnLog.i(TAG, "0x13bleProviderObserver:" + bleProviderObserver == null ? "null" : "not null");
 		if (bleProviderObserver != null)
-			bleProviderObserver
-					.updateFor_notifyFor0x13ExecSucess_D(latestDeviceInfo);
+			bleProviderObserver.updateFor_notifyFor0x13ExecSucess_D(latestDeviceInfo);
 	}
 
 	/**

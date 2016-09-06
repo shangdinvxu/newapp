@@ -894,7 +894,7 @@ public  class BLEProvider
    //0x13  获取设备信息
    public void getAllDeviceInfoNew(Context context)
    {
-	  OwnLog.i(TAG, "..................getAllDeviceInfoNew Thread........................");
+	   OwnLog.i(TAG, "..................getAllDeviceInfoNew Thread........................");
 	   runIndexProess(context, INDEX_GAT_ALL_INFO_NEW);
    }
    
