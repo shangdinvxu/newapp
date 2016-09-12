@@ -22,10 +22,14 @@ public class DateSwitcher
 	public DateSwitcher(int type)
 	{
 		this.type = type;
-
 		init();
 	}
-	
+
+	public void resetType(int type){
+		this.type = type;
+		init();
+	}
+
 	public DateSwitcher setBaseTime(Date d)
 	{
 		if(d != null)
@@ -213,6 +217,39 @@ public class DateSwitcher
 	public boolean previous()
 	{
 		return next(false);
+	}
+
+	/**
+	 * 滚动切换时间类型区间
+	 * @return
+	 */
+	public void changeDate(int index)
+	{
+		switch(this.type)
+		{
+			case PeriodSwitchType.day:
+			{
+				base.add(GregorianCalendar.DAY_OF_MONTH, index); //-------
+				break;
+			}
+			case PeriodSwitchType.week:
+			{
+				base.add(GregorianCalendar.DAY_OF_MONTH, index*7);
+				break;
+			}
+
+			case PeriodSwitchType.month:
+			{
+				base.add(GregorianCalendar.MONTH,  index);
+				break;
+			}
+
+			case PeriodSwitchType.year:
+			{
+				base.add(GregorianCalendar.YEAR,  index);
+				break;
+			}
+		}
 	}
 	
 	/**

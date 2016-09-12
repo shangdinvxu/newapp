@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cloudlayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="30sp">
+        <RadioButton
+            android:id="@+id/month1data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1个月数据"
+            android:checked="false" />
+        <RadioButton
+            android:id="@+id/month3data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3个月数据"
+            android:checked="false" />
+        <RadioButton
+            android:id="@+id/month12data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一年数据"
+            android:checked="false" />
+        <RadioButton
+            android:id="@+id/alldata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所有数据"
+            android:checked="false" />
+    </RadioGroup>
+
+</LinearLayout>

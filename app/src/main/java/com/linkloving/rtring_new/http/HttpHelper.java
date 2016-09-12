@@ -95,10 +95,15 @@ public class HttpHelper {
     /**
      * 生成云同步
      */
-    public static DataFromClientNew GenerateCloudSyncParams(String userId,int pageIndex) {
+    public static DataFromClientNew GenerateCloudSyncParams(String userId,int pageIndex,int type) {
         Map<String, String> newData = new HashMap<String, String>();
         newData.put("user_id", userId);
         newData.put("pageNum", pageIndex+"");
+        if(type==0){
+            newData.put("start_date", null);
+        }else {
+            newData.put("start_date", type+"");
+        }
         DataFromClientNew dataFromClientNew = new DataFromClientNew();
         dataFromClientNew.setActionId(ActionConst.ACTION_100);
         dataFromClientNew.setJobDispatchId(JobDispatchConst.REPORT_BASE);

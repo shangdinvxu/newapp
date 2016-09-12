@@ -244,7 +244,7 @@ private final static String TAG = ToolKits.class.getSimpleName();
 
 	/**
 	 * 此方法是丁维写的关于合成蓝牙电量的图标实用方法.
-	 * 
+	 *
 	 * @param level
 	 *            0~1.00f的浮点值表示蓝牙电量
 	 * @param activity

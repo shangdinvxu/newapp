@@ -44,6 +44,8 @@ import com.linkloving.rtring_new.http.basic.NoHttpRuquestFactory;
 import com.linkloving.rtring_new.http.data.DataFromClientNew;
 import com.linkloving.rtring_new.http.data.DataFromServer;
 import com.linkloving.rtring_new.logic.UI.launch.ThirdLogin.view.ThirdLoginActivity;
+import com.linkloving.rtring_new.logic.UI.more.cloud.CloudAlertDialog;
+import com.linkloving.rtring_new.logic.UI.more.cloud.ICloudListener;
 import com.linkloving.rtring_new.logic.dto.UserEntity;
 import com.linkloving.rtring_new.notify.NotificationCollectorService;
 import com.linkloving.rtring_new.prefrences.PreferencesToolkits;
@@ -90,6 +92,7 @@ public class MoreActivity extends ToolBarActivity implements View.OnClickListene
     UserEntity userEntity;
     private ProgressDialog progressDialog;
     private int pageIndex = 1;
+    private int choseDataType;
     private int progressindex;
 
     @Override
@@ -169,26 +172,20 @@ public class MoreActivity extends ToolBarActivity implements View.OnClickListene
                 dialogunit.show();
                 break;
             case R.id.activity_more_Cloud_Sync:
-                AlertDialog dialog = new AlertDialog.Builder(MoreActivity.this)
-                        .setTitle(ToolKits.getStringbyId(MoreActivity.this, R.string.main_more_sycn_title))
-                        .setMessage(ToolKits.getStringbyId(MoreActivity.this, R.string.main_more_sycn_message))
-                        .setPositiveButton(ToolKits.getStringbyId(MoreActivity.this, R.string.general_yes),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        progressDialog = initDialog();
-                                        progressDialog.show();
-                                        DataFromClientNew dataFromClient = HttpHelper.GenerateCloudSyncParams(userEntity.getUser_id()+"", pageIndex);
-                                        try {
-                                            CallServer.getRequestInstance().add(MoreActivity.this,false,CommParams.HTTP_CLOUD_DATA, NoHttpRuquestFactory.creatCloud(dataFromClient),httpcallbackQuitGroup);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                })
-                        .setNegativeButton(ToolKits.getStringbyId(MoreActivity.this, R.string.general_no), null)
-                        .create();
-                dialog.show();
+                new CloudAlertDialog(MoreActivity.this).setCheckListener(new ICloudListener() {
+                    @Override
+                    public void checkValue(int type) {
+                        progressDialog = initDialog();
+                        progressDialog.show();
+                        choseDataType = type;
+                        DataFromClientNew dataFromClient = HttpHelper.GenerateCloudSyncParams(userEntity.getUser_id()+"", pageIndex,choseDataType);
+                        try {
+                            CallServer.getRequestInstance().add(MoreActivity.this,false,CommParams.HTTP_CLOUD_DATA, NoHttpRuquestFactory.creatCloud(dataFromClient),httpcallbackQuitGroup);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 break;
             case R.id.main_more_settings_exitent_layout:
                 if(MyApplication.getInstance(MoreActivity.this).isLocalDeviceNetworkOk()){
@@ -330,7 +327,7 @@ public class MoreActivity extends ToolBarActivity implements View.OnClickListene
                         if (srs.size()>0) {
                             UserDeviceRecord.saveToSqliteAsync(MoreActivity.this, srs, userEntity.getUser_id()+"", true, null);
                             pageIndex++;
-                            DataFromClientNew dataFromClient = HttpHelper.GenerateCloudSyncParams(userEntity.getUser_id()+"", pageIndex);
+                            DataFromClientNew dataFromClient = HttpHelper.GenerateCloudSyncParams(userEntity.getUser_id()+"", pageIndex,choseDataType);
                             MyLog.e(TAG, "当前请求的页面：" + pageIndex);
                             try {
                                 CallServer.getRequestInstance().add(MoreActivity.this,false,CommParams.HTTP_CLOUD_DATA, NoHttpRuquestFactory.creatCloud(dataFromClient),httpcallbackQuitGroup);

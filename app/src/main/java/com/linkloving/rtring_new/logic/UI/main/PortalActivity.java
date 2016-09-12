@@ -288,7 +288,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         AppManager.getAppManager().addActivity(this);
         ButterKnife.inject(this);
         contentLayout = (ViewGroup) findViewById(R.id.main);
-//        COUNT_MODELNAME = 0;
         userEntity = MyApplication.getInstance(this).getLocalUserInfoProvider();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
@@ -544,12 +543,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
                 userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
-            } else if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND){
+            } else {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
                 userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
-            } else if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND_VERSION3) {
-                device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
-                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND_VERSION3);
             }
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
             if(modelInfo!=null){
@@ -1177,6 +1173,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             if(!ToolKits.isEnabled(PortalActivity.this)){
                                 startActivity(new Intent(NotificationCollectorService.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                             }
+                        }else{
+                            MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                         }
                         //开始处理页面是否显示
                         refreshVISIBLE();
@@ -1222,7 +1220,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND)){
                 startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
             }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND_VERSION_3)){
-                startActivityForResult(IntentFactory.startActivityBundBand3Step1(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND_3);
+                startActivityForResult(IntentFactory.startActivityBundBand3(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND_3);
             }
         }
         else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
