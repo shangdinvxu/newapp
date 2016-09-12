@@ -84,7 +84,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		} else {
 			
 			try {
-				resp = sendOnce(data, status);
+				resp = sendOnce(data);
 				retryTimes = 0;
 				return resp;
 			} catch (BLException e) {
@@ -98,9 +98,9 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		}
 	}
 	//OAD用
-	private byte[] sendOnce(byte[] data, int status)throws LPException, BLException {
+	private byte[] sendOnce(byte[] data)throws LPException, BLException {
 		try {
-			byte[] resp = BLEWapper.getInstence().send(data, status);
+			byte[] resp = BLEWapper.getInstence().send(data);
 			retryTimes = 0;
 			return resp;
 		} catch (BLException e) {
@@ -112,7 +112,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			return sendOnce( data, status) ;
+			return sendOnce(data) ;
 		}
 	}
 	//OAD用
@@ -134,7 +134,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	}
 
 	/**
-	 * 现用的发送方法
+	 * 现用的发送方法（）
 	 * */
 	private synchronized WatchResponse sendData2BLE(WatchRequset req) throws BLException, LPException {
 		try {
@@ -149,10 +149,13 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			throw e;
 		}
 	}
-
+	/**
+	 * 现用的发送方法（内部）
+	 * */
 	private WatchResponse sendData2BLEImpl(WatchRequset req) throws LPException, BLException {
 		try {
-			byte[] resp = BLEWapper.getInstence().send(req.getData(),0);
+			//调用 BLEWapper 中的发送方法
+			byte[] resp = BLEWapper.getInstence().send(req.getData());
 			retryTimes = 0;
 			return new WatchResponse(resp, 0, resp.length);
 		} catch (LPException e) {
@@ -184,7 +187,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		byte _00=(byte) 0x00;
 		req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_GET_ALL_USER_INFO).appendByte(ff).makeCheckSum();
 		LPUtil.printData(req.getData(), " getAllDeviceInfoNew");
-		WatchResponse resp = this.sendData2BLE(req);
+		WatchResponse resp = sendData2BLE(req);
 		if(resp.getData()[4]==0){
 			return resp.toDeviceInfo(LepaoCommand.COMMAND_GET_ALL_USER_INFO,"getAllDeviceInfoNew");
 		}else{
@@ -197,7 +200,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		WatchRequset req = new WatchRequset();
 		req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_DEVICEINFO).makeCheckSum();
 		LPUtil.printData(req.getData(), " getModelName");
-		WatchResponse resp = this.sendData2BLE(req);
+		WatchResponse resp = sendData2BLE(req);
 		LPUtil.printData(resp.getData(), " getModelName接收");
 		if(resp.getData()[4]==0){
 			return resp.toModelName(LepaoCommand.COMMAND_DEVICEINFO,"getDeviceInfo");
@@ -225,9 +228,6 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 				.appendByte((byte) 1)
 				.appendInt(userId)
 				.makeCheckSum();
-//		OwnLog.i(TAG, "性别："+userInfo.sex+"---年龄："+userInfo.age);
-//		OwnLog.i(TAG, "身高："+userInfo.height+"---体重："+userInfo.weight);
-//		OwnLog.i(TAG, "id："+userId);
 		WatchResponse resp = this.sendData2BLE(req);
 		LPUtil.printData(req.getData(), "registerNew");
 		if(resp.getData()[4]==1)

@@ -11,7 +11,6 @@ import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLXianJinCard;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPDeviceInfo;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPSportData;
-import com.example.android.bluetoothlegatt.proltrol.dto.LPSportRecorder;
 import com.example.android.bluetoothlegatt.utils.OwnLog;
 
 import java.util.List;
@@ -49,12 +48,7 @@ public abstract class BLEHandler extends Handler {
 
 		public void updateFor_handleConnectFailedMsg();
 
-		// ** for 收到数据的通知方法
-		public void updateFor_notifyForGetHistoryDayDatasSucess_D(
-				List<LPSportRecorder> historyDayDatas);
-
-		public void updateFor_notifyFor0x13ExecSucess_D(
-				LPDeviceInfo latestDeviceInfo);
+		public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo);
 
 		public void updateFor_notifyForModelName(LPDeviceInfo latestDeviceInfo);
 
@@ -100,11 +94,6 @@ public abstract class BLEHandler extends Handler {
 		public void updateFor_SportDataProcess(Integer obj);
 
 		public void updateFor_FlashHeadSucess();
-
-		// public void updateFor_handleSportDataErrorMsg(List<LPSportData>
-		// sportData);
-		// public void updateFor_handleSportDataRetryMsg(List<LPSportData>
-		// sportData);
 
 		public void updateFor_handleDataEnd();
 
@@ -192,43 +181,20 @@ public abstract class BLEHandler extends Handler {
 		public void updateFor_getDeviceId(String obj); // 获取设备ID
 		
 		public void notifyFor_close7816card(boolean isSuccess);
+
 		public void notifyFor_open7816card(boolean isSuccess);
 
 		// ** for 蓝牙流程中数据同步到服务端时要通知的方法（以下方法并不是必须要放置于蓝牙机机制中，但放在此处将更有利于子类中继承和使用）
-
 		/** 通知：设备绑定信息同步到服务端完成 */
-		public void updateFor_boundInfoSyncToServerFinish(
-				Object resultFromServer);
-
-		/** 通知：设备绑定信息写到设备固件中完成 */
-		public void updateFor_boundInfoSetToDeviceOK();
-
-		/** 通知：运动明细数据（1日N条）同步到服务端完成 */
-		public void updateFor_sportDetailDatasSyncToServerFinish(
-				Object resultFromServer, int syncCount);
-
-		/** 通知：设备绑定信息同步到服务端完成 */
-		public void updateFor_historyDayDatasSyncToServerFinish(
-				Object resultFromServer, int syncCount);
+		public void updateFor_boundInfoSyncToServerFinish(Object resultFromServer);
 
 	}
 
-	public static abstract class BLEProviderObserverAdapter implements
-			IBLEProviderObserver {
+	public static abstract class BLEProviderObserverAdapter implements IBLEProviderObserver {
 		protected abstract Activity getActivity();
 
 		@Override
 		public void updateFor_FlashHeadSucess() {
-		}
-
-		// TODO 运动数据中有异常数据！！！！！！！！！！！！！！！！！！！！
-		public void updateFor_handleSportDataErrorMsg(
-				List<LPSportData> sportData) {
-		}
-
-		// TODO 运动数据重新获取后返回数据！！！！！！！！！！！！！！！！！！
-		public void updateFor_handleSportDataRetryMsg(
-				List<LPSportData> sportData) {
 		}
 
 		@Override
@@ -255,7 +221,6 @@ public abstract class BLEHandler extends Handler {
 
 		public void updateFor_handleNotSupportMsg() {
 		}
-
 		/**
 		 * 当判定蓝牙未开启时会调用此方法通知上层. <b>注意：</b> 子类在重写此方法时，务必不要忘了调用父类的本方法，否则将错过蓝牙的开启！
 		 */
@@ -283,36 +248,27 @@ public abstract class BLEHandler extends Handler {
 		}
 
 		@Override
-		public void updateFor_notifyForBLEDevice_D(
-				BluetoothDevice bluetoothDevice) {
+		public void updateFor_notifyForBLEDevice_D(BluetoothDevice bluetoothDevice) {
 		}
 
 		@Override
 		public void updateFor_handleSendDataError() {
 		}
 
-		// ** for 收到数据的通知方法
-		public void updateFor_notifyForGetHistoryDayDatasSucess_D(
-				List<LPSportRecorder> historyDayDatas) {
-		}
-
-		public void updateFor_notifyFor0x13ExecSucess_D(
-				LPDeviceInfo latestDeviceInfo) {
+		public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
 		}
 
 		public void updateFor_notifyForDeviceAloneSyncSucess_D() {
 		}
 
-		public void updateFor_notifyForFullSyncGetSportDetailDatasSucess_D(
-				List<LPSportData> sportDetailDatas) {
+		public void updateFor_notifyForFullSyncGetSportDetailDatasSucess_D(List<LPSportData> sportDetailDatas) {
 		}
 
 		@Override
 		public void updateFor_notifyForFullSyncGetDeviceIDSucess_D(String id) {
 		}
 
-		public void updateFor_notifyForDeviceFullSyncSucess_D(
-				LPDeviceInfo deviceInfo) {
+		public void updateFor_notifyForDeviceFullSyncSucess_D(LPDeviceInfo deviceInfo) {
 		}
 
 		public void updateFor_notifyForDeviceUnboundSucess_D() {
@@ -323,22 +279,7 @@ public abstract class BLEHandler extends Handler {
 
 		// ** for 蓝牙流程中数据同步到服务端时要通知的方法（以下方法并不是必须要放置于蓝牙机机制中，但放在此处将更有利于子类中继承和使用）
 		@Override
-		public void updateFor_boundInfoSyncToServerFinish(
-				Object resultFromServer) {
-		}
-
-		@Override
-		public void updateFor_sportDetailDatasSyncToServerFinish(
-				Object resultFromServer, int syncCount) {
-		}
-
-		@Override
-		public void updateFor_historyDayDatasSyncToServerFinish(
-				Object resultFromServer, int syncCount) {
-		}
-
-		@Override
-		public void updateFor_boundInfoSetToDeviceOK() {
+		public void updateFor_boundInfoSyncToServerFinish(Object resultFromServer) {
 		}
 
 		@Override
@@ -527,17 +468,14 @@ public abstract class BLEHandler extends Handler {
 
 		@Override
 		public void updateFor_getDeviceId(String obj) {
-			
 		}
 
 		@Override
 		public void notifyFor_close7816card(boolean isSuccess) {
-			
 		}
 
 		@Override
 		public void notifyFor_open7816card(boolean isSuccess) {
-			
 		}
 		
 		
@@ -1072,12 +1010,9 @@ public abstract class BLEHandler extends Handler {
 	 *            最新设备信息对象
 	 */
 	protected void notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
-		OwnLog.i(TAG,
-				"0x13bleProviderObserver:" + bleProviderObserver == null ? "null"
-						: "not null");
+		OwnLog.i(TAG, "0x13bleProviderObserver:" + bleProviderObserver == null ? "null" : "not null");
 		if (bleProviderObserver != null)
-			bleProviderObserver
-					.updateFor_notifyFor0x13ExecSucess_D(latestDeviceInfo);
+			bleProviderObserver.updateFor_notifyFor0x13ExecSucess_D(latestDeviceInfo);
 	}
 
 	/**

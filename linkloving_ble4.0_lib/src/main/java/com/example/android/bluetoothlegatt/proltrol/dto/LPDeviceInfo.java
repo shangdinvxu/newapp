@@ -1,6 +1,7 @@
 package com.example.android.bluetoothlegatt.proltrol.dto;
 
 
+import java.util.Arrays;
 
 public class LPDeviceInfo {
 
@@ -326,85 +327,72 @@ public class LPDeviceInfo {
 
 	@Override
 	public String toString() {
-		return "LPDeviceInfo [userNickname="+userNickname+",charge10="+charge10 + ", charge100="
-				+ charge100 + ", charge=" + charge +",timeStamp="+timeStamp+",version="+version
-			    + ", stepDayTotals="+ stepDayTotals +",userPackageHeader="+userPackageHeader+", userGender="
-				+ userGender + ", userAge=" + userAge + ", userHeight="
-				+ userHeight + ", userWeight=" + userWeight +",recoderStatus="+recoderStatus+ ", userId="
-				+ userId + ",devicePackageHeader="+devicePackageHeader+ "]";
+		return "LPDeviceInfo{" +
+				"alarmTime1_H=" + alarmTime1_H +
+				", version='" + version + '\'' +
+				", version_byte=" + Arrays.toString(version_byte) +
+				", modelName='" + modelName + '\'' +
+				", charge10=" + charge10 +
+				", charge100=" + charge100 +
+				", charge=" + charge +
+				", timeStamp=" + timeStamp +
+				", dayOfWeek=" + dayOfWeek +
+				", times=" + times +
+				", dayIndex=" + dayIndex +
+				", recoderStatus=" + recoderStatus +
+				", deviceStatus=" + deviceStatus +
+				", userPackageHeader=" + userPackageHeader +
+				", userGender=" + userGender +
+				", userAge=" + userAge +
+				", userHeight=" + userHeight +
+				", userWeight=" + userWeight +
+				", userId=" + userId +
+				", devicePackageHeader=" + devicePackageHeader +
+				", customer='" + customer + '\'' +
+				", devicetime=" + devicetime +
+				", devicemac=" + devicemac +
+				", step=" + step +
+				", stepDayTotals=" + stepDayTotals +
+				", distenceDayTotals=" + distenceDayTotals +
+				", dayWalkSteps=" + dayWalkSteps +
+				", dayWalkDistance=" + dayWalkDistance +
+				", dayWalkTime=" + dayWalkTime +
+				", dayRunSteps=" + dayRunSteps +
+				", dayRunDistance=" + dayRunDistance +
+				", dayRunTime=" + dayRunTime +
+				", startTime1_H=" + startTime1_H +
+				", endTime1_H=" + endTime1_H +
+				", startTime1_M=" + startTime1_M +
+				", endTime1_M=" + endTime1_M +
+				", startTime2_H=" + startTime2_H +
+				", endTime2_H=" + endTime2_H +
+				", startTime2_M=" + startTime2_M +
+				", endTime2_M=" + endTime2_M +
+				", longsit_step=" + longsit_step +
+				", timeWindow=" + timeWindow +
+				", level=" + level +
+				", handup_startTime1_H=" + handup_startTime1_H +
+				", handup_startTime1_M=" + handup_startTime1_M +
+				", handup_endTime1_H=" + handup_endTime1_H +
+				", handup_endTime1_M=" + handup_endTime1_M +
+				", handup_startTime2_H=" + handup_startTime2_H +
+				", handup_startTime2_M=" + handup_startTime2_M +
+				", handup_endTime2_H=" + handup_endTime2_H +
+				", handup_endTime2_M=" + handup_endTime2_M +
+				", handup_timeWindow=" + handup_timeWindow +
+				", dataLen=" + dataLen +
+				", alarmTime1_M=" + alarmTime1_M +
+				", frequency1=" + frequency1 +
+				", alarmTime2_H=" + alarmTime2_H +
+				", alarmTime2_M=" + alarmTime2_M +
+				", frequency2=" + frequency2 +
+				", alarmTime3_H=" + alarmTime3_H +
+				", alarmTime3_M=" + alarmTime3_M +
+				", frequency3=" + frequency3 +
+				", time=" + time +
+				", osType=" + osType +
+				", userNickname='" + userNickname + '\'' +
+				", deviceId='" + deviceId + '\'' +
+				'}';
 	}
-	
-//	// 闹钟
-//	public void setAlarms(List<AlarmClock> alarmClocks) {
-//
-//		if (alarmClocks != null && alarmClocks.size() == 3){
-//
-//			AlarmClock alarmClock = null;
-//
-//			// 闹钟处于开启状态才上传到设备中
-//			alarmClock = alarmClocks.get(0);
-//			alarmTime1 = alarmClock.getAlertTime();
-//			if (alarmClock.getState() == 1 ){
-//				frequency1 = alarmClock.getFrequency();
-//			}
-//
-//			alarmClock = alarmClocks.get(1);
-//			alarmTime2 = alarmClock.getAlertTime();
-//			if (alarmClocks.get(1).getState() == 1 ){
-//				frequency2 = alarmClock.getFrequency();
-//
-//			}
-//
-//			alarmClock = alarmClocks.get(2);
-//			alarmTime3 = alarmClock.getAlertTime();
-//			if (alarmClocks.get(2).getState() == 1 ){
-//				frequency3 = alarmClock.getFrequency();
-//			}
-//
-//			//alarmClock = alarmClocks.get(3);
-//			//if (alarmClocks.get(3).getState() == 1 ){
-//			//				alarmTime4 = 0;
-//			//				frequency4 = 0;
-//			//			//}
-//			//			
-//			//			//alarmClock = alarmClocks.get(4);
-//			//			//if (alarmClocks.get(4).getState() == 1 ){
-//			//				alarmTime5 = 0;
-//			//				frequency5 = 0;
-//			//}
-//
-//		}
-//	}
-//
-//	public List<AlarmClock> getAlarmClocks(){
-//		List<AlarmClock> clocks = new ArrayList<AlarmClock>();
-//
-//		clocks.add(new AlarmClock(alarmTime1, frequency1));
-//		clocks.add(new AlarmClock(alarmTime2, frequency2));
-//		clocks.add(new AlarmClock(alarmTime3, frequency3));
-//		
-//		return clocks;
-//	}
-//
-//
-//	// 久坐提醒
-//	public void setLongsit(LongSitInfo longSitInfo) {
-//
-//		// 存在并开启了久坐提醒
-//		if (longSitInfo != null ){
-//			startTime = (int) longSitInfo.getStartTime();
-//			endTime = (int) longSitInfo.getEndTime();
-//			if (longSitInfo.getState() == 1){
-//				timeWindow = longSitInfo.getDuration() * 2;
-//				level = 50;
-//			}
-//		}
-//	}
-//
-//	public LongSitInfo getLongsit(){
-//		return new LongSitInfo(userId, startTime, endTime, timeWindow/2);
-//	}
-//	
-	
-
 }

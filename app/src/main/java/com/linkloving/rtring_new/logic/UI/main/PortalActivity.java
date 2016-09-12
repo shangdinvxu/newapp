@@ -124,102 +124,63 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter.OnRecyclerViewListener {
+public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter.OnRecyclerViewListener{
+    private static final String TAG = PortalActivity.class.getSimpleName();
 
     private SimpleDateFormat sdf = new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD);
-    private static final String TAG = PortalActivity.class.getSimpleName();
     private static final int REQUSET_FOR_PERSONAL = 1;
     private static final int LOW_BATTERY = 3;
     private static final int JUMP_FRIEND_TAG_TWO = 2;
     ViewGroup contentLayout;
-    @InjectView(R.id.drawer_layout)
-    DrawerLayout drawer;
-    @InjectView(R.id.toolbar)
-    Toolbar toolbar;
-    @InjectView(R.id.recycler_view)
-    RecyclerView menu_RecyclerView;
+    @InjectView(R.id.drawer_layout) DrawerLayout drawer;
+    @InjectView(R.id.toolbar) Toolbar toolbar;
+    @InjectView(R.id.recycler_view) RecyclerView menu_RecyclerView;
 
-    @InjectView(R.id.user_head)
-    ImageView user_head;    //头像
-    @InjectView(R.id.device_img)
-    ImageView device_img;
-    @InjectView(R.id.user_name)
-    TextView user_name;     //昵称
+    @InjectView(R.id.user_head) ImageView user_head;    //头像
+    @InjectView(R.id.device_img) ImageView device_img;
+    @InjectView(R.id.user_name) TextView user_name;     //昵称
 
-    @InjectView(R.id.text_battery)
-    TextView text_Battery;
-    @InjectView(R.id.text_wallet)
-    TextView text_Wallet;
-    @InjectView(R.id.text_sync)
-    TextView text_sync;
-    @InjectView(R.id.text_step)
-    TextView text_Step;
-    @InjectView(R.id.text_distance)
-    TextView text_Distance;
-    @InjectView(R.id.text_cal)
-    TextView text_Cal;
-    @InjectView(R.id.text_run)
-    TextView text_Run;
-    @InjectView(R.id.text_sleep)
-    TextView text_Sleep;
-    @InjectView(R.id.text_weightmy)
-    TextView MyWeight;
-    @InjectView(R.id.text_weightgoal)
-    TextView GoalWeight;
-    /**
-     * 进度条系列
-     */
-    @InjectView(R.id.progressBar_battery)
-    CustomProgressBar Battery_ProgressBar;
-    @InjectView(R.id.progressBar_step)
-    CustomProgressBar Step_ProgressBar;
-    @InjectView(R.id.progressBar_distance)
-    CustomProgressBar Distance_ProgressBar;
-    @InjectView(R.id.progressBar_cal)
-    CustomProgressBar Cal_ProgressBar;
-    @InjectView(R.id.progressBar_run)
-    CustomProgressBar Run_ProgressBar;
-    @InjectView(R.id.progressBar_sleep)
-    CustomProgressBar Sleep_ProgressBar;
-    /**
-     * ITEM布局系列
-     */
-    @InjectView(R.id.linear_date)
-    LinearLayout date;
-    @InjectView(R.id.linear_unbund)
-    LinearLayout linear_unbund;
-    @InjectView(R.id.linear_step)
-    LinearLayout linear_Step;
-    @InjectView(R.id.linear_distance)
-    LinearLayout linear_Distance;
-    @InjectView(R.id.linear_cal)
-    LinearLayout linear_Cal;
-    @InjectView(R.id.linear_run)
-    LinearLayout linear_Run;
-    @InjectView(R.id.linear_sleep)
-    LinearLayout linear_Sleep;
-    @InjectView(R.id.linear_battery)
-    LinearLayout linear_Battery;
-    @InjectView(R.id.linear_wallet)
-    LinearLayout linear_wallet;
-    @InjectView(R.id.linear_weight)
-    LinearLayout linear_Weight;
-    @InjectView(R.id.text_time)
-    TextView time;
+    @InjectView(R.id.text_battery) TextView text_Battery;
+    @InjectView(R.id.text_wallet) TextView text_Wallet;
+    @InjectView(R.id.text_sync) TextView text_sync;
+    @InjectView(R.id.text_step) TextView text_Step;
+    @InjectView(R.id.text_distance) TextView text_Distance;
+    @InjectView(R.id.text_cal) TextView text_Cal;
+    @InjectView(R.id.text_run) TextView text_Run;
+    @InjectView(R.id.text_sleep) TextView text_Sleep;
+    @InjectView(R.id.text_weightmy) TextView MyWeight;
+    @InjectView(R.id.text_weightgoal) TextView GoalWeight;
+    /**进度条系列*/
+    @InjectView(R.id.progressBar_battery) CustomProgressBar Battery_ProgressBar;
+    @InjectView(R.id.progressBar_step) CustomProgressBar Step_ProgressBar;
+    @InjectView(R.id.progressBar_distance) CustomProgressBar Distance_ProgressBar;
+    @InjectView(R.id.progressBar_cal) CustomProgressBar Cal_ProgressBar;
+    @InjectView(R.id.progressBar_run) CustomProgressBar Run_ProgressBar;
+    @InjectView(R.id.progressBar_sleep) CustomProgressBar Sleep_ProgressBar;
+    /**ITEM布局系列*/
+    @InjectView(R.id.linear_date) LinearLayout date;
+    @InjectView(R.id.linear_unbund) LinearLayout linear_unbund;
+    @InjectView(R.id.linear_step) LinearLayout linear_Step;
+    @InjectView(R.id.linear_distance) LinearLayout linear_Distance;
+    @InjectView(R.id.linear_cal) LinearLayout linear_Cal;
+    @InjectView(R.id.linear_run) LinearLayout linear_Run;
+    @InjectView(R.id.linear_sleep) LinearLayout linear_Sleep;
+    @InjectView(R.id.linear_battery) LinearLayout linear_Battery;
+    @InjectView(R.id.linear_wallet) LinearLayout linear_wallet;
+    @InjectView(R.id.linear_weight) LinearLayout linear_Weight;
+    @InjectView(R.id.text_time) TextView time;
     //下拉刷新
-    @InjectView(R.id.mainScrollView)
-    PullToRefreshScrollView mScrollView;
+    @InjectView(R.id.mainScrollView) PullToRefreshScrollView mScrollView;
     //修改日期左右的按钮
-    @InjectView(R.id.leftBtn)
-    Button btnleft;
-    @InjectView(R.id.rightBtn)
-    Button btnright;
+    @InjectView(R.id.leftBtn) Button btnleft;
+    @InjectView(R.id.rightBtn) Button btnright;
     private MenuNewAdapter menuAdapter;
     private ProgressDialog progressDialog;
     //** 地理位置
     private LocationClient mLocationClient;
     private MyLocationListener mMyLocationListener;
     private String User_avatar_file_name;
+
     private UserEntity userEntity;
     private BLEHandler.BLEProviderObserverAdapter bleProviderObserver;
     private BLEProvider provider;
@@ -228,8 +189,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     String startDateString;
     String endDateString;
     String timeNow;
-    int COUNT_MODELNAME = 0; //防止用户多次强制进入设备页面
-    boolean isReadCard = false; //防止主界面没读卡完毕用户就点击金额导致读取失败
+    boolean isReadingCard = false; //防止主界面没读卡完毕用户就点击金额导致读取失败
     //目标值
     private int step_goal, distace_goal, cal_goal, runtime_goal;
     private float sleeptime_goal, weight_goal;
@@ -245,6 +205,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             super.handleMessage(msg);
         }
     };
+    Runnable mScrollViewRefreshingRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Message ms = new Message();
+            mScrollViewRefreshingHandler.sendMessageDelayed(ms, 15000);
+        }
+    };
 
     /**
      * 当前正在运行中的数据加载异步线程(放全局的目的是尽量控制当前只有一个在运行，防止用户恶意切换导致OOM)
@@ -254,7 +221,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     @Override
     protected void onPause() {
         super.onPause();
-        if (provider.getBleProviderObserver() != null) {
+        if(provider.getBleProviderObserver()!=null){
             provider.setBleProviderObserver(null);
         }
     }
@@ -276,12 +243,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         //运动目标重置一下
         initGoal();
         getInfoFromDB();
-        if (!CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getLast_sync_device_id())) {
-            if (provider.isConnectedAndDiscovered())
+        if(!CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getLast_sync_device_id())){
+            if(provider.isConnectedAndDiscovered())
                 BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
         }
 
-        if (userEntity.getUserBase().getUser_avatar_file_name() == null) {
+        if (userEntity.getUserBase().getUser_avatar_file_name() == null){
             MyLog.e(TAG, "u.getUserBase().getUser_avatar_file_name()是空的........");
             return;
         }
@@ -350,14 +317,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         //自动下拉刷新
         mScrollView.autoRefresh();
-        mScrollViewRefreshingHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Message ms = new Message();
-                mScrollViewRefreshingHandler.sendMessageDelayed(ms, 10000);
-            }
-        });
-
 //        new AsyncTask<Object, Object, SportRecordUploadDTO>() {
 //            @Override
 //            protected void onPreExecute() {
@@ -381,7 +340,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //        }.execute();
 
     }
-
     private void autoInsertWeight() {
         SimpleDateFormat sdf = new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD);
         String nowdateStr = sdf.format(new Date()); //今天的日期 2016-05-04
@@ -425,7 +383,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         option.setScanSpan(1000);// 设置发起定位请求的间隔时间为1000ms
         option.setIsNeedAddress(true); // 返回地址
         mLocationClient.setLocOption(option);
-    }
+}
 
     private void initView() {
         progressDialog = new ProgressDialog(this);
@@ -450,7 +408,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         contentLayout.setBackgroundDrawable(getResources().getDrawable(R.mipmap.background));
         StatusBarUtil.setTranslucentForDrawerLayout(this, drawer, 0);
-        ScreenUtils.setMargins(toolbar, 0, ScreenUtils.getStatusHeight(this), 0, 0);
+        ScreenUtils.setMargins(toolbar,0,ScreenUtils.getStatusHeight(this) ,0,0);
 
         //侧边栏适配器
         setAdapter();
@@ -465,7 +423,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 //刷新同步数据
                 String s = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id();
                 if (CommonUtils.isStringEmpty(s)) {
-                    //
+                   //
                     showBundDialog();
                     mScrollView.onRefreshComplete();
                 } else {
@@ -474,14 +432,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     provider.setCurrentDeviceMac(s);
                     //开始同步
                     BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
-                    // 启动超时处理handler
-                    mScrollViewRefreshingHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Message ms = new Message();
-                            mScrollViewRefreshingHandler.sendMessageDelayed(ms, 10000);
-                        }
-                    });
+                    mScrollViewRefreshingHandler.post(mScrollViewRefreshingRunnable);
                 }
             }
         });
@@ -560,13 +511,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     //获取目标值
     private void initGoal() {
         step_goal = Integer.parseInt(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_STEP));
-        distace_goal = (int) (Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_DISTANCE)));
-        cal_goal = (int) (Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_CAL)));
-        Log.e(TAG, "卡路里是:" + cal_goal);
+        distace_goal = (int)(Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_DISTANCE)));
+        cal_goal = (int)(Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_CAL)));
+        Log.e(TAG,"卡路里是:"+cal_goal);
         runtime_goal = Integer.parseInt(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_RUN));
         sleeptime_goal = Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_SLEEP));
         weight_goal = Float.parseFloat(PreferencesToolkits.getGoalInfo(this, PreferencesToolkits.KEY_GOAL_WEIGHT));
-        if (PreferencesToolkits.getLocalSettingUnitInfo(PortalActivity.this) != ToolKits.UNIT_GONG) { //公制
+        if(PreferencesToolkits.getLocalSettingUnitInfo(PortalActivity.this)!=ToolKits.UNIT_GONG){ //公制
             weight_goal = ToolKits.calcKG2LB(weight_goal);
         }
     }
@@ -585,31 +536,28 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             linear_Battery.setVisibility(View.VISIBLE);
             //手环的时候显示手环 手表显示手表
             UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-            MyLog.e(TAG, "获取modelName：" + userEntity.getDeviceEntity().getModel_name());
-            if (CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getModel_name())) {
+            MyLog.e(TAG, "获取modelName："+userEntity.getDeviceEntity().getModel_name());
+            if(CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getModel_name())){
                 linear_wallet.setVisibility(View.GONE);
                 return;
             }
-            if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_WATCH) {
-                MyLog.e(TAG,"zhixingdeshi11");
+            if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
-            } else if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_BAND) {
-                MyLog.e(TAG,"zhixingdeshi12");
+                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
+            } else {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
-            } else if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_BAND_VERSION3) {
-                MyLog.e(TAG,"zhixingdeshi13");
-                device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
+                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
             }
-            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this, userEntity.getDeviceEntity().getModel_name());
-            if (modelInfo != null) {
-                if (modelInfo.getFiscard() == 0) { //不支持金融卡
+            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
+            if(modelInfo!=null){
+                if(modelInfo.getFiscard()==0){ //不支持金融卡
                     linear_wallet.setVisibility(View.GONE);
-                } else {
+                }else{
                     linear_wallet.setVisibility(View.VISIBLE);
                 }
-            } else {
+            }else{
                 //modelInfo是null的时候
-                CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_UPDATA_MODELNAME, NoHttpRuquestFactory.createModelRequest(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id(), userEntity.getDeviceEntity().getModel_name()), httpCallback);
+                CallServer.getRequestInstance().add(PortalActivity.this, false,CommParams.HTTP_UPDATA_MODELNAME, NoHttpRuquestFactory.createModelRequest(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id(),userEntity.getDeviceEntity().getModel_name()), httpCallback);
             }
         }
     }
@@ -640,7 +588,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             showBundDialog();
         }
     }
-
     @OnClick(R.id.linear_distance)
     void toDistance(View view) {
         Intent intent = IntentFactory.cteate_DiatanceDataActivityIntent(PortalActivity.this);
@@ -668,19 +615,18 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         if (userEntity == null || CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
             showBundDialog();
         } else {
-            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this, userEntity.getDeviceEntity().getModel_name());
-            if (modelInfo != null) {
+            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
+            if(modelInfo!=null) {
                 if (modelInfo.getFiscard() == 0) { //不支持金融卡
-                    Toast.makeText(PortalActivity.this, R.string.pay_no_function, Toast.LENGTH_LONG).show();
+                    Snackbar.make(drawer, getString(R.string.pay_no_function), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                 } else {
 
                     if (provider.isConnectedAndDiscovered()) {
-                        if (isReadCard) {
-                            Toast.makeText(PortalActivity.this, getString(R.string.pay_isreading), Toast.LENGTH_SHORT).show();
-                        } else {
+                        if(isReadingCard){
+                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
+                        }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
                         }
-
                     } else {
                         Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
                     }
@@ -697,7 +643,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         } else {
 //            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
 //            if(modelInfo!=null){
-            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, 0));
+                startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this,0));
 //            }else{
 //                ToolKits.showCommonTosat(PortalActivity.this, true, ToolKits.getStringbyId(PortalActivity.this, R.string.device_info_no), Toast.LENGTH_SHORT);
 //
@@ -708,7 +654,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
     @OnClick(R.id.linear_weight)
     void toWeight(View view) {
-        Intent intent = new Intent(PortalActivity.this, WeightActivity.class);
+        Intent intent=new Intent(PortalActivity.this, WeightActivity.class);
         intent.putExtra("time", time.getText());
         startActivity(intent);
     }
@@ -747,19 +693,17 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
      */
     private void refreshHeadView() {
 
-        MyLog.i(TAG, "刷新头像和昵称,等数据");
         //图像以后设置
-        UserEntity u = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-        if (u == null) {
-            MyLog.i(TAG, "获得的UserEntity是空的");
+        UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
+        if (userEntity == null) {
             return;
         }
-        MyLog.i(TAG, "获得的UserEntity的名字=" + u.getUserBase().getNickname());
-        user_name.setText(u.getUserBase().getNickname());
-        User_avatar_file_name = u.getUserBase().getUser_avatar_file_name();
+        MyLog.i(TAG, "获得的UserEntity的名字=" + userEntity.getUserBase().getNickname());
+        user_name.setText(userEntity.getUserBase().getNickname());
+        User_avatar_file_name = userEntity.getUserBase().getUser_avatar_file_name();
         if (User_avatar_file_name != null) {
-            String url = NoHttpRuquestFactory.getUserAvatarDownloadURL(PortalActivity.this, u.getUser_id() + "", u.getUserBase().getUser_avatar_file_name(), true);
-            User_avatar_file_name = u.getUserBase().getUser_avatar_file_name();
+            String url = NoHttpRuquestFactory.getUserAvatarDownloadURL(PortalActivity.this, userEntity.getUser_id() + "", userEntity.getUserBase().getUser_avatar_file_name(), true);
+            User_avatar_file_name = userEntity.getUserBase().getUser_avatar_file_name();
             DisplayImageOptions options;
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)//设置下载的图片是否缓存在内存中
@@ -799,27 +743,27 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     }
 
     // 刷新企业图标
-    private void refreshEntHead() {
+    private  void refreshEntHead(){
         //刷新企业图标
         //企业定制的时候需要动态更换
-        if (!CommonUtils.isStringEmpty(MyApplication.getInstance(this).getLocalUserInfoProvider().getEntEntity().getEnt_id())) {
-            String imageUrl = NoHttpRuquestFactory.getEntAvatarDownloadURL(MyApplication.getInstance(this).getLocalUserInfoProvider().getEntEntity().getPortal_logo_file_name());
-            ImageLoader.getInstance().loadImage(imageUrl, new SimpleImageLoadingListener() {
+        if(!CommonUtils.isStringEmpty(MyApplication.getInstance(this).getLocalUserInfoProvider().getEntEntity().getEnt_id())){
+            String imageUrl=NoHttpRuquestFactory.getEntAvatarDownloadURL(MyApplication.getInstance(this).getLocalUserInfoProvider().getEntEntity().getPortal_logo_file_name());
+            ImageLoader.getInstance().loadImage(imageUrl,new SimpleImageLoadingListener(){
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     super.onLoadingComplete(imageUri, view, loadedImage);
                     MyLog.i(TAG, imageUri);
-                    Resources res = getResources();
+                   Resources res = getResources();
 //                    Bitmap bmp = BitmapFactory.decodeResource(res, R.mipmap.logo);
-                    Drawable drawable = new BitmapDrawable(res, loadedImage);
+                    Drawable drawable =new BitmapDrawable(res,loadedImage);
                     toolbar.setLogo(drawable);
                 }
             });
-        } else {
-            MyLog.i(TAG, "获得的getEntEntity是空的");
+        }else {
+            MyLog.i(TAG,"获得的getEntEntity是空的");
             Resources res = getResources();
             Bitmap bmp = BitmapFactory.decodeResource(res, R.mipmap.new_logo);
-            Drawable drawable = new BitmapDrawable(res, bmp);
+            Drawable drawable =new BitmapDrawable(res,bmp);
             toolbar.setLogo(drawable);
         }
     }
@@ -956,16 +900,16 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //                }
 //                //=============计算基础卡路里=====OVER========//
                 //查询体重,获得体重的集合
-                List<UserWeight> list = WeightTable.queryWeights(PortalActivity.this, userEntity.getUser_id() + "", endDateString, endDateString);
+                List<UserWeight> list=WeightTable.queryWeights(PortalActivity.this,userEntity.getUser_id()+"",endDateString,endDateString);
                 double weight = 60.0;
 
-                if (list != null && list.size() > 0) {
-                    weight = CommonUtils.getScaledDoubleValue(Double.valueOf(list.get(0).getWeight()), 1);
-                    if (PreferencesToolkits.getLocalSettingUnitInfo(PortalActivity.this) != ToolKits.UNIT_GONG) { //公制
+                if(list!=null&&list.size()>0){
+                    weight=CommonUtils.getScaledDoubleValue(Double.valueOf(list.get(0).getWeight()), 1);
+                    if(PreferencesToolkits.getLocalSettingUnitInfo(PortalActivity.this)!=ToolKits.UNIT_GONG){ //公制
                         weight = ToolKits.calcKG2LB((float) weight);
                     }
-                } else {
-                    weight = 0;
+                }else {
+                    weight=0;
                 }
                 if (mDaySynopic == null) {
                     MyLog.e(TAG, "mDaySynopic空的");
@@ -1001,17 +945,17 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
                 double worktime = CommonUtils.getScaledDoubleValue(walktime + runtime, 1);
 
-                int walkcal = ToolKits.calculateCalories(Float.parseFloat(mDaySynopic.getWork_distance()), (int) walktime * 60, userEntity.getUserBase().getUser_weight());
-                int runcal = ToolKits.calculateCalories(Float.parseFloat(mDaySynopic.getRun_distance()), (int) runtime * 60, userEntity.getUserBase().getUser_weight());
+                int walkcal = ToolKits.calculateCalories(Float.parseFloat(mDaySynopic.getWork_distance()),(int) walktime * 60,userEntity.getUserBase().getUser_weight());
+                int runcal = ToolKits.calculateCalories(Float.parseFloat(mDaySynopic.getRun_distance()),(int) runtime * 60,userEntity.getUserBase().getUser_weight());
 
 //                int runcal = _Utils.calculateCalories(Double.parseDouble(mDaySynopic.getRun_distance()) / (Double.parseDouble(mDaySynopic.getRun_duration())), (int) runtime * 60, userEntity.getUserBase().getUser_weight());
 
 //                int walkcal = _Utils.calculateCalories(Double.parseDouble(mDaySynopic.getWork_distance()) / (Double.parseDouble(mDaySynopic.getWork_duration())), (int) walktime * 60, userEntity.getUserBase().getUser_weight());
 
-                MyLog.e(TAG, "runcal1:" + runcal);
-                MyLog.e(TAG, "walkcal:" + walkcal);
+                MyLog.e(TAG,"runcal1:"+runcal);
+                MyLog.e(TAG,"walkcal:"+walkcal);
 
-                int calValue = (int) runcal + (int) walkcal;
+                int calValue = (int)runcal + (int)walkcal;
 
 //                double speed=(distance)/(worktime*60);
 
@@ -1067,9 +1011,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         text_Sleep.setText(sleeptime + getResources().getString(R.string.unit_short_hour));
         text_Cal.setText(calValue + getResources().getString(R.string.unit_cal));
 
-        NumberFormat nf = new DecimalFormat("0.0 ");
-        MyWeight.setText(getResources().getString(R.string.weight) + nf.format(weight) + getResources().getString(R.string.unit_kilogramme));
-        GoalWeight.setText(getResources().getString(R.string.change_weight_goal) + nf.format(weight_goal) + getResources().getString(R.string.unit_kilogramme));
+        NumberFormat nf=new DecimalFormat( "0.0 ");
+        MyWeight.setText(getResources().getString(R.string.weight)+nf.format(weight)+ getResources().getString(R.string.unit_kilogramme));
+        GoalWeight.setText(getResources().getString(R.string.change_weight_goal)+nf.format(weight_goal)+ getResources().getString(R.string.unit_kilogramme));
 //            MyLog.e(TAG,"Float.parseFloat(money):"+ToolKits.stringtofloat(money));
         //进度条
         Step_ProgressBar.setCurProgress((int) Math.ceil(step * 100 * 1.0f / step_goal));
@@ -1077,15 +1021,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         Run_ProgressBar.setCurProgress((int) Math.ceil(runtime * 100 * 1.0f / runtime_goal));
         Sleep_ProgressBar.setCurProgress((int) Math.ceil(sleeptime * 100 * 1.0f / sleeptime_goal));
         Cal_ProgressBar.setCurProgress((int) Math.ceil(calValue * 100 * 1.0f / cal_goal));
-        //进度条旁边的百分比
-//        text_Wallet_Progress.setText((int) (Math.ceil(Float.parseFloat(money) * 100 * 1.0f / money_goal)) + "%");
-//        text_Step_Progress.setText((int) Math.ceil(step * 100 * 1.0f / step_goal) + "%");
-//        text_Distance_Progress.setText((int) Math.ceil(distance * 100 * 1.0f / distace_goal) + "%");
-//        text_Run_Progress.setText((int) Math.ceil(runtime * 100 * 1.0f / runtime_goal) + "%");
-//        text_Sleep_Progress.setText((int) Math.ceil(sleeptime * 100 * 1.0f / sleeptime_goal) + "%");
-//        text_Cal_Progress.setText((int) Math.ceil(calValue * 100 * 1.0f / cal_goal) + "%");
-//        MyWeight_Progress.setText((int) Math.ceil(weight * 100 * 1.0f / weight_goal) + "%");
-
         refreshBatteryUI();
     }
 
@@ -1113,7 +1048,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                         }).create();
                         dialog_battery.show();
                     }
-                    text_Battery.setText(MessageFormat.format(getString(R.string.bracelet_battery), battery));//根据电量显示不同的文字提示
+                    text_Battery.setText( MessageFormat.format(getString(R.string.bracelet_battery), battery));//根据电量显示不同的文字提示
 
                     Battery_ProgressBar.setCurProgress((int) (Math.ceil(battery * 100 * 1.0f / 100)));
 //                    text_Battery_Progress.setText((int) (Math.ceil(battery * 100 * 1.0f / 100)) + "%");
@@ -1147,11 +1082,11 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     /**
      * 单独刷新钱包子方法
      */
-    private void refreshMoneyView() {
+    private void refreshMoneyView(){
         LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
         String money = localvo.getMoney();
         //提示词
-        text_Wallet.setText(getResources().getString(R.string.menu_pay_yue) + getResources().getString(R.string.menu_pay_yuan) + money);
+        text_Wallet.setText(getResources().getString(R.string.menu_pay_yue)+getResources().getString(R.string.menu_pay_yuan) + money);
         text_sync.setText(new SimpleDateFormat(ToolKits.getStringbyId(PortalActivity.this, R.string.portal_main_sync_data)).format(new Date(localvo.getSyncTime())) + "");
     }
 
@@ -1162,7 +1097,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
-            if (result == null) {
+            if (result==null){
                 return;
             }
             DataFromServer dataFromServer = JSON.parseObject(response.get(), DataFromServer.class);
@@ -1201,10 +1136,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         MyApplication.getInstance(PortalActivity.this).setLocalUserInfoProvider(userAuthedInfo);
                         refreshVISIBLE();
                         // 后台启动客户端版本检查和更新线程
-                        String updateeime = PreferencesToolkits.getUpdateTime(PortalActivity.this);
-                        if (updateeime.equals(new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD).format(new Date()))) {
+                        String updateeime=PreferencesToolkits.getUpdateTime(PortalActivity.this);
+                        if(updateeime.equals(new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD).format(new Date()))){
                             //如果是今天就不在提示更新了
-                        } else {
+                        }else {
                             new UpdateClientAsyncTask(PortalActivity.this) {
                                 @Override
                                 protected void relogin() {
@@ -1214,32 +1149,32 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         }
                         break;
                     case CommParams.HTTP_UPDATA_CARDNUMBER:
-                        MyLog.e(TAG, "卡号上传成功...");
+                        MyLog.e(TAG, "卡号上传成功..." );
                         //不做处理
                         break;
 
                     case CommParams.HTTP_UPDATA_DEVICEID:
-                        MyLog.e(TAG, "deviceId上传成功..." + value);
+                        MyLog.e(TAG, "deviceId上传成功..."+ value);
                         UserEntity userEntity = new Gson().fromJson(value, UserEntity.class);
                         MyApplication.getInstance(PortalActivity.this).setLocalUserInfoProvider(userEntity);
 //                        CallServer.getRequestInstance().add(BleService.this, false, CommParams.HTTP_DOWN_USERENETTY, HttpHelper.createUserEntityRequest(userEntity.getUser_id() + ""), httpCallback);
                         break;
 
                     case CommParams.HTTP_UPDATA_MODELNAME:
-                        MyLog.e(TAG, "modelname上传成功...: " + value);
-                        if (CommonUtils.isStringEmpty(value)) return;
+                        MyLog.e(TAG, "modelname上传成功...: "+value);
+                        if(CommonUtils.isStringEmpty(value)) return;
                         //获取了服务器的设备信息 并且保存到本地
                         String model_name = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getModel_name();
-                        MyLog.e(TAG, "modelname上传成功...: " + model_name);
-                        ModelInfo modelInfo = JSONObject.parseObject(value, ModelInfo.class);
-                        MyLog.e(TAG, "modelname上传成功...: " + modelInfo.getFiscard());
-                        PreferencesToolkits.saveInfoBymodelName(PortalActivity.this, model_name, modelInfo);
-                        if (modelInfo.getAncs() != 0) { //有消息提醒
+                        MyLog.e(TAG, "modelname上传成功...: "+model_name);
+                        ModelInfo modelInfo=JSONObject.parseObject(value, ModelInfo.class);
+                        MyLog.e(TAG, "modelname上传成功...: "+modelInfo.getFiscard());
+                        PreferencesToolkits.saveInfoBymodelName(PortalActivity.this,model_name,modelInfo);
+                        if(modelInfo.getAncs()!=0){ //有消息提醒
                             MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
-                            if (!ToolKits.isEnabled(PortalActivity.this)) {
+                            if(!ToolKits.isEnabled(PortalActivity.this)){
                                 startActivity(new Intent(NotificationCollectorService.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                             }
-                        } else {
+                        }else{
                             MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                         }
                         //开始处理页面是否显示
@@ -1279,16 +1214,17 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     break;
             }
             return;
-        } else if (requestCode == CommParams.REQUEST_CODE_BOUND && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == CommParams.REQUEST_CODE_BOUND && resultCode == Activity.RESULT_OK){
             String type = data.getStringExtra(BundTypeActivity.KEY_TYPE);
-            if (type.equals(BundTypeActivity.KEY_TYPE_WATCH)) {
+            if(type.equals(BundTypeActivity.KEY_TYPE_WATCH)){
                 startActivityForResult(new Intent(PortalActivity.this, BoundActivity.class), CommParams.REQUEST_CODE_BOUND_WATCH);
-            } else if (type.equals(BundTypeActivity.KEY_TYPE_BAND)) {
-                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
-            } else if (type.equals(BundTypeActivity.KEY_TYPE_BAND_VERSION_3)) {
-                startActivityForResult(IntentFactory.startActivityBundBand3Step1(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND_3);
+            }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND)){
+                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+            }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND_VERSION_3)){
+                startActivityForResult(IntentFactory.startActivityBundBand3(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND_3);
             }
-        } else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
+        }
+        else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
             MyLog.e(TAG, "手环绑定成功");
         } else if (requestCode == CommParams.REQUEST_CODE_BOUND_WATCH && resultCode == Activity.RESULT_OK) {
         }
@@ -1331,9 +1267,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             return PortalActivity.this;
         }
 
-        /**********
-         * 用户没打开蓝牙
-         *********/
+        /**********用户没打开蓝牙*********/
         @Override
         public void updateFor_handleNotEnableMsg() {
             //用户未打开蓝牙
@@ -1347,9 +1281,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             MyLog.e(TAG, "updateFor_handleConnectSuccessMsg");
         }
 
-        /**********
-         * BLE连接中
-         *********/
+        /**********BLE连接中*********/
         @Override
         public void updateFor_handleConnecting() {
             //正在连接
@@ -1357,52 +1289,49 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             refreshBatteryUI();
         }
 
-        /**********
-         * 扫描BLE设备TimeOut
-         *********/
+        /**********扫描BLE设备TimeOut*********/
         @Override
         public void updateFor_handleScanTimeOutMsg() {
             MyLog.e(TAG, "updateFor_handleScanTimeOutMsg");
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
-        /**********
-         * BLE连接失败
-         *********/
+        /**********BLE连接失败*********/
         @Override
         public void updateFor_handleConnectFailedMsg() {
             //连接失败
             MyLog.e(TAG, "updateFor_handleConnectFailedMsg");
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
-        /**********
-         * BLE连接成功
-         *********/
+        /**********BLE连接成功*********/
         @Override
         public void updateFor_handleConnectSuccessMsg() {
             //连接成功
             MyLog.e(TAG, "updateFor_handleConnectSuccessMsg");
         }
-
-        /**********
-         * BLE断开连接
-         *********/
+        /**********BLE断开连接*********/
         @Override
         public void updateFor_handleConnectLostMsg() {
             MyLog.e(TAG, "updateFor_handleConnectLostMsg");
             //蓝牙断开的显示
             refreshBatteryUI();
-            isReadCard = false;
+            isReadingCard = false;
+            if (mScrollView.isRefreshing()){
+                mScrollView.onRefreshComplete();
+            }
         }
 
-        /**********
-         * 0X13命令返回
-         *********/
+        /**********0X13命令返回*********/
         @Override
         public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
             MyLog.e(TAG, "updateFor_notifyFor0x13ExecSucess_D");
-            isReadCard = true;
-//            //保存localvo
-//            PreferencesToolkits.updateLocalDeviceInfo(PortalActivity.this, latestDeviceInfo);
+            isReadingCard = true;
+            mScrollViewRefreshingHandler.removeCallbacks(mScrollViewRefreshingRunnable);
         }
 
         @Override
@@ -1410,22 +1339,18 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             MyLog.e(TAG, "updateFor_notifyForDeviceUnboundSucess_D");
         }
 
-        /**********
-         * 剩余同步运动条目
-         *********/
+        /**********剩余同步运动条目*********/
         @Override
         public void updateFor_SportDataProcess(Integer obj) {
             super.updateFor_SportDataProcess(obj);
             MyLog.e(TAG, "updateFor_SportDataProcess");
-            if (mScrollView.isRefreshing()) {
+            if(mScrollView.isRefreshing()){
                 String second_txt = MessageFormat.format(getString(R.string.refresh_data), obj);
                 mScrollView.getHeaderLayout().getmHeaderText().setText(second_txt);
             }
         }
 
-        /**********
-         * 运动记录读取完成
-         *********/
+        /**********运动记录读取完成*********/
         @Override
         public void updateFor_handleDataEnd() {
             MyLog.e(TAG, " updateFor_handleDataEnd ");
@@ -1441,7 +1366,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     protected SportRecordUploadDTO doInBackground(Object... params) {
                         // 看看数据库中有多少未同步（到服务端的数据）
                         final ArrayList<SportRecord> up_List = UserDeviceRecord.findHistoryWitchNoSync(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "");
-                        MyLog.e(TAG, "【NEW离线数据同步】一共查询出" + up_List.size() + "条数据");
+                        MyLog.e(TAG, "【NEW离线数据同步】一共查询出" +up_List.size()+"条数据");
                         //有数据才去算
                         if (up_List.size() > 0) {
                             SportRecordUploadDTO sportRecordUploadDTO = new SportRecordUploadDTO();
@@ -1455,7 +1380,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             HttpUtils.doPostAsyn(CommParams.SERVER_CONTROLLER_URL_NEW, HttpHelper.sport2Server(sportRecordUploadDTO), new HttpUtils.CallBack() {
                                 @Override
                                 public void onRequestComplete(String result) {
-                                    MyLog.e(TAG, "【NEW离线数据同步】服务端返回" + result);
+                                    MyLog.e(TAG, "【NEW离线数据同步】服务端返回" +result);
                                     long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", startTime, endTime);
                                     MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endTime + "]");
                                 }
@@ -1472,10 +1397,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 }.execute();
             }
         }
-
-        /**********
-         * 消息提醒设置成功
-         *********/
+        /**********消息提醒设置成功*********/
         @Override
         public void updateFor_notify() {
             super.updateFor_notify();
@@ -1492,21 +1414,21 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //                }
 //                return;
 //            }
-            if (latestDeviceInfo.modelName == null)
-                latestDeviceInfo.modelName = "LW100";
+            if(latestDeviceInfo.modelName==null)
+                latestDeviceInfo.modelName = "LW100" ;
             MyLog.e(TAG, "modelName:" + latestDeviceInfo.modelName);
             MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setModel_name(latestDeviceInfo.modelName);
             //去服务器获取显示页面的bean
-            CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_UPDATA_MODELNAME, NoHttpRuquestFactory.createModelRequest(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id(), latestDeviceInfo.modelName), httpCallback);
+            CallServer.getRequestInstance().add(PortalActivity.this, false,CommParams.HTTP_UPDATA_MODELNAME, NoHttpRuquestFactory.createModelRequest(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id(),latestDeviceInfo.modelName), httpCallback);
 //            if((System.currentTimeMillis()/1000)-PreferencesToolkits.getOADUpdateTime(getActivity())>86400)
             {
                 // 查询是否要更新固件
                 final LocalInfoVO vo = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
                 FirmwareDTO firmwareDTO = new FirmwareDTO();
                 int deviceType = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type();
-                if (deviceType == MyApplication.DEVICE_BAND || deviceType == MyApplication.DEVICE_BAND - 1) {
+                if(deviceType ==MyApplication.DEVICE_BAND || deviceType ==MyApplication.DEVICE_BAND - 1){
                     deviceType = 1;
-                } else {
+                }else{
                     deviceType = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type();
                 }
                 firmwareDTO.setDevice_type(deviceType);
@@ -1514,32 +1436,40 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 int version_int = ToolKits.makeShort(vo.version_byte[1], vo.version_byte[0]);
                 firmwareDTO.setVersion_int(version_int + "");
                 firmwareDTO.setModel_name(latestDeviceInfo.modelName);
-                if (MyApplication.getInstance(PortalActivity.this).isLocalDeviceNetworkOk()) {
+                if(MyApplication.getInstance(PortalActivity.this).isLocalDeviceNetworkOk()){
                     //请求网络
                     CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_OAD, NoHttpRuquestFactory.create_OAD_Request(firmwareDTO), new HttpCallback<String>() {
                         @Override
                         public void onSucceed(int what, Response<String> response) {
                             DataFromServer dataFromServer = JSON.parseObject(response.get(), DataFromServer.class);
                             String value = dataFromServer.getReturnValue().toString();
-                            if (!CommonUtils.isStringEmpty(response.get())) {
+                            if(!CommonUtils.isStringEmpty(response.get())) {
                                 if (dataFromServer.getErrorCode() != 10020) {
                                     JSONObject object = JSON.parseObject(value);
                                     String version_code = object.getString("version_code");
+                                    int priority = object.getIntValue("priority"); //0为不提示 1只提示 2强制更新
                                     if (Integer.parseInt(version_code, 16) > Integer.parseInt(vo.version, 16)) {
-                                        PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
-                                        AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
-                                                .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
-                                                .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
-                                                .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
-                                                        new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
-                                                            }
-                                                        })
-                                                .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
-                                                .create();
-                                        dialog.show();
+                                        if(priority==1){
+                                            AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
+                                                    .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
+                                                    .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
+                                                    .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
+                                                            new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+                                                                }
+                                                            })
+                                                    .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
+                                                    .create();
+                                            if(System.currentTimeMillis()/1000 -PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24*3600 ){
+                                                PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
+                                                dialog.show();
+                                            }
+                                        }
+                                        if(priority==2){
+                                            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+                                        }
                                     }
                                 }
                             }
@@ -1551,48 +1481,41 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         }
                     });
                 }
+                if (mScrollView.isRefreshing()){
+                    mScrollView.onRefreshComplete();
+                }
             }
         }
 
-        /**********
-         * 闹钟提醒设置成功
-         *********/
+        /**********闹钟提醒设置成功*********/
         @Override
         public void updateFor_notifyForSetClockSucess() {
             super.updateFor_notifyForSetClockSucess();
             MyLog.e(TAG, "updateFor_notifyForSetClockSucess！");
         }
 
-        /**********
-         * 久坐提醒设置成功
-         *********/
+        /**********久坐提醒设置成功*********/
         @Override
         public void updateFor_notifyForLongSitSucess() {
             super.updateFor_notifyForLongSitSucess();
             MyLog.e(TAG, "updateFor_notifyForLongSitSucess！");
         }
 
-        /**********
-         * 身体信息(激活设备)设置成功
-         *********/
+        /**********身体信息(激活设备)设置成功*********/
         @Override
         public void updateFor_notifyForSetBodySucess() {
             MyLog.e(TAG, "updateFor_notifyForSetBodySucess");
             refreshBatteryUI();
         }
 
-        /**********
-         * 设置时间失败
-         *********/
+        /**********设置时间失败*********/
         @Override
         public void updateFor_handleSetTimeFail() {
             MyLog.e(TAG, "updateFor_handleSetTimeFail");
             super.updateFor_handleSetTimeFail();
         }
 
-        /**********
-         * 设置时间成功
-         *********/
+        /**********设置时间成功*********/
         @Override
         public void updateFor_handleSetTime() {
             MyLog.e(TAG, "updateFor_handleSetTime");
@@ -1605,21 +1528,19 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //            MyLog.e(TAG, "updateFor_notifyForDeviceFullSyncSucess_D");
 //        }
 
-        /**********
-         * 获取设备ID
-         *********/
+        /**********获取设备ID*********/
         @Override
         public void updateFor_getDeviceId(String obj) {
             super.updateFor_getDeviceId(obj);
             MyLog.e(TAG, "读到的deviceid:" + obj);
             //如果读到的卡号 并且本地还没有设置
-            if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity() == null) {
+            if(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity()==null){
                 return;
             }
-            if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getEntEntity() == null || !CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getEntEntity().getEnt_name())) {
+            if(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getEntEntity()==null || !CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getEntEntity().getEnt_name())){
                 return;
             }
-            if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2() == null || !MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2().equals(obj)) {
+            if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2()==null || !MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2().equals(obj) ) {
                 /***本地***/
                 MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id2(obj);
                 /***云端***/
@@ -1628,32 +1549,30 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }
         }
 
-        /**********
-         * 卡号读取成功
-         *********/
+        /**********卡号读取成功*********/
         @Override
         public void updateFor_CardNumber(String cardId) {
-            MyLog.e(TAG, "updateFor_CardNumber：" + cardId);
+            MyLog.e(TAG, "updateFor_CardNumber："+cardId);
             super.updateFor_CardNumber(cardId);
             /*****************拿到卡号后存储过程START*****************/
             UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-            if (userEntity.getDeviceEntity() == null) {
+            if(userEntity.getDeviceEntity()==null){
                 return;
             }
-            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getModel_name());
-            if (modelInfo == null) {
-                if (!cardId.equals("NO_PAY")) {
+            ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getModel_name());
+            if(modelInfo==null){
+                if(!cardId.equals("NO_PAY")){
                     //获取余额
                     getMoneyfromDevice();
                 }
-            } else {
-                if (modelInfo.getFiscard() != 0) { //不是0代表支持金融卡
+            }else{
+                if(modelInfo.getFiscard()!=0){ //不是0代表支持金融卡
                     //获取余额
                     getMoneyfromDevice();
                 }
             }
 
-            if (userEntity.getDeviceEntity().getCard_number() == null || userEntity.getDeviceEntity().getCard_number().equals("") || !userEntity.getDeviceEntity().getCard_number().equals(cardId)) {
+            if (userEntity.getDeviceEntity().getCard_number()==null || userEntity.getDeviceEntity().getCard_number().equals("") || !userEntity.getDeviceEntity().getCard_number().equals(cardId)){
                 MyLog.e(TAG, "卡号不是空 开始报存卡号:" + cardId);
                 userEntity.getDeviceEntity().setCard_number(cardId);
                 /***本地***/
@@ -1666,23 +1585,19 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             mScrollView.onRefreshComplete();
         }
 
-        /**********
-         * 上电成功
-         *********/
+        /**********上电成功*********/
         @Override
         public void updateFor_OpenSmc(boolean isSuccess) {
             super.updateFor_OpenSmc(isSuccess);
             MyLog.e(TAG, "开卡成功！");
             if (isSuccess) {
                 provider.AIDSmartCard(PortalActivity.this, deviceInfo);
-            } else {
+            }else{
                 MyLog.e(TAG, "开卡失败--------------------------------------------");
             }
         }
 
-        /**********
-         * AID
-         *********/
+        /**********AID*********/
         @Override
         public void updateFor_AIDSmc(boolean isSuccess) {
             super.updateFor_AIDSmc(isSuccess);
@@ -1692,18 +1607,14 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }
         }
 
-        /**********
-         * 校验PIN
-         *********/
+        /**********校验PIN*********/
         @Override
         public void updateFor_checkPINSucess_D() {
             super.updateFor_checkPINSucess_D();
             provider.readCardBalance(PortalActivity.this, deviceInfo);
         }
 
-        /**********
-         * 余额读取成功
-         *********/
+        /**********余额读取成功*********/
         @Override
         public void updateFor_GetSmcBalance(Integer obj) {
             super.updateFor_GetSmcBalance(obj);
@@ -1717,52 +1628,52 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             PreferencesToolkits.setLocalDeviceInfoVo(PortalActivity.this, localvo);
             //此时调用是为了刷新金额
             refreshMoneyView();
-            isReadCard = false;
+            isReadingCard = false;
         }
     }
 
     private void getMoneyfromDevice() {
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
         if (userEntity.getDeviceEntity() == null || userEntity.getDeviceEntity().getCard_number() == null) {
-            isReadCard = false;
+            isReadingCard = false;
             return;
         } else {
             String card = userEntity.getDeviceEntity().getCard_number();
             if (card.startsWith(LPDeviceInfo.SUZHOU_)) {
                 MyLog.e(TAG, "刷新===页面数据===和===钱包===");
                 deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
-                if (provider.isConnectedAndDiscovered()) {
-                    provider.closeSmartCard(PortalActivity.this);
-                    // 首先清空集合
+                    if (provider.isConnectedAndDiscovered()) {
+                        provider.closeSmartCard(PortalActivity.this);
+                        // 首先清空集合
                     provider.openSmartCard(PortalActivity.this);
                 }
-            } else if (card.startsWith(LPDeviceInfo.LIUZHOU_4) || card.startsWith(LPDeviceInfo.LIUZHOU_5)) {
+            }else if(card.startsWith(LPDeviceInfo.LIUZHOU_4) || card.startsWith(LPDeviceInfo.LIUZHOU_5)){
                 deviceInfo.customer = LPDeviceInfo.LIUZHOU_4;   //柳州
                 if (provider.isConnectedAndDiscovered()) {
                     provider.closeSmartCard(PortalActivity.this);
                     // 首先清空集合
                     provider.openSmartCard(PortalActivity.this);
                 }
-            } else if (card.startsWith(LPDeviceInfo.LINGNANTONG)) {
+            }else if(card.startsWith(LPDeviceInfo.LINGNANTONG) ){
                 deviceInfo.customer = LPDeviceInfo.LINGNANTONG;   //岭南通
                 if (provider.isConnectedAndDiscovered()) {
                     Log.e(TAG, "卡号为岭南通---");
                     //岭南通内嵌读取流程
-                    RechargeUtil.setBluetoothBase(PortalActivity.this, provider);
-                    BalanceUtil.queryBalance(PortalActivity.this, PortalActivity.this, RechargeUtil.LINKLOVE, provider.getCurrentDeviceMac(), null, false, new BalanceCallbackInterface() {
+                    RechargeUtil.setBluetoothBase(PortalActivity.this,provider);
+                    BalanceUtil.queryBalance(PortalActivity.this,PortalActivity.this,RechargeUtil.LINKLOVE,provider.getCurrentDeviceMac(),null,false,new BalanceCallbackInterface() {
                         @Override
                         public void onSuccess(String msg, String balance, String cardNum, String thresholdValue) {
                             // TODO Auto-generated method stub
-                            Log.e(TAG, "查询余额onSuccess回调msg:" + msg);
-                            Log.e(TAG, "查询余额onSuccess回调balance:" + balance);
-                            Log.e(TAG, "查询余额onSuccess回调cardNum:" + cardNum);
-                            Log.e(TAG, "查询余额onSuccess回调thresholdValue:" + thresholdValue);
+                            Log.e(TAG, "查询余额onSuccess回调msg:"+msg);
+                            Log.e(TAG, "查询余额onSuccess回调balance:"+balance);
+                            Log.e(TAG, "查询余额onSuccess回调cardNum:"+cardNum);
+                            Log.e(TAG, "查询余额onSuccess回调thresholdValue:"+thresholdValue);
                             LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
                             localvo.setMoney(balance);
                             PreferencesToolkits.setLocalDeviceInfoVo(PortalActivity.this, localvo);
                             //此时调用是为了刷新金额
                             refreshMoneyView();
-                            isReadCard = false;
+                            isReadingCard = false;
                         }
 
                         @Override
@@ -1771,9 +1682,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         }
                     });
                 }
-            } else {
+            }else{
                 //若都不是
-                isReadCard = false;
+                isReadingCard = false;
             }
         }
     }
@@ -1789,7 +1700,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         @Override
                         public void onClick(View view) {
                             // Request permission
-                            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission}, requestcode);
+                            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission},requestcode);
                         }
                     })
                     .show();
@@ -1797,7 +1708,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             // Request permission. It's possible this can be auto answered if device policy
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission}, requestcode);
+            ActivityCompat.requestPermissions(PortalActivity.this,new String[]{permission}, requestcode);
         }
     }
 
@@ -1824,6 +1735,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         }
     }
+
+
 
 
 }

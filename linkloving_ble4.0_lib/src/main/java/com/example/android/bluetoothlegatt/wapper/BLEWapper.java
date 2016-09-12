@@ -444,7 +444,7 @@ public class BLEWapper  implements BLEInterface {
     * 发送数据
     */
 	@Override
-	public byte[] send(byte[] data,int status) throws BLException, BLESendTimeOutException {
+	public byte[] send(byte[] data) throws BLException{
 		if (mBluetoothAdapter == null || mBluetoothManager == null
 				|| !mBluetoothAdapter.isEnabled()) {
 			throw new BLException(BLErrCode.BLE_INIT_ERR);
@@ -463,7 +463,6 @@ public class BLEWapper  implements BLEInterface {
 		}
 		sendBusy = true;
 		 if(data.length>20){
-			 
 			 LENTHMORE20 = true;
 			 for(int i=0;i<(data.length+19)/20;i++){
 				 byte[] send_data = new byte[data.length-(i*20)<20?data.length-(i*20):20];
@@ -481,7 +480,6 @@ public class BLEWapper  implements BLEInterface {
 							}
 				     }
 				 }
-//			   
 			 }
 		 }
 		 else
@@ -501,16 +499,14 @@ public class BLEWapper  implements BLEInterface {
 		}
 		BLESendTimeOutException=false;
 		sendBusy = false;
-		
 		if (reciveDataLen <= 0) {
 			CmdFinder.getInstence(new OnCmdFindedListener() {
 				
 				@Override
 				public void onCmdFinded(byte[] cmd) {
-					Log.e(TAG, "接收到错误的数据！删除之前的cmd");
+					OwnLog.e(TAG, "接收到错误的数据！删除之前的cmd");
 				}
-			}).clearData(true);
-			
+			}).clearData();
 			throw new BLESendTimeOutException();
 		}
 		LPUtil.printData(tempData,"Revice  DataAll");
@@ -518,39 +514,19 @@ public class BLEWapper  implements BLEInterface {
 		//[1]:源数组； [2]:源数组要复制的起始位置； [3]:目的数组； [4]:目的数组放置的起始位置； [5]:复制的长度。 注意：[1] and [3]都必须是同类型或者可以进行转换类型的数组
 		System.arraycopy(tempData, 0, revData, 0, reciveDataLen);  
 		
-		if(!checksum(revData)){
+		if(!LPUtil.checksum(revData)){
              CmdFinder.getInstence(new OnCmdFindedListener() {
 				
 				@Override
 				public void onCmdFinded(byte[] cmd) {
-					Log.e(TAG, "接收到错误的数据！删除之前的cmd");
+					OwnLog.e(TAG, "接收到错误的数据！删除之前的cmd");
 				}
-			}).clearData(true);
+			}).clearData();
              throw new BLESendTimeOutException();
 		}
 		reciveDataLen = -1;
 		return revData;
 	}
-
-   /**
-    * 检查checksum 合法性
-    * @param revData
-    * @return
-    */
-    private boolean checksum(byte[] revData) {
-	      int  sum = 0;
-	      for( int i = 0; i < revData.length-2; ++i )
-		      sum += ( revData[i] & 0xFF );
-	      if(sum ==makeShort(revData[revData.length-2],revData[revData.length-1]) )
-		      return true;
-	      return false;
-	
-     }
-    
-    public static int makeShort(byte b1, byte b2) {
-		return (int) (((b1 & 0xFF) << 8) | (b2 & 0xFF));
-	}
-
 
 	/**
 	 *            true表示关闭GATT Client端，false表示不关闭.推荐只在退出app进程时设true，不则设false。
@@ -606,11 +582,6 @@ public class BLEWapper  implements BLEInterface {
 
 	private void broadcastUpdate(final String action, Context context) {
 		final Intent intent = new Intent(action);
-		context.sendBroadcast(intent);
-	}
-	private void broadcastUpdate(final String action, Context context,int status) {
-		final Intent intent = new Intent(action);
-		intent.putExtra(EXTRA_STATUS, status);
 		context.sendBroadcast(intent);
 	}
 	private void broadcastUpdate(final String action, Context context,int status,boolean notsendbroad) {
@@ -674,7 +645,6 @@ public class BLEWapper  implements BLEInterface {
 		        }
 			}
 	    	 if(headDataLen<=0){
-	    		 
 	    		 byte[] oad_rcv = new byte[2];
 	    		 System.arraycopy(error, 0, oad_rcv, 0, 2);
 	    		 return oad_rcv;

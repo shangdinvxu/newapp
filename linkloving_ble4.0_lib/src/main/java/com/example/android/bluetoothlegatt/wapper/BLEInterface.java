@@ -31,7 +31,7 @@ public interface BLEInterface
 	public abstract boolean connect(String address) throws BLException;
 	
 	/** 发送数据*/
-	public abstract byte[] send(byte[] data,int status) throws BLException,BLESendTimeOutException;
+	public abstract byte[] send(byte[] data) throws BLException,BLESendTimeOutException;
 	
 	/** 断开连接*/
     public abstract void disconnect();
