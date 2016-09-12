@@ -1177,8 +1177,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             if(!ToolKits.isEnabled(PortalActivity.this)){
                                 startActivity(new Intent(NotificationCollectorService.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                             }
-                        }else{
-                            MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                         }
                         //开始处理页面是否显示
                         refreshVISIBLE();
