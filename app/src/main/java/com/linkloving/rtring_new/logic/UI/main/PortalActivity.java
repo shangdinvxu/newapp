@@ -591,10 +591,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 return;
             }
             if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_WATCH) {
+                MyLog.e(TAG,"zhixingdeshi11");
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
             } else if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_BAND) {
+                MyLog.e(TAG,"zhixingdeshi12");
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
             } else if (userEntity.getDeviceEntity().getDevice_type() == MyApplication.DEVICE_BAND_VERSION3) {
+                MyLog.e(TAG,"zhixingdeshi13");
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
             }
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this, userEntity.getDeviceEntity().getModel_name());

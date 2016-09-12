@@ -118,6 +118,7 @@ public class BandListActivity extends ToolBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blelist);
+        MyLog.e(TAG,"zhegeoncreate了-----");
         //Integer.parseInt(getString(R.string.general_loading))
 //        dialog_server = new Dialog(getApplicationContext());
 //        dialog_server.setTitle(getString(R.string.general_loading));

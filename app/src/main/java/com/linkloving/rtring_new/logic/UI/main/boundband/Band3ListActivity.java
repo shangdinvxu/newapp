@@ -52,7 +52,7 @@ import java.util.List;
  */
 public class Band3ListActivity extends ToolBarActivity {
 
-    public static final String TAG = BandListActivity.class.getSimpleName();
+    public static final String TAG = Band3ListActivity.class.getSimpleName();
     private BLEListProvider listProvider;
     private BLEProvider provider;
     private BLEListHandler handler;
@@ -99,7 +99,7 @@ public class Band3ListActivity extends ToolBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blelist);
         progressDialog = new ProgressDialog(this);
-
+        MyLog.e(TAG,"oncreate了-----");
         observerAdapter = new BLEProviderObserver();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         provider.setBleProviderObserver(observerAdapter);
@@ -258,6 +258,7 @@ public class Band3ListActivity extends ToolBarActivity {
                     provider.getdeviceId(Band3ListActivity.this);
                     MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
                     MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND_VERSION3);
+                    MyLog.e(TAG,"MyApplication.DEVICE_BAND_VERSION3-----"+MyApplication.DEVICE_BAND_VERSION3);
                     if (progressDialog != null && progressDialog.isShowing())
                         progressDialog.dismiss();
                     ToolKits.showCommonTosat(Band3ListActivity.this, true, ToolKits.getStringbyId(Band3ListActivity.this, R.string.portal_main_bound_success), Toast.LENGTH_LONG);
