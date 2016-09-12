@@ -717,6 +717,9 @@ public class DistanceDataActivity extends ToolBarActivity implements View.OnClic
                 AsyncTaskManger.getAsyncTaskManger().addAsyncTask(dayDataAsync = myDayAsync);
                 myDayAsync.execute();
         }
+
+
+
         if(weekButton.isChecked()){
             int days=ToolKits.getBetweenDay(new Date(0),new Date());//当前时间与系统时间之间差了多少天
             int weekcount=days/7;//系统时间1970/01/01与总的周数
