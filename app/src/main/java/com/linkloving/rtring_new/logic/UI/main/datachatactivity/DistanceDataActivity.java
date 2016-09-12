@@ -724,6 +724,7 @@ public class DistanceDataActivity extends ToolBarActivity implements View.OnClic
             if(week1>3){
                 weekcount=weekcount+1;
             }
+
             weekSwitcher.setBaseTime(ToolKits.getMondayOfThisWeek(ToolKits.getDayFromDate(new Date(), -(weekcount - position - 1) * 7)));//中间是当前日期
             AsyncTask myWeekAsync=new AsyncTask<Object,Object,Object>(){
                 @Override
