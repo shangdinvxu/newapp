@@ -288,7 +288,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         AppManager.getAppManager().addActivity(this);
         ButterKnife.inject(this);
         contentLayout = (ViewGroup) findViewById(R.id.main);
-        COUNT_MODELNAME = 0;
+//        COUNT_MODELNAME = 0;
         userEntity = MyApplication.getInstance(this).getLocalUserInfoProvider();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
@@ -544,9 +544,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
                 userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
-            } else {
+            } else if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND){
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
                 userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
+            } else if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND_VERSION3) {
+                device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
+                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND_VERSION3);
             }
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
             if(modelInfo!=null){

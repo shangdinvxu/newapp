@@ -325,7 +325,7 @@ public class Band3ListActivity extends ToolBarActivity {
     private void submitBoundMACToServer(String user_id, String Mac) {
         if (MyApplication.getInstance(this).isLocalDeviceNetworkOk()) {
             String last_sync_device_id2 = MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2();
-            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac, MyApplication.DEVICE_BAND,modelName), HttpCallback);
+            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac, MyApplication.DEVICE_BAND_VERSION3,modelName), HttpCallback);
             MyLog.e(TAG, "=====user_id=======" + user_id + "==Mac==" + Mac + "===last_sync_device_id2===" + last_sync_device_id2);
         } else {
             MyToast.show(Band3ListActivity.this, getString(R.string.main_more_sycn_fail), Toast.LENGTH_LONG);
