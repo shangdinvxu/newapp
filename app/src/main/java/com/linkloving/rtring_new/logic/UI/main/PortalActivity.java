@@ -1224,7 +1224,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND)){
                 startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
             }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND_VERSION_3)){
-                startActivityForResult(IntentFactory.startActivityBundBand3(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND_3);
+                startActivityForResult(IntentFactory.startActivityBundBand3Step1(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND_3);
             }
         }
         else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
