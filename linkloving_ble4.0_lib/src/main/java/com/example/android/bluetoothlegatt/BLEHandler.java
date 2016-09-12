@@ -70,6 +70,8 @@ public abstract class BLEHandler extends Handler {
 
 		public void updateFor_notifyForDeviceUnboundSucess_D();
 
+		public void updatefor_notifyforsendGoalSuccess();
+		public void updatefor_notifyforsendGoalFailed();
 		public void updateFor_notifyForDeviceUnboundFaild_D();
 
 		public void updateFor_notifyForRssi_D(int rssi);
@@ -240,6 +242,12 @@ public abstract class BLEHandler extends Handler {
 		}
 
 		public void updateFor_handleUserErrorMsg(int id) {
+		}
+		@Override
+		public void updatefor_notifyforsendGoalSuccess() {
+		}
+
+		public void updatefor_notifyforsendGoalFailed() {
 		}
 
 		public void updateFor_handleScanTimeOutMsg() {
@@ -690,7 +698,14 @@ public abstract class BLEHandler extends Handler {
 				OwnLog.d(TAG, "手环解绑失败！");
 				notifyForDeviceUnboundFaild_D();
 			}
-		} else if (typeIndex == BLEProvider.INDEX_SEND_OAD_HEAD) {
+		} else if(typeIndex ==BLEProvider.INDEX_STEP_TARGET){
+			if ((boolean)obj){
+				notifyforsendGoalSuccess();
+			}else{
+				notifyforsendGoalFaild();
+			}
+		}
+		else if (typeIndex == BLEProvider.INDEX_SEND_OAD_HEAD) {
 
 			if (obj instanceof Integer) {
 				// 这里执行判断
@@ -1165,6 +1180,22 @@ public abstract class BLEHandler extends Handler {
 		if (bleProviderObserver != null)
 			bleProviderObserver.updateFor_notifyForSetNameSucess();
 	}
+
+	/**
+	 * 设置目标成功后,将会调用此方法，以便通知上层应用刷新ui等.
+	 */
+	protected void notifyforsendGoalSuccess(){
+		if (bleProviderObserver != null)
+			bleProviderObserver.updatefor_notifyforsendGoalSuccess();
+	}
+	/**
+	 * 设置目标成功后,将会调用此方法，以便通知上层应用刷新ui等.
+	 */
+	protected void notifyforsendGoalFaild(){
+		if (bleProviderObserver != null)
+			bleProviderObserver.updatefor_notifyforsendGoalFailed();
+	}
+
 
 	protected void notifyForSetNameFail() {
 		if (bleProviderObserver != null)

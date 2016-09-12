@@ -1722,16 +1722,16 @@ public  class BLEProvider
 				    	msg.obj = mLepaoProtocalImpl.setLongSitRemind(serverDeviceInfo);
 				    	msg.sendToTarget();
 				    	break;
-				    // 发送运动目标提醒指令  
-				    case INDEX_STEP_TARGET:
-				    	Log.d(TAG, ".................INDEX_STEP_TARGET................");
-				    	msg = mHandler.obtainMessage();
-				    	msg.what = MSG_BLE_DATA;
-				    	msg.arg1 = INDEX_SET_DEVICE_LONGSIT;
-				    	msg.obj = mLepaoProtocalImpl.setSportTarget(serverDeviceInfo);
-				    	msg.sendToTarget();
-				    	break;
-				    	// 发送省电模式指令  
+					// 发送运动目标提醒指令
+					case INDEX_STEP_TARGET:
+						Log.d(TAG, ".................INDEX_STEP_TARGET................");
+						msg = mHandler.obtainMessage();
+						msg.what = MSG_BLE_DATA;
+						msg.arg1 = INDEX_STEP_TARGET;
+						msg.obj = mLepaoProtocalImpl.setSportTarget(serverDeviceInfo);
+						msg.sendToTarget();
+						break;
+					// 发送省电模式指令
 				    case INDEX_POWER:
 				    	Log.d(TAG, ".................INDEX_POWER................");
 				    	msg = mHandler.obtainMessage();

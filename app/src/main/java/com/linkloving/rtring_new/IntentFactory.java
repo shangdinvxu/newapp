@@ -34,7 +34,8 @@ import com.linkloving.rtring_new.logic.UI.launch.register.UpdataAvatarActivity;
 import com.linkloving.rtring_new.logic.UI.launch.register.WeightActivity;
 import com.linkloving.rtring_new.logic.UI.main.BundTypeActivity;
 import com.linkloving.rtring_new.logic.UI.main.PortalActivity;
-import com.linkloving.rtring_new.logic.UI.main.bundband.Band3ListActivity;
+import com.linkloving.rtring_new.logic.UI.main.boundband.Band3ListActivity;
+import com.linkloving.rtring_new.logic.UI.main.boundband.bund3bandstep1;
 import com.linkloving.rtring_new.logic.UI.main.bundband.bundbandstep1;
 import com.linkloving.rtring_new.logic.UI.main.datachatactivity.CalDataActivity;
 import com.linkloving.rtring_new.logic.UI.main.datachatactivity.DistanceDataActivity;
@@ -356,6 +357,12 @@ public class IntentFactory {
     public static Intent startActivityBundBand(Context context) {
         Intent intent = new Intent(context, bundbandstep1.class);
         return intent;
+    }
+
+//    绑定彩虹手环
+    public static Intent startActivityBundBand3Step1(Context context) {
+    Intent intent = new Intent(context, bund3bandstep1.class);
+    return intent;
     }
 
     //绑定手环

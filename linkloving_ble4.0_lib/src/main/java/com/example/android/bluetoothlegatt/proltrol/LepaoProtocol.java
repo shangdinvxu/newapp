@@ -43,7 +43,7 @@ public interface LepaoProtocol
 	 int setLongSitRemind(LPDeviceInfo deviceInfo)  throws BLException,LPException;
 	
 	/** 设置运动目标   */
-	 LPDeviceInfo setSportTarget(LPDeviceInfo deviceInfo)  throws BLException,LPException;
+	 boolean setSportTarget(LPDeviceInfo deviceInfo)  throws BLException,LPException;
 	
 	/** 设置抬手显示   */
 	 int setHandUp(LPDeviceInfo deviceInfo)  throws BLException,LPException;
@@ -85,7 +85,6 @@ public interface LepaoProtocol
 	
 	/** 获取Flash文件反馈*/
 	public int getFlashBodyBack(byte[] data) throws BLException,LPException;
-	
 
 	public boolean setDeviceIdNew(String str) throws BLException,LPException;
 

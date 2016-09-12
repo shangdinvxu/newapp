@@ -598,8 +598,15 @@
     <string name="new_bound_step1">Step 1:Remove your tracker from the wristband and charge the device</string>
     <string name="new_bound_step2">Step 2: Press "Next", find the same ID with the one on the back of the device in the Bluetooth Device List and press "Bund". When Bounding is successful, the device will vibrate once</string>
     <string name="new_bound_step3">Please unplug the charger!</string>
+    <string name="bound3_step1">一、激活手环</string>
+    <string name="bound3_step2">二、匹配ID</string>
+    <string name="bound3_step3">三、敲击确认</string>
     <string name="bound_ble_refresh">Refresh</string>
     <string name="bound_ble_click">Bund</string>
+    <string name="bound_step_text1">1、从机芯缺口处打开机芯</string>
+    <string name="bound_step_text2">2、将纽扣电池按上图所示装进机芯</string>
+    <string name="bound_step_text3">3、并扣合好机芯</string>
+    <string name="bound_step_text4">注:敲击机芯,指示灯闪烁表示手环已激活</string>
     <string name="bound_failed">Not binding equipment</string>
     <string name="bound_failed_reason">Bundling failed, please bund the device again!</string>
     <string name="bound_failed_msg">Your phone doesn\'t have internet which is required during the bundling process. Please access to internet and try again！</string>
@@ -615,6 +622,7 @@
     <string name="bound_active_notice">5v DC</string>
     <string name="bound_active_notice2">Use power adapter or PC USB port</string>
     <string name="bound_active_notice3">1.Find the same ID displayed on watch screen in the Bluetooth device list</string>
+    <string name="bound3_active_notice3">1.Find the same ID displayed on band screen in the Bluetooth device list</string>
     <string name="bound_active_notice4">2.Press </string>
     <string name="bound_active_notice5">  Bund</string>
     <string name="bound_active_notice6">b.PIN码绑定方案</string>

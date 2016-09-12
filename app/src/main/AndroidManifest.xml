@@ -380,7 +380,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
-            android:name=".logic.UI.main.bundband.Band3ListActivity"
+            android:name=".logic.UI.main.boundband.Band3ListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
@@ -521,6 +521,17 @@
             android:name=".logic.UI.personal.ChangeInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.boundband.bund3bandstep1"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            />
+        <activity android:name=".logic.UI.main.boundband.bund3bandstep2"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".logic.UI.main.boundband.Bound3Activity_2"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"/>
+
 
     </application>
 

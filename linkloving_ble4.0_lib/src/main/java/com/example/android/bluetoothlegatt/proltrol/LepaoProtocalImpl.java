@@ -626,15 +626,18 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	}
 
 	/** 运动目标 */
-	@Override
-	public LPDeviceInfo setSportTarget(LPDeviceInfo deviceInfo)
+	public boolean setSportTarget(LPDeviceInfo deviceInfo)
 			throws BLException, LPException {
 		WatchRequset req = new WatchRequset();
 		req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_SET_TASK)
 				.appendInt(deviceInfo.step).makeCheckSum();
 		WatchResponse resp = this.sendData2BLE(req);
 		LPUtil.printData(req.getData(), "setSportTarget");
-		return null;
+		if (resp.getData()[4]==1&&resp.getData()[3]==LepaoCommand.COMMAND_SET_TASK){
+			return true ;
+		}else{
+			return false;
+		}
 	}
 	
 	/** 省电模式*/
@@ -768,7 +771,8 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			return BLEProvider.INDEX_SEND_NOTIFICATION;
 		return BLEProvider.INDEX_SEND_NOTIFICATION_FAIL;
 	}
-	
+
+
 	/**keepstate*/
 	public void keepstate() throws BLException,LPException {
 		WatchRequset req = new WatchRequset();

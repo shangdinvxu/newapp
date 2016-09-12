@@ -40,7 +40,7 @@ public class BundTypeActivity extends ToolBarActivity {
         setContentView(R.layout.activity_bund_type); //之后去调用initView（）
         typeList.add(TYPE_BAND,new TypeVo(R.mipmap.bound_band_on,R.string.bound_link_band));
         typeList.add(TYPE_WATCH,new TypeVo(R.mipmap.bound_watch_on,R.string.bound_link_watch));
-        typeList.add(TYPE_BAND_VERSION_3,new TypeVo(R.mipmap.bound_band_on,R.string.bound_link_niukouband));
+        typeList.add(TYPE_BAND_VERSION_3,new TypeVo(R.mipmap.bound_3_on,R.string.bound_link_niukouband));
         ButterKnife.inject(this);
         typeAdapeter = new TypeAdapter();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

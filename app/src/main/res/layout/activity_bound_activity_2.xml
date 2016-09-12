@@ -47,14 +47,16 @@
                     />
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center|right"
                     android:padding="0dp"
-                    android:src="@mipmap/bound_step_two_watch" />
+                    android:layout_marginLeft="150dp"
+                    android:src="@mipmap/bound3_step_two" />
             </FrameLayout>
 
             <TextView
+                android:id="@+id/change1text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
