@@ -256,7 +256,7 @@ public class Band3ListActivity extends ToolBarActivity {
                 if (((String) resultFromServer).equals("1")) {
                     Log.e(TAG, "绑定成功！");
                     provider.getdeviceId(Band3ListActivity.this);
-                    MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
+                    MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
                     MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND_VERSION3);
                     MyLog.e(TAG,"MyApplication.DEVICE_BAND_VERSION3-----"+MyApplication.DEVICE_BAND_VERSION3);
                     if (progressDialog != null && progressDialog.isShowing())
@@ -325,7 +325,7 @@ public class Band3ListActivity extends ToolBarActivity {
     private void submitBoundMACToServer(String user_id, String Mac) {
         if (MyApplication.getInstance(this).isLocalDeviceNetworkOk()) {
             String last_sync_device_id2 = MyApplication.getInstance(Band3ListActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2();
-            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac, MyApplication.DEVICE_BAND_VERSION3,modelName), HttpCallback);
+            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac.substring(3), MyApplication.DEVICE_BAND_VERSION3,modelName), HttpCallback);
             MyLog.e(TAG, "=====user_id=======" + user_id + "==Mac==" + Mac + "===last_sync_device_id2===" + last_sync_device_id2);
         } else {
             MyToast.show(Band3ListActivity.this, getString(R.string.main_more_sycn_fail), Toast.LENGTH_LONG);
@@ -347,7 +347,7 @@ public class Band3ListActivity extends ToolBarActivity {
                 ModelInfo modelInfo=JSONObject.parseObject(response.get(), ModelInfo.class);
                 PreferencesToolkits.saveInfoBymodelName(Band3ListActivity.this,modelName,modelInfo);
                 MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setModel_name(modelName);
-                MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
+                MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
                 MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND_VERSION3);
                 if (observerAdapter != null)
                     observerAdapter.updateFor_boundInfoSyncToServerFinish(dataFromServer.getErrorCode() + "");
