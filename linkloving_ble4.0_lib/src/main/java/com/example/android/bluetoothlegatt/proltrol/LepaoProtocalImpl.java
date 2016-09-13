@@ -840,6 +840,8 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	}
 	
 	// **********************for 一卡通相关的代码 START
+
+
 	public boolean openSmartCard() throws LPException, BLException 
 	{
 		WatchRequset req = new WatchRequset();  
