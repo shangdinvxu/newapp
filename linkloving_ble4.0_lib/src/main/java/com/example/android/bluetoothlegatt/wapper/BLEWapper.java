@@ -591,9 +591,9 @@ public class BLEWapper  implements BLEInterface {
 		context.sendBroadcast(intent);
 	}
 	
-	 public byte[] writeCharacteristic(BluetoothGattCharacteristic characteristic,byte[] data,int stauts) throws com.example.android.bluetoothlegatt.exception.BLESendTimeOutException
+	 public byte[] writeCharacteristic(byte[] data,int stauts) throws com.example.android.bluetoothlegatt.exception.BLESendTimeOutException
 	  {
-		 byte[] error = {0x0,0x0};
+		byte[] error = {0x0,0x0};
 	    if ((mBluetoothDeviceAddress!=null) && (this.mBluetoothGatt != null))
 	    {
 //	    	Log.i(TAG, "当前线程是："+Thread.currentThread().getName());
@@ -606,34 +606,35 @@ public class BLEWapper  implements BLEInterface {
 //				waitIdle(100);
 //	    	}
 	    	 if(stauts==OAD_ALL){
-	    		    characteristic.setValue(data);
-			        mBluetoothGatt.writeCharacteristic(characteristic);
+				 	mOad_BLOCK_REQUEST.setValue(data);
+			        mBluetoothGatt.writeCharacteristic(mOad_BLOCK_REQUEST);
 			        if(time%4==0){
 			            synchronized (BLEWapper.class) {
-			        	try {
-							BLEWapper.class.wait(TIMEOUT);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-			        }
-			       }
+			        		try {
+								BLEWapper.class.wait(TIMEOUT);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+			        	}
+					}
 			        time++;
-		        }
-	    	 else if(stauts==OAD_HEAD){
-	    		 notsendbroad=true;
-			    mBluetoothGatt.setCharacteristicNotification(mOad_BLOCK_REQUEST, true);
-				BluetoothGattDescriptor oaddescriptor = mOad_BLOCK_REQUEST.getDescriptor(confUUID);
-				oaddescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);// 设置NOTIFY模式
-				mBluetoothGatt.writeDescriptor(oaddescriptor);  
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-//				waitIdle(100);
-				OwnLog.i(TAG, ".................characteristic.setValue(oad head)................");
-		        	characteristic.setValue(data);
-			        mBluetoothGatt.writeCharacteristic(characteristic);
+			 }
+	    	 else if(stauts==OAD_HEAD)
+			 {
+	    		 	notsendbroad=true;
+			    	mBluetoothGatt.setCharacteristicNotification(mOad_BLOCK_REQUEST, true);
+					BluetoothGattDescriptor oaddescriptor = mOad_BLOCK_REQUEST.getDescriptor(confUUID);
+					oaddescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);// 设置NOTIFY模式
+					mBluetoothGatt.writeDescriptor(oaddescriptor);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+//					waitIdle(100);
+					OwnLog.i(TAG, ".................characteristic.setValue(oad head)................");
+				 	mOad_BLOCK_REQUEST.setValue(data);
+			        mBluetoothGatt.writeCharacteristic(mOad_BLOCK_REQUEST);
 			        synchronized (BLEWapper.class) {
 						try {
 							OwnLog.i(TAG, "...................waiting.........................");
@@ -642,20 +643,20 @@ public class BLEWapper  implements BLEInterface {
 							OwnLog.i(TAG, "................InterruptedException................");
 							e.printStackTrace();
 						}
-		        }
-			}
-	    	 if(headDataLen<=0){
-	    		 byte[] oad_rcv = new byte[2];
-	    		 System.arraycopy(error, 0, oad_rcv, 0, 2);
-	    		 return oad_rcv;
-			   }else{
-				   byte[] oad_rcv = new byte[headDataLen];
+		        	}
+			  }
+			  if(headDataLen<=0){
+	    		 	byte[] oad_rcv = new byte[2];
+	    		 	System.arraycopy(error, 0, oad_rcv, 0, 2);
+	    			 return oad_rcv;
+			  }else{
+				   	byte[] oad_rcv = new byte[headDataLen];
 			 		//[1]:源数组； [2]:源数组要复制的起始位置； [3]:目的数组； [4]:目的数组放置的起始位置； [5]:复制的长度。 注意：[1] and [3]都必须是同类型或者可以进行转换类型的数组
 			 		System.arraycopy(headData, 0, oad_rcv, 0, headDataLen);
 			 		headDataLen=-1;
+
 			 		return oad_rcv;
-			   }
-	 		
+			  }
 	    }
 	    return null;
 	  }

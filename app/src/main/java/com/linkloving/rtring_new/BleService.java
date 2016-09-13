@@ -566,11 +566,11 @@ public class BleService extends Service {
         BLEProvider provider = BleService.getInstance(context).getCurrentHandlerProvider();         //获得初始化后的蓝牙提供者。即成员变量的Provider。
         String mac = MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id();
 
-        if(MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH){
+//        if(MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH){
             needscan = true;//新的版本里面 必须扫描连接
-        }else{
-            needscan = false;
-        }
+//        }else{
+//            needscan = false;
+//        }
         //获得用户信息：将当前设备MAC设置到UserEntity的最后同步设备Id变量上。
         if (provider != null) {   //有Ble提供者：
             if (provider.isConnectedAndDiscovered()) {    //有连接则：休眠150毫秒，同步所有设备信息。

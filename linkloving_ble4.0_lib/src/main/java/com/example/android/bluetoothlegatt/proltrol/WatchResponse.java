@@ -8,8 +8,10 @@ import com.example.android.bluetoothlegatt.proltrol.dto.LPDeviceInfo;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPSportData;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPSportRecorder;
 import com.example.android.bluetoothlegatt.utils.OwnLog;
+import com.example.android.bluetoothlegatt.utils.TimeUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class WatchResponse {
@@ -649,6 +651,8 @@ public class WatchResponse {
 					llTradeRecord.setVaild(false);
 			    }
 				llTradeRecord.setTradeTime(sb1.toString());
+				Date date = TimeUtil.stringToDate(sb1.toString(),"yyyyMMddHHmmss");
+				llTradeRecord.setTradeTimelong(date.getTime()/1000);
 			}
 			
 			return llTradeRecord;

@@ -1,7 +1,5 @@
 package com.example.android.bluetoothlegatt.proltrol;
 
-import android.bluetooth.BluetoothGattCharacteristic;
-
 import com.example.android.bluetoothlegatt.BLEProvider;
 import com.example.android.bluetoothlegatt.exception.BLException;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
@@ -20,164 +18,41 @@ import java.util.List;
 
 public class LepaoProtocalImpl implements LepaoProtocol {
 	private static String TAG = LepaoProtocalImpl.class.getSimpleName();
-
-	/** 从服务端拿到的UTC时间（单位：毫秒）（此时间已加上了从本地发起请求到服务端返回的网络及处理耗时 */
-	// 设置到设备中的UTC时间目的是为了此时间独立于设备存在，从而最大程度保证当用户手机时间错乱时不影响数据的时间
-	private long utcFromServerForBound = 0;
-	private long utcFromServerAtLocalTimeBound = 0;
-
-	// ------->OAD<------
 	// BLE
-	private BluetoothGattCharacteristic mCharBlock = null;
 	private BLEWapper mBleWapper;
 
 	private boolean mServiceOk = false;
-	
+
+	//***********************OAD模块**********************//
 	public static int OAD_percent=0;
+
 	public int OAD_count=0;
 
 	private boolean continue_oad=false;  //可以继续OAD的
+
 	public long oad_start;
 
 	public static int getOAD_percent() {
 		return OAD_percent;
 	}
 	
-
 	public static void setOAD_percent(int oAD_percent) {
 		OAD_percent = oAD_percent;
 	}
-
-	public LepaoProtocalImpl() {
-
-	}
+	//***********************OAD模块**********************//
 
 	private int retryTimes = 0;
 	//最大重新发送次数
 	private final int MAX_RETRY_TIMES = 1;
-
+	/**
+	 *  命令序列号
+	 * */
 	private byte seq = 1;
 
-	public static int makeShort(byte b1, byte b2) {
-		return (int) (((b1 & 0xFF) << 8) | (b2 & 0xFF));
-	}
 
-	public static byte[] intto2byte(int a) {
-		byte[] m = new byte[2];
-		m[0] = (byte) ((0xff & a));
-		m[1] = (byte) (0xff & (a >> 8));
-		return m;
-	}
-	//OAD用
-	private synchronized byte[] sendCommandNew(byte[] data, int status,boolean isoad) throws BLException, LPException {
-		retryTimes = 0;
-		byte[] resp = null;
-		if (isoad) {
-			mBleWapper = BLEWapper.getInstence();
-			mCharBlock = mBleWapper.mOad_BLOCK_REQUEST;
-			if (status == BLEWapper.OAD_HEAD) {
-				resp = mBleWapper.writeCharacteristic(mCharBlock, data, status);
-			} else if (status == BLEWapper.OAD_ALL) {
-				resp = mBleWapper.writeCharacteristic(mCharBlock, data, status);
-			}
-			return resp;
-		} else {
-			
-			try {
-				resp = sendOnce(data);
-				retryTimes = 0;
-				return resp;
-			} catch (BLException e) {
-				OwnLog.e("KILL", e.getMessage());
-				throw e;
-			} catch (LPException e) {
-				OwnLog.e("KILL", e.getMessage());
-				throw e;
-			}
-				
-		}
-	}
-	//OAD用
-	private byte[] sendOnce(byte[] data)throws LPException, BLException {
-		try {
-			byte[] resp = BLEWapper.getInstence().send(data);
-			retryTimes = 0;
-			return resp;
-		} catch (BLException e) {
-			if (retryTimes++ >= 1)
-				throw e;
-			OwnLog.e(TAG, "sendOnceNew retry:" + retryTimes);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			return sendOnce(data) ;
-		}
-	}
-	//OAD用
-	private synchronized byte[] sendOADCommand(byte[] data, int status,boolean isoad) throws BLException, LPException {
-		retryTimes = 0;
-		byte[] resp = null;
-		if (isoad) {
-			mBleWapper = BLEWapper.getInstence();
-			mCharBlock = mBleWapper.mOad_BLOCK_REQUEST;
-			if (status == BLEWapper.OAD_HEAD) {
-				OwnLog.i(TAG, ".................BLEWapper.OAD_HEAD................");
-				resp = mBleWapper.writeCharacteristic(mCharBlock, data, status);
-			} else if (status == BLEWapper.OAD_ALL) {
-				resp = mBleWapper.writeCharacteristic(mCharBlock, data, status);
-			}
-			return resp;
-		}
-		return resp; 
-	}
 
-	/**
-	 * 现用的发送方法（）
-	 * */
-	private synchronized WatchResponse sendData2BLE(WatchRequset req) throws BLException, LPException {
-		try {
-			WatchResponse resp = sendData2BLEImpl(req);
-			retryTimes = 0;
-			return resp;
-		} catch (BLException e) {
-			OwnLog.e("KILL", e.getMessage());
-			throw e;
-		} catch (LPException e) {
-			OwnLog.e("KILL", e.getMessage());
-			throw e;
-		}
-	}
-	/**
-	 * 现用的发送方法（内部）
-	 * */
-	private WatchResponse sendData2BLEImpl(WatchRequset req) throws LPException, BLException {
-		try {
-			//调用 BLEWapper 中的发送方法
-			byte[] resp = BLEWapper.getInstence().send(req.getData());
-			retryTimes = 0;
-			return new WatchResponse(resp, 0, resp.length);
-		} catch (LPException e) {
-			if(retryTimes++>MAX_RETRY_TIMES) throw e;
-			OwnLog.e(TAG, "retry:"+retryTimes);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			return sendData2BLEImpl( req);
-		}catch (BLException e) {
-			if(retryTimes++>MAX_RETRY_TIMES) throw e;
-			OwnLog.e(TAG, "retry:"+retryTimes);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			return sendData2BLEImpl(req);
-		}
-	}
+
+
 
 	// 获取设备信息
 	@Override
@@ -220,12 +95,14 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		int userId = userInfo.userId;
 		WatchRequset req = new WatchRequset();
 		req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_REGISTER)
-		        .appendByte((byte) 0)
+				.appendByte((byte) 0)
 				.appendByte((byte) userInfo.sex)
 				.appendByte((byte) userInfo.age)
 				.appendByte((byte) userInfo.height)
 				.appendByte((byte) userInfo.weight)
 				.appendByte((byte) 1)
+				.appendByte((byte) 0)
+				.appendByte((byte) 0)
 				.appendInt(userId)
 				.makeCheckSum();
 		WatchResponse resp = this.sendData2BLE(req);
@@ -238,14 +115,10 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	// 设置设备时间
 	@Override
 	public int setDeviceTime() throws BLException, LPException {
-		
 		int zoneOffset  = TimeZoneHelper.getTimeZoneOffsetMinute();
 		int zone = zoneOffset / 60; // 时区偏移值
 		// 最大程度保证要设到设备里的时间是服务端的UTC（避免手机未被正确设置时间）     
-//		long timestampWillBeSetToDevice = getServerUTCTimestampAuto();  
 		long timestampWillBeSetToDevice = System.currentTimeMillis();
-//		c.setTimeInMillis(Long.valueOf(timestampWillBeSetToDevice / 1000 * 1000));
-//		OwnLog.i(TAG,"要设置到设备里的时间long值是" + (int)timestampWillBeSetToDevice + "--->"+ c.getTime());
 		WatchRequset req = new WatchRequset();
 		     req.appendByte(seq++)
 				.appendByte(LepaoCommand.COMMAND_CLEAR)
@@ -319,7 +192,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		byte format_test =1;
 		req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_FORMAT_DEVICE).appendByte(format).makeCheckSum();
 		LPUtil.printData(req.getData(), "UnbondDevice");
-		byte[] data = this.sendCommandNew(req.getData(), BLEWapper.NOT_OAD,false);
+		byte[] data = sendData2BLEImpl(req).getData();
 		seq=0x01;
 		if(data[4]==1){
 			return true;
@@ -336,7 +209,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	
 	// 获取OAD头文件的反馈
 	public byte[] getOADHeadBack_new(byte[] data) throws BLException, LPException {
-		byte[] resp = this.sendOADCommand(data, BLEWapper.OAD_HEAD, true);
+		byte[] resp = this.sendOADCommand(data, BLEWapper.OAD_HEAD);
 		LPUtil.printData(data, "getOADHeadBack_new");
 		if (resp[0] == 0x10) {
 			return resp;
@@ -349,7 +222,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 	@Override
 	public int getOADHeadBack(byte[] data) throws BLException, LPException {
 		OwnLog.i(TAG, ".................getOADHeadBack(oad_head)................");
-		byte[] resp = this.sendOADCommand(data, BLEWapper.OAD_HEAD, true);
+		byte[] resp = this.sendOADCommand(data, BLEWapper.OAD_HEAD);
 		LPUtil.printData(data, "OADHEAD");
 		if (resp[0] == 0x10) {
 			OwnLog.i(TAG, "我接受的BLEProvider.INDEX_SEND_OAD_HEAD");
@@ -380,7 +253,6 @@ public class LepaoProtocalImpl implements LepaoProtocol {
      */
 	@Override
 	public int sendOADAll(byte[] data) throws BLException, LPException {
-		
 		boolean oad_succ = false;
 		boolean can_oad = true;
 		
@@ -415,12 +287,12 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 						oad_block[0] = 0x10;
 						System.arraycopy(oad_all, k*16, oad_block, 3, oad_all.length-k*16);
 					}
-					oad_block_head = intto2byte(k);
+					oad_block_head = LPUtil.intto2byte(k);
 					oad_block[1] = (byte) (oad_block_head[0] & 0x00FF);
 					oad_block[2] = (byte) (oad_block_head[1] & 0x00FF);
 					
 					setOAD_percent(k);
-					resp = this.sendOADCommand(oad_block, BLEWapper.OAD_ALL, true); //fa song
+					resp = sendOADCommand(oad_block, BLEWapper.OAD_ALL); //fa song
 					if(resp==null)
 						return BLEProvider.INDEX_SEND_OAD_HEAD_FAIL;  //0810
 					try {
@@ -466,7 +338,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			}
 				
 			//再将返回的byte拼接成index(int)
-			index = makeShort(rec_data[2], rec_data[1]);  
+			index = LPUtil.makeShort(rec_data[2], rec_data[1]);
 //			OwnLog.e(TAG, "收到请求要发第:"+index+"个!");
 			
 //			if(index<=j)
@@ -518,12 +390,12 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 						oad_block[0] = 0x10;
 						System.arraycopy(oad_all, k*16, oad_block, 3, oad_all.length-k*16);
 					}
-					oad_block_head = intto2byte(k);
+					oad_block_head = LPUtil.intto2byte(k);
 					oad_block[1] = (byte) (oad_block_head[0] & 0x00FF);
 					oad_block[2] = (byte) (oad_block_head[1] & 0x00FF);
 					
 					setOAD_percent(k);
-					resp = this.sendOADCommand(oad_block, BLEWapper.OAD_ALL, true); //fa song
+					resp = sendOADCommand(oad_block, BLEWapper.OAD_ALL); //fa song
 					if(resp==null)
 						return resp;  //0810
 					try {
@@ -569,7 +441,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			}
 				
 			//再将返回的byte拼接成index(int)
-			index = makeShort(rec_data[2], rec_data[1]);  
+			index = LPUtil.makeShort(rec_data[2], rec_data[1]);
 //			OwnLog.e(TAG, "收到请求要发第:"+index+"个!");
 			
 //			if(index<=j)
@@ -844,7 +716,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		    return BLEProvider.INDEX_BOUND_FAIL;
 	 };
 	 
-	 public int requestbound_fit() throws BLException, LPException {
+	public int requestbound_fit() throws BLException, LPException {
 			WatchRequset req = new WatchRequset();
 			byte[] resp;
 			byte peidui=2;  //手表
@@ -866,7 +738,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			    return BLEProvider.INDEX_BOUND_FAIL;
 		 };
 		 
-		 public int requestbound_recy() throws BLException, LPException {
+	public int requestbound_recy() throws BLException, LPException {
 				WatchRequset req = new WatchRequset();
 				byte[] resp;
 				byte peidui=3;  //手表
@@ -889,14 +761,9 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 					    return BLEProvider.INDEX_BOUND_FAIL;
 				    }
 				    return BLEProvider.INDEX_BOUND_FAIL;
-			 };
-	 
-	 
-	 
-	
-	
+			 }
 
-	@Override
+	@Deprecated
 	public int getFlashHeadBack(byte[] data) throws BLException, LPException {
 		byte[] flash_head = new byte[17];
 		int sum=0;
@@ -919,7 +786,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		flash_head[15]=0;
 		flash_head[16]=0;
 		LPUtil.printData(flash_head, " FlashDeviceHead");
-		byte[] resp = this.sendCommandNew(flash_head, BLEWapper.OAD_HEAD, true);
+		byte[] resp = sendOADCommand(flash_head, BLEWapper.OAD_HEAD);
 		if (resp[0] == 0x10) {
 			OwnLog.i(TAG, "我接受的BLEProvider.INDEX_SEND_FLASH_HEAD");
 			return BLEProvider.INDEX_SEND_FLASH_HEAD;
@@ -930,7 +797,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		}
 	}
 
-	@Override
+	@Deprecated
 	public int getFlashBodyBack(byte[] data) throws BLException, LPException {
 		int len = data.length ;
 		byte[] oad_all = new byte[len+66];
@@ -949,11 +816,11 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		for(int j=index;j<count;){
 			for(int k = index;k<index+4;k++){
 				System.arraycopy(oad_all, k*16, oad_block, 3, 16);
-				oad_block_head = intto2byte(k);
+				oad_block_head = LPUtil.intto2byte(k);
 				oad_block[1] = (byte) (oad_block_head[0] & 0x00FF);
 				oad_block[2] = (byte) (oad_block_head[1] & 0x00FF);
 				LPUtil.printData(oad_block, "Flash");
-				byte[] resp = this.sendCommandNew(oad_block, BLEWapper.OAD_ALL, true);
+				byte[] resp = sendOADCommand(oad_block, BLEWapper.OAD_ALL);
 				if (resp != null) {
 					rec_data = resp;
 				}
@@ -962,7 +829,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 				}
 			}
 			if(rec_data[0]==0x10){
-				index = makeShort(rec_data[2], rec_data[1]);
+				index = LPUtil.makeShort(rec_data[2], rec_data[1]);
 			}else if(rec_data[0]==0x12 && rec_data[1]==0x0f){
 				break;
 			}
@@ -1357,7 +1224,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			}
 			req.makeCheckSum();
 			LPUtil.printData(req.getData(), "==senddata==");
-			resp = this.sendCommandNew(req.getData(), BLEWapper.NOT_OAD, false);
+			resp = sendData2BLEImpl(req).getData();
 			LPUtil.printData(resp, "==recievedata==");
 			byte[] resp_ = new byte[resp.length-5];
 			//[1]:源数组； [2]:源数组要复制的起始位置； [3]:目的数组； [4]:目的数组放置的起始位置； [5]:复制的长度。 注意：[1] and [3]都必须是同类型或者可以进行转换类型的数组
@@ -1376,7 +1243,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		}
 		req.makeCheckSum();
 		LPUtil.printData(req.getData(), " test_senddata");
-		resp = this.sendCommandNew(req.getData(), BLEWapper.NOT_OAD, false);
+		resp = sendData2BLEImpl(req).getData();
 		byte[] resp_ = new byte[resp.length-5];
 		//[1]:源数组； [2]:源数组要复制的起始位置； [3]:目的数组； [4]:目的数组放置的起始位置； [5]:复制的长度。 注意：[1] and [3]都必须是同类型或者可以进行转换类型的数组
 		System.arraycopy(resp, 3, resp_, 0, resp_.length);  
@@ -1388,7 +1255,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		
 		WatchRequset req  = creat_data(data);
 		
-		byte[] resp = this.sendCommandNew(req.getData(), BLEWapper.NOT_OAD, false);
+		byte[] resp = sendData2BLEImpl(req).getData();
 		
 		//-----------去掉前3个（af.seq.len）   后2个checksum
 		byte[] resp_data = new byte[resp.length-5];
@@ -1402,7 +1269,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			data[4] = resp_data[3];//sw2
 			req = creat_data(data);
 			
-			byte[] resp_new = this.sendCommandNew(req.getData(), BLEWapper.NOT_OAD, false);
+			byte[] resp_new = sendData2BLEImpl(req).getData();
 			
 			//-----------去掉前3个（af.seq.len）   后2个checksum
 			byte[] resp_new_data = new byte[resp_new.length-5];
@@ -1570,4 +1437,63 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 			LPUtil.printData(req.getData(), " 未接来电提醒");
 			WatchResponse resp = this.sendData2BLE(req);
 		}
+
+	//OAD用
+	private synchronized byte[] sendOADCommand(byte[] data, int status) throws BLException, LPException {
+		retryTimes = 0;
+		byte[] resp = null;
+		if (status == BLEWapper.OAD_HEAD) {
+			OwnLog.i(TAG, ".................BLEWapper.OAD_HEAD................");
+			resp = BLEWapper.getInstence().writeCharacteristic(data, status);
+		} else if (status == BLEWapper.OAD_ALL) {
+			resp = BLEWapper.getInstence().writeCharacteristic( data, status);
+		}
+		return resp;
+	}
+
+	/**
+	 * 普通（非OAD）发送方法
+	 * */
+	private synchronized WatchResponse sendData2BLE(WatchRequset req) throws BLException, LPException {
+		try {
+			WatchResponse resp = sendData2BLEImpl(req);
+			retryTimes = 0;
+			return resp;
+		} catch (BLException e) {
+			OwnLog.e("KILL", e.getMessage());
+			throw e;
+		} catch (LPException e) {
+			OwnLog.e("KILL", e.getMessage());
+			throw e;
+		}
+	}
+	/**
+	 * 普通（非OAD）发送方法（内部）
+	 * */
+	private WatchResponse sendData2BLEImpl(WatchRequset req) throws LPException, BLException {
+		try {
+			//调用 BLEWapper 中的发送方法
+			byte[] resp = BLEWapper.getInstence().send(req.getData());
+			retryTimes = 0;
+			return new WatchResponse(resp, 0, resp.length);
+		} catch (LPException e) {
+			if(retryTimes++>MAX_RETRY_TIMES) throw e;
+			OwnLog.e(TAG, "retry:"+retryTimes);
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			return sendData2BLEImpl( req);
+		}catch (BLException e) {
+			if(retryTimes++>MAX_RETRY_TIMES) throw e;
+			OwnLog.e(TAG, "retry:"+retryTimes);
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			return sendData2BLEImpl(req);
+		}
+	}
 }

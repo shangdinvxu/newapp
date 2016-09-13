@@ -1433,51 +1433,51 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 int version_int = ToolKits.makeShort(vo.version_byte[1], vo.version_byte[0]);
                 firmwareDTO.setVersion_int(version_int + "");
                 firmwareDTO.setModel_name(latestDeviceInfo.modelName);
-                if(MyApplication.getInstance(PortalActivity.this).isLocalDeviceNetworkOk()){
-                    //请求网络
-                    CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_OAD, NoHttpRuquestFactory.create_OAD_Request(firmwareDTO), new HttpCallback<String>() {
-                        @Override
-                        public void onSucceed(int what, Response<String> response) {
-                            DataFromServer dataFromServer = JSON.parseObject(response.get(), DataFromServer.class);
-                            String value = dataFromServer.getReturnValue().toString();
-                            if(!CommonUtils.isStringEmpty(response.get())) {
-                                if (dataFromServer.getErrorCode() != 10020) {
-                                    JSONObject object = JSON.parseObject(value);
-                                    String version_code = object.getString("version_code");
-                                    int priority = object.getIntValue("priority"); //0为不提示 1只提示 2强制更新
-                                    if (Integer.parseInt(version_code, 16) > Integer.parseInt(vo.version, 16)) {
-                                        if(priority==1){
-                                            AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
-                                                    .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
-                                                    .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
-                                                    .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
-                                                            new DialogInterface.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                    startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
-                                                                }
-                                                            })
-                                                    .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
-                                                    .create();
-                                            if(System.currentTimeMillis()/1000 -PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24*3600 ){
-                                                PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
-                                                dialog.show();
-                                            }
-                                        }
-                                        if(priority==2){
-                                            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
-
-                        }
-                    });
-                }
+//                if(MyApplication.getInstance(PortalActivity.this).isLocalDeviceNetworkOk()){
+//                    //请求网络
+//                    CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_OAD, NoHttpRuquestFactory.create_OAD_Request(firmwareDTO), new HttpCallback<String>() {
+//                        @Override
+//                        public void onSucceed(int what, Response<String> response) {
+//                            DataFromServer dataFromServer = JSON.parseObject(response.get(), DataFromServer.class);
+//                            String value = dataFromServer.getReturnValue().toString();
+//                            if(!CommonUtils.isStringEmpty(response.get())) {
+//                                if (dataFromServer.getErrorCode() != 10020) {
+//                                    JSONObject object = JSON.parseObject(value);
+//                                    String version_code = object.getString("version_code");
+//                                    int priority = object.getIntValue("priority"); //0为不提示 1只提示 2强制更新
+//                                    if (Integer.parseInt(version_code, 16) > Integer.parseInt(vo.version, 16)) {
+//                                        if(priority==1){
+//                                            AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
+//                                                    .setTitle(ToolKits.getStringbyId(PortalActivity.this, R.string.general_tip))
+//                                                    .setMessage(ToolKits.getStringbyId(PortalActivity.this, R.string.bracelet_oad_Portal))
+//                                                    .setPositiveButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_ok),
+//                                                            new DialogInterface.OnClickListener() {
+//                                                                @Override
+//                                                                public void onClick(DialogInterface dialog, int which) {
+//                                                                    startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+//                                                                }
+//                                                            })
+//                                                    .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, R.string.general_cancel), null)
+//                                                    .create();
+//                                            if(System.currentTimeMillis()/1000 -PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24*3600 ){
+//                                                PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
+//                                                dialog.show();
+//                                            }
+//                                        }
+//                                        if(priority==2){
+//                                            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
+//
+//                        }
+//                    });
+//                }
                 if (mScrollView.isRefreshing()){
                     mScrollView.onRefreshComplete();
                 }

@@ -11,10 +11,9 @@ import android.widget.TextView;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLXianJinCard;
 import com.linkloving.rtring_new.R;
-import com.linkloving.rtring_new.utils.logUtils.MyLog;
 
 import java.text.MessageFormat;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by zkx on 2016/3/30.
@@ -30,17 +29,18 @@ public class WalletAdapter extends RecyclerView.Adapter{
 
     private Context mContext;
 
-    private  LinkedList<LLTradeRecord> qianbaolist;
-    private  LinkedList<LLXianJinCard> list_XJ;
+    private List<LLTradeRecord> qianbaolist;
+    private List<LLXianJinCard> list_XJ;
 
     public WalletAdapter(Context context, Object obj ,int type) {
         this.mContext = context;
         this.TYPE = type;
         if(TYPE == TYPE_QIANBAO || TYPE == TYPE_LNT){
-            this.qianbaolist = ((LinkedList<LLTradeRecord>) obj);
+            //register_time":"2016-09-12 11:46:46.0"
+            qianbaolist =(List<LLTradeRecord>) obj;
         }
         else if(TYPE == TYPE_XIANJIN){
-            this.list_XJ = ((LinkedList<LLXianJinCard>) obj);
+            this.list_XJ = ((List<LLXianJinCard>) obj);
         }
     }
 
@@ -58,6 +58,7 @@ public class WalletAdapter extends RecyclerView.Adapter{
         MenuViewHolder holder = (MenuViewHolder) viewHolder;
         if(TYPE == TYPE_QIANBAO){
             LLTradeRecord qianbao = qianbaolist.get(position);
+
             String time = qianbao.getTradeTime().toString();
             String year = time.substring(0,4);
             String month = time.substring(4,6);
@@ -66,7 +67,7 @@ public class WalletAdapter extends RecyclerView.Adapter{
             String min = time.substring(10,12);
             String sec = time.substring(12,14);
             holder.time.setText(MessageFormat.format(mContext.getString(R.string.menu_pay_time), year, month, day , hour , min ,sec));
-            MyLog.e(TAG,"time========"+time);
+
             //充值
             if(qianbao.getTradeType().equals("in")){
                 holder.money.setText("+ "+mContext.getResources().getString(R.string.menu_pay_yuan)+qianbao.getTradeAmount()+"");

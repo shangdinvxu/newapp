@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPDeviceInfo;
 import com.google.gson.Gson;
 import com.linkloving.rtring_new.MyApplication;
@@ -19,6 +20,7 @@ import com.linkloving.rtring_new.utils.logUtils.MyLog;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -827,6 +829,48 @@ public static void saveComment(Context context, String strComment){
 			e.printStackTrace();
 		}
 		return  jString;
+	}
+
+	/**
+	 * 保存岭南通用户名
+	 * @param context
+	 * @param list
+	 * @return
+	 */
+	public static void saveQianbaoList(Context context, String cardNumber, List<LLTradeRecord> list){
+		SharedPreferences sharedPreferences;
+		try
+		{
+			sharedPreferences = getAppDefaultSharedPreferences(context, true);
+			SharedPreferences.Editor edit = sharedPreferences.edit();
+			edit.putString(cardNumber,JSON.toJSONString(list));
+			edit.commit();
+		}
+		catch (Exception e)
+		{
+			Log.e(TAG, e.getMessage());
+		}
+	}
+
+	/**
+	 * 获取本地岭南通用户名
+	 * @param context
+	 * @return
+	 */
+	public static List<LLTradeRecord> getQianbaoList(Context context, String cardNumber){
+		SharedPreferences sharedPreferences;
+		List<LLTradeRecord> list = new LinkedList<>();
+		String jString = null;
+		try {
+			sharedPreferences = getAppDefaultSharedPreferences(context, true);
+			jString=sharedPreferences.getString(cardNumber,null);
+			if(!CommonUtils.isStringEmpty(jString)){
+				list = JSON.parseArray(jString, LLTradeRecord.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return  list;
 	}
 
 }

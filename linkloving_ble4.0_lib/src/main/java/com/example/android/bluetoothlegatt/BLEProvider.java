@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -1404,11 +1405,17 @@ public  class BLEProvider
    
    private List<LLTradeRecord> getTradeRecordList(BLEHandler handler,LPDeviceInfo serverDeviceInfo) throws LPException, BLException
    {
-	   List<LLTradeRecord> tmp = new ArrayList<LLTradeRecord>();
+	   List<LLTradeRecord> tmp = new LinkedList<>();
 	   for(int i = 1; i < 11;i++)
 	   {
 		   LLTradeRecord llTradeRecord = mLepaoProtocalImpl.getSmartCardTradeRecord(i,serverDeviceInfo);
-		   if(llTradeRecord.isVaild() && llTradeRecord.isHasRecord())
+		   OwnLog.e(TAG, "getTradeTimelong:"+llTradeRecord.getTradeTimelong());
+		   OwnLog.e(TAG, "serverDeviceInfo:"+serverDeviceInfo.time);
+		   if(llTradeRecord.getTradeTimelong() == serverDeviceInfo.time){
+			   OwnLog.e(TAG, "已查询到上次查询的时间了");
+			   return tmp;
+		   }
+		   else if(llTradeRecord.isVaild() && llTradeRecord.isHasRecord())
 		   {
 			   Message msg = handler.obtainMessage(MSG_GET_SMC_TRADE_RECORD_ASYNC,llTradeRecord);
 			   msg.sendToTarget();
@@ -1423,6 +1430,8 @@ public  class BLEProvider
 			   return tmp;
 		   }
 	   }
+	   Message msg = handler.obtainMessage(MSG_GET_SMC_TRADE_RECORD,tmp);
+	   msg.sendToTarget();
 	   return tmp;
    }
    

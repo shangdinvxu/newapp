@@ -194,7 +194,7 @@ public class BLEListActivity extends ToolBarActivity {
                         .setCancelable(false).create();
                 progressDialog=new ProgressDialog(BLEListActivity.this);
                 provider.connect();
-
+                listProvider.stopScan();
                 dialog_bound.show();
 
 

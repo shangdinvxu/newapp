@@ -30,7 +30,7 @@ public interface LepaoProtocol
 	  int resetSportDataNew(int step) throws BLException,LPException;
 	
 	/**获取运动数据*/
-	  List<LPSportData> getSportDataNew(int offset, int length,int devicetime) throws BLException,LPException;
+	List<LPSportData> getSportDataNew(int offset, int length,int devicetime) throws BLException,LPException;
 	
 
 	/** 初始化设备*/
@@ -77,15 +77,8 @@ public interface LepaoProtocol
 	/** 获取OAD头文件反馈*/
 	public int getOADHeadBack(byte[] data) throws BLException,LPException;
 	
-	
 	public int sendOADAll(byte[] data) throws BLException,LPException;
 	
-	/** 获取Flash头文件反馈*/
-	public int getFlashHeadBack(byte[] data) throws BLException,LPException;
-	
-	/** 获取Flash文件反馈*/
-	public int getFlashBodyBack(byte[] data) throws BLException,LPException;
-
 	public boolean setDeviceIdNew(String str) throws BLException,LPException;
 
 	/**设置设备时间*/  //测试

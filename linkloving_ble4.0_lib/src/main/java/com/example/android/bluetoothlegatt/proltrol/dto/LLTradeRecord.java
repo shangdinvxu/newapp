@@ -1,9 +1,6 @@
 package com.example.android.bluetoothlegatt.proltrol.dto;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-
-public class LLTradeRecord 
+public class LLTradeRecord
 {
 	/**是否有效*/
 	private boolean isVaild;
@@ -34,6 +31,9 @@ public class LLTradeRecord
 	
 	/**交易时间戳*/
 	private String tradeTime;
+
+	/**交易时间戳*/
+	private long tradeTimelong;
 
 	
 
@@ -107,6 +107,14 @@ public class LLTradeRecord
 
 	public void setTradeTime(String tradeTime) {
 		this.tradeTime = tradeTime;
+	}
+
+	public long getTradeTimelong() {
+		return tradeTimelong;
+	}
+
+	public void setTradeTimelong(long tradeTimelong) {
+		this.tradeTimelong = tradeTimelong;
 	}
 
 	@Override

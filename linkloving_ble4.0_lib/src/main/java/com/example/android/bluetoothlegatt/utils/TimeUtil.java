@@ -830,4 +830,17 @@ public class TimeUtil
 		return ticks / 2;
 	}
 
+	public static Date stringToDate(String strTime, String formatType) {
+		SimpleDateFormat formatter = new SimpleDateFormat(formatType);
+		Date date = null;
+		try {
+			date = formatter.parse(strTime);
+		} catch (ParseException var5) {
+			var5.printStackTrace();
+		}
+
+		return date;
+	}
+
+
 }

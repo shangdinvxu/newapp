@@ -21,6 +21,7 @@ import com.example.android.bluetoothlegatt.BLEProvider;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLXianJinCard;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPDeviceInfo;
+import com.example.android.bluetoothlegatt.utils.TimeUtil;
 import com.linkloving.rtring_new.BleService;
 import com.linkloving.rtring_new.MyApplication;
 import com.linkloving.rtring_new.R;
@@ -45,6 +46,7 @@ import com.lnt.rechargelibrary.impl.RecordUtil;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +80,7 @@ public class WalletActivity extends ToolBarActivity {
     /**
      * 钱包集合
      */
-    LinkedList<LLTradeRecord> list_qianbao = new LinkedList<LLTradeRecord>()
+    List<LLTradeRecord> list_qianbao = new LinkedList<LLTradeRecord>()
     {
         public void addFirst(LLTradeRecord object)
         {
@@ -154,6 +156,7 @@ public class WalletActivity extends ToolBarActivity {
         deviceInfo = new LPDeviceInfo();
         if(card.startsWith(LPDeviceInfo.SUZHOU_)){
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
+            list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number());
             walletAdapeter = new WalletAdapter(this,list_qianbao,WalletAdapter.TYPE_QIANBAO);
             record_RecyclerView.setAdapter(walletAdapeter);
             img_card_city.setBackground(getResources().getDrawable(R.mipmap.szsmk_logo));
@@ -495,10 +498,14 @@ public class WalletActivity extends ToolBarActivity {
             LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
             localvo.setMoney(money);
             PreferencesToolkits.setLocalDeviceInfoVo(WalletActivity.this,localvo);
-
             if(deviceInfo.customer.equals(LPDeviceInfo.HUBEI_SHUMA)){
                 provider.readCardRecord_XJ(WalletActivity.this,deviceInfo);
             }else{
+                if(list_qianbao.size()>0){
+                    deviceInfo.time =  list_qianbao.get(0).getTradeTimelong();
+                }else{
+                    deviceInfo.time =  0;
+                }
                 provider.getSmartCardTradeRecord(WalletActivity.this,deviceInfo);
             }
 
@@ -515,11 +522,17 @@ public class WalletActivity extends ToolBarActivity {
             }
             else
             {
-
                 MyLog.d(TAG, "新纪录："+record.toString());
                 record.setTradeCard(textViewcard.getText().toString());
                 record.setTradeBalance(balanceResult.getText().toString());
-                list_qianbao.add(record);
+                //此时清楚 交易记录在用户注册之前的数据
+                UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
+//                Date date = TimeUtil.stringToDate(userEntity.getUserBase().getRegister_time(),"yyyy-MM-dd HH:mm:ss.S");
+//                TEST:
+                Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0","yyyy-MM-dd HH:mm:ss.S");
+                if(date.getTime()/1000 < record.getTradeTimelong()){
+                    list_qianbao.add(record);
+                }
                 walletAdapeter.notifyDataSetChanged();
 //              setListViewHeightBasedOnChildren(recordListview);
             }
@@ -536,10 +549,18 @@ public class WalletActivity extends ToolBarActivity {
             }
             else
             {
+                Collections.sort(list_qianbao,new Comparator<LLTradeRecord>()
+                {
+                    @Override
+                    public int compare(LLTradeRecord arg1, LLTradeRecord arg2) {
+                        return (int) (arg1.getTradeTimelong()-arg2.getTradeTimelong());
+                    }
+                });
                 MyLog.d(TAG,"获取记录成功！");
-//                SharedPreferencesUtil.saveSharedPreferences(PayActivity.this, "list", new Gson().toJson(list));
+                //完全读取完交易记录，保存到本地
+                PreferencesToolkits.saveQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number(),list_qianbao);
+                walletAdapeter.notifyDataSetChanged();
             }
-
             if(provider.isConnectedAndDiscovered()){
 
                 provider.closeSmartCard(WalletActivity.this);
