@@ -38,6 +38,7 @@ public interface LepaoCommand {
 	//static final byte COMMAND_SLEEP_PARAMS = 0x11;        // 设置睡眠参数
 	static final byte COMMAND_GET_RAW_DATA = 0x1F;          // 获取原始数据
 	static final byte COMMAND_GET_CARD_NUMBER = (byte) 0x85;// 获取设置设备卡号
+	static final byte COMMAND_EXPENSE_RECORD = (byte) 0x86;
 	static final byte COMMAND_SET_NAME = 0x5C;              // 设置设备名称
 	static final byte COMMAND_GET_DEVICE_ID = 0x5F;         // 设备ID，8byte
 	

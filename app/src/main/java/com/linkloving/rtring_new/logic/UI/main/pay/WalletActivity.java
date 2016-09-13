@@ -3,6 +3,7 @@ package com.linkloving.rtring_new.logic.UI.main.pay;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,7 @@ import com.lnt.rechargelibrary.impl.RechargeUtil;
 import com.lnt.rechargelibrary.impl.RecordCallbackInterface;
 import com.lnt.rechargelibrary.impl.RecordUtil;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -69,6 +71,7 @@ public class WalletActivity extends ToolBarActivity {
 
     private RecyclerView record_RecyclerView;
     private WalletAdapter walletAdapeter;
+    private boolean  isNewRecord  =false;
 
 
     private UserEntity userEntity;
@@ -151,12 +154,40 @@ public class WalletActivity extends ToolBarActivity {
         if(modelInfo==null){
             return;
         }
+
+        SharedPreferences sp = getSharedPreferences("readRecord", MODE_PRIVATE);
+        boolean isreadRecord = sp.getBoolean("isreadRecord", true);
+        MyLog.e("isreadRecord.....11....",isreadRecord+"--------");
         //从卡号里面获知卡地址城市
         String card =  userEntity.getDeviceEntity().getCard_number();
+        int device_type = userEntity.getDeviceEntity().getDevice_type();
         deviceInfo = new LPDeviceInfo();
-        if(card.startsWith(LPDeviceInfo.SUZHOU_)){
+        MyLog.e("watchResponse","isNewRecord---"+isNewRecord+"device_type"+device_type);
+        MyLog.e("time2", Calendar.getInstance().getTime()+"");
+        if(card.startsWith(LPDeviceInfo.SUZHOU_)&&device_type==MyApplication.DEVICE_BAND_VERSION3&&isreadRecord){
+            MyLog.e("SUZHOU_",1+"");
+//            MyLog.e("watchResponse","isNewRecord---"+isNewRecord);
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
             list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number());
+            for (int i=0;i<list_qianbao.size();i++){
+                MyLog.e(TAG,"suzou1里面的list_qianbao"+list_qianbao.get(i).toString());
+            }
+            Collections.reverse(list_qianbao);
+            walletAdapeter = new WalletAdapter(this,list_qianbao,WalletAdapter.TYPE_QIANBAO);
+            record_RecyclerView.setAdapter(walletAdapeter);
+            img_card_city.setBackground(getResources().getDrawable(R.mipmap.szsmk_logo));
+            img_card_city.setVisibility(View.VISIBLE);
+            textViewcard.setText(card);
+            cardtype.setText("苏州市民卡-B卡");
+            provider.cleanExpenseRecord(WalletActivity.this);
+        }else if(card.startsWith(LPDeviceInfo.SUZHOU_)){
+            MyLog.e("SUZHOU_", 2+"");
+            deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
+            list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number());
+            for (int i=0;i<list_qianbao.size();i++){
+                MyLog.e(TAG,"suzou2里面的list_qianbao"+list_qianbao.get(i).toString());
+            }
+            Collections.reverse(list_qianbao);
             walletAdapeter = new WalletAdapter(this,list_qianbao,WalletAdapter.TYPE_QIANBAO);
             record_RecyclerView.setAdapter(walletAdapeter);
             img_card_city.setBackground(getResources().getDrawable(R.mipmap.szsmk_logo));
@@ -218,9 +249,6 @@ public class WalletActivity extends ToolBarActivity {
             }
 
         }
-
-
-
         //已经知道是哪个城市了
         if(!deviceInfo.customer.equals(LPDeviceInfo.UN_KNOW_))
         {
@@ -264,12 +292,18 @@ public class WalletActivity extends ToolBarActivity {
                     lntBalance();
                 }else{
                     //开始去查询卡片信息了 弹出dialog
-                    dialog_pay.show();
-                    provider.closeSmartCard(WalletActivity.this);
-                    // 首先清空集合
-                    provider.openSmartCard(WalletActivity.this);
-                    textViewcard.setText(getString(R.string.menu_pay_reading));
-                    balanceResult.setText("0.00");
+                    if (!isreadRecord){
+                        LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
+                        String money = localvo.getMoney();
+                        balanceResult.setText(money);
+                    }else{
+                        dialog_pay.show();
+                        provider.closeSmartCard(WalletActivity.this);
+                        // 首先清空集合
+                        provider.openSmartCard(WalletActivity.this);
+                        textViewcard.setText(getString(R.string.menu_pay_reading));
+                        balanceResult.setText("0.00");
+                    }
                 }
             }
             else
@@ -461,6 +495,15 @@ public class WalletActivity extends ToolBarActivity {
         protected Activity getActivity() {
             return WalletActivity.this;
         }
+//        public void updateFor_handleExpense_record(boolean a){
+//            SharedPreferences sharedpreferences__1 = getSharedPreferences("__sharedpreferences__", MODE_PRIVATE);
+//            boolean isreadRecord = sharedpreferences__1.getBoolean("isreadRecord", true);
+//            MyLog.e("isreadRecord.....22....",isreadRecord+"---------a"+a);
+//
+//            MyLog.e("watchResponse","boolean执行"+a);
+//            MyLog.e("time1", Calendar.getInstance().getTime()+"");
+//            isNewRecord = a ;
+//        }
 
         @Override
         public void updateFor_OpenSmc(boolean isSuccess) {
@@ -525,13 +568,15 @@ public class WalletActivity extends ToolBarActivity {
                 MyLog.d(TAG, "新纪录："+record.toString());
                 record.setTradeCard(textViewcard.getText().toString());
                 record.setTradeBalance(balanceResult.getText().toString());
-                //此时清楚 交易记录在用户注册之前的数据
+                //此时清除 交易记录在用户注册之前的数据
                 UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
 //                Date date = TimeUtil.stringToDate(userEntity.getUserBase().getRegister_time(),"yyyy-MM-dd HH:mm:ss.S");
 //                TEST:
                 Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0","yyyy-MM-dd HH:mm:ss.S");
                 if(date.getTime()/1000 < record.getTradeTimelong()){
                     list_qianbao.add(record);
+                    MyLog.e(TAG,"record"+record.toString());
+
                 }
                 walletAdapeter.notifyDataSetChanged();
 //              setListViewHeightBasedOnChildren(recordListview);
@@ -549,16 +594,22 @@ public class WalletActivity extends ToolBarActivity {
             }
             else
             {
+                /**
+                 * 比较时间
+                 */
                 Collections.sort(list_qianbao,new Comparator<LLTradeRecord>()
                 {
                     @Override
                     public int compare(LLTradeRecord arg1, LLTradeRecord arg2) {
-                        return (int) (arg1.getTradeTimelong()-arg2.getTradeTimelong());
+                        return (int) (arg2.getTradeTimelong()-arg1.getTradeTimelong());
                     }
                 });
                 MyLog.d(TAG,"获取记录成功！");
                 //完全读取完交易记录，保存到本地
                 PreferencesToolkits.saveQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number(),list_qianbao);
+                for (int i=0;i<list_qianbao.size();i++){
+                    MyLog.e(TAG,"suzou1里面的list_qianbao"+list_qianbao.get(i).toString());
+                }
                 walletAdapeter.notifyDataSetChanged();
             }
             if(provider.isConnectedAndDiscovered()){

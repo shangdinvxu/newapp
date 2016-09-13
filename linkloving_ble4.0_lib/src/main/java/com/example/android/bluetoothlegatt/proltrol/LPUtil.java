@@ -345,7 +345,7 @@ public class LPUtil {
 
 	public static void  printData(byte[] data, String label) {
 		StringBuffer sb = new StringBuffer();
-		sb.append(label + "[");
+		sb.append(label + " [");
 		for (int i = 0; i < data.length; i++) {
 			String msg = Integer.toHexString((data[i] & 0xff));
 			if(msg.length()<2){
@@ -355,7 +355,7 @@ public class LPUtil {
 			sb.append(msg + " ");
 		}
 		sb.append("]");
-		OwnLog.w(TAG, sb.toString());
+		OwnLog.e(TAG, sb.toString());
 	}
 
 }

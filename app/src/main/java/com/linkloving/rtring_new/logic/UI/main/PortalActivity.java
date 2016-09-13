@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -542,10 +543,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }
             if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
-                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
-            } else {
+            } else if(userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND){
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
-                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
+            }else if(userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND_VERSION3){
+                device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
             }
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
             if(modelInfo!=null){
@@ -1626,6 +1627,18 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             //此时调用是为了刷新金额
             refreshMoneyView();
             isReadingCard = false;
+        }
+
+        @Override
+        public void updateFor_handleExpense_record(boolean a) {
+            super.updateFor_handleExpense_record(a);
+            SharedPreferences sharedpreferences = PortalActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedpreferences.edit();
+            edit.putBoolean("isreadRecord",a);
+            edit.commit();
+
+
+
         }
     }
 

@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -42,7 +43,7 @@ import java.util.TimerTask;
  * Created by Administrator on 2016/3/17.
  */
 public class BleService extends Service {
-//
+    //
     private static final String TAG = "BleService";
     //重连的次数
     private int retrycount = 0;
@@ -155,6 +156,7 @@ public class BleService extends Service {
         Log.e(TAG, "onCreate");
         self = this;
         provider = initBLEProvider(); //初始化bLE提供者
+
         //启动ble连接并且每一分钟对连接状态检查一遍。确保所有型号的手机处于连接状态。未连接的启动连接。
         bleConnectAndCheckConnectStateInTime();
     }
@@ -164,7 +166,7 @@ public class BleService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent == null) return START_STICKY;
+        if (intent == null) return START_STICKY;
         int pay_app_msg = intent.getIntExtra("PAY_APP_MSG", 0x01);
         MyLog.e(TAG, "onStartCommand：" + pay_app_msg);
         if (pay_app_msg == 0xff) {
@@ -189,9 +191,9 @@ public class BleService extends Service {
 //                    return START_STICKY;
 //                }
         } else if (pay_app_msg == 0x01) {
-            if(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider()!=null && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity()!=null){
+            if (MyApplication.getInstance(BleService.this).getLocalUserInfoProvider() != null && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity() != null) {
                 //绑定了设备才去扫描
-                if(!CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())){
+                if (!CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
                     setNEED_SCAN(true);
                     provider.setCurrentDeviceMac(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id());
                     if (!provider.isConnectedAndDiscovered()) {
@@ -255,26 +257,26 @@ public class BleService extends Service {
                     List<SportRecord> upList = SportDataHelper.convertLPSportData(originalSportDatas);//将原始数据转换成应用层使用的数据模型。
 //                  startDateString = TimeUtils.getstartDateTimeUTC(upList.get(0).getStart_time(), true);
 //                  MyLog.i(TAG, "第一条的时间" + startDateString +"");
-                    for(SportRecord sportRecord:upList){
-                        MyLog.i("【NEW运动数据】", "同步上来的原始数据：" + sportRecord.toString() +"");
+                    for (SportRecord sportRecord : upList) {
+                        MyLog.i("【NEW运动数据】", "同步上来的原始数据：" + sportRecord.toString() + "");
                     }
 //                    UserDeviceRecord.saveToSqlite(BleService.this, upList, MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getUser_id() + "", false);
 //                  long t = System.currentTimeMillis(); //方便统计操作使用的时间。
                     List<SportRecord> upList_new = SportDataHelper.backStauffSleepState(BleService.this, MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getUser_id() + "", upList);
                     MyLog.d("【NEW运动数据】", "【NEW运动数据】经过算法后的数据长度是List_new：" + upList_new.size());
-                    for(SportRecord sportRecord:upList_new){
-                        MyLog.i("【NEW运动数据】", "计算出来的数据：" + sportRecord.toString() +"");
+                    for (SportRecord sportRecord : upList_new) {
+                        MyLog.i("【NEW运动数据】", "计算出来的数据：" + sportRecord.toString() + "");
                     }
 //                  //调用用户设备记录对象的保存至本地数据库方法。
                     UserDeviceRecord.saveToSqlite(BleService.this, upList_new, MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getUser_id() + "", false);
                     String dateString = TimeUtils.getLocalTimeFromUTC(upList_new.get(0).getStart_time(), ToolKits.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS, ToolKits.DATE_FORMAT_YYYY_MM_DD);
-                    MyLog.e("【NEW运动数据】", "第一条数据的日期:"+dateString);
+                    MyLog.e("【NEW运动数据】", "第一条数据的日期:" + dateString);
                     ArrayList<DaySynopic> mDaySynopicArrayList = new ArrayList<DaySynopic>();
                     //今天的话 无条件去汇总查询
                     DaySynopic mDaySynopic = SportDataHelper.offlineReadMultiDaySleepDataToServer(BleService.this, dateString, dateString);
-                    MyLog.e("【NEW运动数据】", dateString+"号的汇总数据:"+mDaySynopic.toString());
+                    MyLog.e("【NEW运动数据】", dateString + "号的汇总数据:" + mDaySynopic.toString());
                     if (mDaySynopic.getTime_zone() == null) {
-                        return ;
+                        return;
                     }
                     mDaySynopicArrayList.add(mDaySynopic);
                     DaySynopicTable.saveToSqliteAsync(BleService.this, mDaySynopicArrayList, userEntity.getUser_id() + "");
@@ -347,8 +349,7 @@ public class BleService extends Service {
                     //获得本地用户信息提供者非空则：
                     if (!CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())
                             &&
-                            MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH )
-                    {
+                            MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type() == MyApplication.DEVICE_WATCH) {
                         //获得最后设备Id非空：
                         if (retrycount < 3) {
                             MyLog.e(TAG, "BleService 正在重连！" + provider.getCurrentDeviceMac());
@@ -399,7 +400,7 @@ public class BleService extends Service {
                         IS_SYNING = true;  //正在同步 不然用户再次刷新 会发两次指令
                         //==========================初始化数据START==========================//
                         userEntity = MyApplication.getInstance(BleService.this).getLocalUserInfoProvider();
-                        MyLog.e(TAG, "电量："+latestDeviceInfo.charge);
+                        MyLog.e(TAG, "电量：" + latestDeviceInfo.charge);
                         /**程序初始化的时候,会将此变量设置为false*/
                         setNEED_SCAN(true);
                         lpDeviceInfo_ = latestDeviceInfo;
@@ -432,7 +433,7 @@ public class BleService extends Service {
              */
             private void startSetBody() {
 //                if (needRegiesterBody())  //判断是否要注册身体信息
-                    provider.regiesterNew(BleService.this, DeviceInfoHelper.fromUserEntity(BleService.this, userEntity));
+                provider.regiesterNew(BleService.this, DeviceInfoHelper.fromUserEntity(BleService.this, userEntity));
             }
 
             /**
@@ -495,7 +496,7 @@ public class BleService extends Service {
             @Override
             protected void handleDataEnd() {
                 super.handleDataEnd();
-                MyLog.e(TAG, "【NEW离线数据同步】handleDataEnd" );
+                MyLog.e(TAG, "【NEW离线数据同步】handleDataEnd");
                 //设置时间指令
                 provider.SetDeviceTime(BleService.this);
 
@@ -536,12 +537,12 @@ public class BleService extends Service {
             @Override
             protected void notifyForModelName(LPDeviceInfo latestDeviceInfo) {
                 super.notifyForModelName(latestDeviceInfo);
-                if(CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id()))
+                if (CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id()))
                     return;
-                if(latestDeviceInfo.modelName==null){
-                    lpDeviceInfo_.modelName= "LW100";
-                }else{
-                    lpDeviceInfo_.modelName= latestDeviceInfo.modelName;
+                if (latestDeviceInfo.modelName == null) {
+                    lpDeviceInfo_.modelName = "LW100";
+                } else {
+                    lpDeviceInfo_.modelName = latestDeviceInfo.modelName;
                 }
 
                 //==========================初始化数据OVER==========================//
@@ -554,7 +555,11 @@ public class BleService extends Service {
                 super.notifyForgetDeviceId_D(obj);
                 /**********获取卡号*********/
                 provider.get_cardnum(BleService.this);
+                // TODO: 2016/9/13
+                provider.readExpenseRecord(BleService.this);
             }
+
+
         });
         return provider;
     }
@@ -567,7 +572,7 @@ public class BleService extends Service {
         String mac = MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id();
 
 //        if(MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH){
-            needscan = true;//新的版本里面 必须扫描连接
+        needscan = true;//新的版本里面 必须扫描连接
 //        }else{
 //            needscan = false;
 //        }
@@ -607,6 +612,7 @@ public class BleService extends Service {
 //        bleSynchronImpl.synchronAll();
     }
 
+
     /**
      * 按时检测ble连接：每60秒检查一次蓝牙连接并重连。如果用户信息不存在则不进行此动作
      */
@@ -619,7 +625,7 @@ public class BleService extends Service {
                 public void run() {
                     if (MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity() != null) {    //获得本地用户信息提供者并获得最后同步设备的ID非空
                         if (!CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id()) && isNEED_SCAN() && !isCANCLE_ANCS()
-                                && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH)//蓝牙关闭 和 OAD升级过程中 取消定时器
+                                && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type() == MyApplication.DEVICE_WATCH)//蓝牙关闭 和 OAD升级过程中 取消定时器
                         {    //获得本地用户信息提供者，并且成功获取
                             MyLog.e(TAG, "正在Timer扫描...");
                             if (!provider.isConnectedAndDiscovered()) {
@@ -652,7 +658,7 @@ public class BleService extends Service {
                     if (MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity() != null) {
                         ////获得本地用户信息提供者并获得最后同步设备的ID非空                   //获得本地用户信息提供者，并且成功获取。
                         if (!CommonUtils.isStringEmpty(MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id()) && isNEED_SCAN() && !isCANCLE_ANCS()
-                                && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {   //蓝牙关闭 和 OAD升级过程中 取消定时器
+                                && MyApplication.getInstance(BleService.this).getLocalUserInfoProvider().getDeviceEntity().getDevice_type() == MyApplication.DEVICE_WATCH) {   //蓝牙关闭 和 OAD升级过程中 取消定时器
                             MyLog.e(TAG, "系统当前时间:" + System.currentTimeMillis() / 1000 + "  上次检测时间:" + timer + "  差值:" + (System.currentTimeMillis() / 1000 - timer));
                             if (System.currentTimeMillis() / 1000 - timer > 5) {
                                 timer = System.currentTimeMillis() / 1000; //5秒钟更新一下当前时间，用于显示Log.e。
