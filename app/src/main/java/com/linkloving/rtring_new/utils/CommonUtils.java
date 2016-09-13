@@ -718,4 +718,6 @@ public class CommonUtils {
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
     }
+
+
 }

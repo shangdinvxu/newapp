@@ -436,7 +436,7 @@ public class BandListActivity extends ToolBarActivity {
                 if (((String) resultFromServer).equals("1")) {
                     Log.e(TAG, "绑定成功！");
                     provider.getdeviceId(BandListActivity.this);
-                    MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
+                    MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
                     MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                     if (progressDialog != null && progressDialog.isShowing())
                         progressDialog.dismiss();
@@ -520,7 +520,7 @@ public class BandListActivity extends ToolBarActivity {
     private void submitBoundMACToServer(String user_id, String Mac) {
         if (MyApplication.getInstance(this).isLocalDeviceNetworkOk()) {
             String last_sync_device_id2 = MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2();
-            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac, MyApplication.DEVICE_BAND,modelName), HttpCallback);
+            CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac.substring(3), MyApplication.DEVICE_BAND,modelName), HttpCallback);
             MyLog.e(TAG, "=====user_id=======" + user_id + "==Mac==" + Mac + "===last_sync_device_id2===" + last_sync_device_id2);
         } else {
             MyToast.show(BandListActivity.this, getString(R.string.main_more_sycn_fail), Toast.LENGTH_LONG);
@@ -542,7 +542,7 @@ public class BandListActivity extends ToolBarActivity {
                 ModelInfo modelInfo=JSONObject.parseObject(response.get(), ModelInfo.class);
                 PreferencesToolkits.saveInfoBymodelName(BandListActivity.this,modelName,modelInfo);
                 MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setModel_name(modelName);
-                MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
+                MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
                 MyApplication.getInstance(getApplicationContext()).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                 if (observerAdapter != null)
                     observerAdapter.updateFor_boundInfoSyncToServerFinish(dataFromServer.getErrorCode() + "");
