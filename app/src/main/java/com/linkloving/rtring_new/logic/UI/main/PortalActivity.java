@@ -1629,16 +1629,15 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             isReadingCard = false;
         }
 
+        /********判断是否要读消费记录回调***********/
         @Override
         public void updateFor_handleExpense_record(boolean a) {
             super.updateFor_handleExpense_record(a);
             SharedPreferences sharedpreferences = PortalActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.putBoolean("isreadRecord",a);
+            MyLog.e(TAG,a+"去读消费记录");
             edit.commit();
-
-
-
         }
     }
 

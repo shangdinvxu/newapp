@@ -483,7 +483,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		WatchRequset req = new WatchRequset();
 		req.appendByte(seq++)
 				.appendByte(LepaoCommand.COMMAND_SET_MOTION_REMIND)
-				.appendByte((byte) 60)
+				.appendByte((byte) 5)
 				.appendByte((byte) deviceInfo.longsit_step)
 				.appendByte((byte) deviceInfo.startTime1_H)
 				.appendByte((byte) deviceInfo.startTime1_M)
@@ -494,6 +494,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 				.appendByte((byte) deviceInfo.endTime2_H)
 				.appendByte((byte) deviceInfo.endTime2_M).makeCheckSum();
 		WatchResponse resp = this.sendData2BLE(req);
+		// TODO: 2016/9/14  5修改成60 ;
 		LPUtil.printData(req.getData(), "setLongSitRemind");
 		if(resp.getData()[3]==LepaoCommand.COMMAND_SET_MOTION_REMIND && resp.getData()[4]==1)
 			return BLEProvider.INDEX_SET_DEVICE_LONGSIT;

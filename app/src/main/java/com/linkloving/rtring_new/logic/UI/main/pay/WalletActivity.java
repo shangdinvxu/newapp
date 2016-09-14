@@ -109,7 +109,7 @@ public class WalletActivity extends ToolBarActivity {
             super.addFirst(object);
         };
     };
-
+    private boolean isreadRecord;
 
 
     @Override
@@ -142,9 +142,10 @@ public class WalletActivity extends ToolBarActivity {
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
         provider.setBleProviderObserver(bleProviderObserver);
+        provider.readExpenseRecord(WalletActivity.this);
+
         initData();
     }
-
     private void initData() {
 //        湖北数码要求不显示余额
 //        if(MyApplication.getInstance(PayActivity.this).getLocalUserInfoProvider().getEid().equals(Company.HUBEI_SHUMA)){
@@ -154,40 +155,37 @@ public class WalletActivity extends ToolBarActivity {
         if(modelInfo==null){
             return;
         }
-
-        SharedPreferences sp = getSharedPreferences("readRecord", MODE_PRIVATE);
-        boolean isreadRecord = sp.getBoolean("isreadRecord", true);
-        MyLog.e("isreadRecord.....11....",isreadRecord+"--------");
+//        SharedPreferences sp = getSharedPreferences("readRecord", MODE_PRIVATE);
+//        isreadRecord = sp.getBoolean("isreadRecord", true);
+        MyLog.e(TAG, isreadRecord +"----------isreadRecord");
         //从卡号里面获知卡地址城市
         String card =  userEntity.getDeviceEntity().getCard_number();
         int device_type = userEntity.getDeviceEntity().getDevice_type();
         deviceInfo = new LPDeviceInfo();
-        MyLog.e("watchResponse","isNewRecord---"+isNewRecord+"device_type"+device_type);
-        MyLog.e("time2", Calendar.getInstance().getTime()+"");
+        MyLog.e(TAG, Calendar.getInstance().getTime()+"time2");
         if(card.startsWith(LPDeviceInfo.SUZHOU_)&&device_type==MyApplication.DEVICE_BAND_VERSION3&&isreadRecord){
-            MyLog.e("SUZHOU_",1+"");
-//            MyLog.e("watchResponse","isNewRecord---"+isNewRecord);
+            MyLog.e("TAG",1+"SUZHOU_");
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
             list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number());
             for (int i=0;i<list_qianbao.size();i++){
                 MyLog.e(TAG,"suzou1里面的list_qianbao"+list_qianbao.get(i).toString());
             }
-            Collections.reverse(list_qianbao);
+//            Collections.reverse(list_qianbao);
             walletAdapeter = new WalletAdapter(this,list_qianbao,WalletAdapter.TYPE_QIANBAO);
             record_RecyclerView.setAdapter(walletAdapeter);
             img_card_city.setBackground(getResources().getDrawable(R.mipmap.szsmk_logo));
             img_card_city.setVisibility(View.VISIBLE);
             textViewcard.setText(card);
             cardtype.setText("苏州市民卡-B卡");
-            provider.cleanExpenseRecord(WalletActivity.this);
+//            provider.cleanExpenseRecord(WalletActivity.this);
         }else if(card.startsWith(LPDeviceInfo.SUZHOU_)){
-            MyLog.e("SUZHOU_", 2+"");
+            MyLog.e(TAG, 2+"SUZHOU_");
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
             list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this,userEntity.getDeviceEntity().getCard_number());
             for (int i=0;i<list_qianbao.size();i++){
                 MyLog.e(TAG,"suzou2里面的list_qianbao"+list_qianbao.get(i).toString());
             }
-            Collections.reverse(list_qianbao);
+//            Collections.reverse(list_qianbao);
             walletAdapeter = new WalletAdapter(this,list_qianbao,WalletAdapter.TYPE_QIANBAO);
             record_RecyclerView.setAdapter(walletAdapeter);
             img_card_city.setBackground(getResources().getDrawable(R.mipmap.szsmk_logo));
@@ -254,57 +252,69 @@ public class WalletActivity extends ToolBarActivity {
         {
             //已经城市 && 蓝牙已经连接
             if(provider.isConnectedAndDiscovered()){
-                if(deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)){
-                    //开始去查询卡片信息了 弹出dialog
-                    dialog_pay.show();
-                    provider.closeSmartCard(WalletActivity.this);
-                    Button btn = getRightButton();
-                    ViewGroup.LayoutParams layoutParams = btn.getLayoutParams();
-                    layoutParams.width=200;
-                    layoutParams.height=200;
-                    btn.setLayoutParams(layoutParams);
-                    btn.setText("投诉");
-                    btn.setTextColor(getResources().getColor(R.color.white));
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String username = PreferencesToolkits.getLNTusername(WalletActivity.this);
-                            if(CommonUtils.isStringEmpty(username)){
-                                //用户从未登录过
-                                LoginUtil.login(WalletActivity.this, false, null, new LoginCallbackInterface() {
-                                    @Override
-                                    public void onLoginState(boolean success, String s, String lntusername) {
-                                        if(success){
-                                            MyLog.e(TAG,"username:"+lntusername);
-                                            PreferencesToolkits.saveLNTusername(WalletActivity.this,lntusername);
-                                            lntTouSu(lntusername);
+                MyLog.e(TAG,isreadRecord+"++++++++++++isreadRecord++++++++");
+                if(isreadRecord){
+                    MyLog.e(TAG,isreadRecord+"里面的方法执行了");
+                    if(deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)){
+                        //开始去查询卡片信息了 弹出dialog
+                        dialog_pay.show();
+                        provider.closeSmartCard(WalletActivity.this);
+                        Button btn = getRightButton();
+                        ViewGroup.LayoutParams layoutParams = btn.getLayoutParams();
+                        layoutParams.width=200;
+                        layoutParams.height=200;
+                        btn.setLayoutParams(layoutParams);
+                        btn.setText("投诉");
+                        btn.setTextColor(getResources().getColor(R.color.white));
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String username = PreferencesToolkits.getLNTusername(WalletActivity.this);
+                                if(CommonUtils.isStringEmpty(username)){
+                                    //用户从未登录过
+                                    LoginUtil.login(WalletActivity.this, false, null, new LoginCallbackInterface() {
+                                        @Override
+                                        public void onLoginState(boolean success, String s, String lntusername) {
+                                            if(success){
+                                                MyLog.e(TAG,"username:"+lntusername);
+                                                PreferencesToolkits.saveLNTusername(WalletActivity.this,lntusername);
+                                                lntTouSu(lntusername);
+                                            }
                                         }
-                                    }
-                                });
-                            }else{
-                                //用户曾经登录过
-                                lntTouSu(username);
+                                    });
+                                }else{
+                                    //用户曾经登录过
+                                    lntTouSu(username);
+                                }
                             }
-                        }
-                    });
-                    //岭南通内嵌读取流程
-                    RechargeUtil.setBluetoothBase(WalletActivity.this, provider );
-                    lntBalance();
-                }else{
-                    //开始去查询卡片信息了 弹出dialog
-                    if (!isreadRecord){
-                        LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
-                        String money = localvo.getMoney();
-                        balanceResult.setText(money);
+                        });
+                        //岭南通内嵌读取流程
+                        RechargeUtil.setBluetoothBase(WalletActivity.this, provider );
+                        lntBalance();
                     }else{
+                        //开始去查询卡片信息了 弹出dialog
+//                    if (!isreadRecord){
+//                        MyLog.e(TAG,isreadRecord+"----弹框是否显示");
+//                        LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
+//                        String money = localvo.getMoney();
+//                        balanceResult.setText(money);
+//                    }else{
                         dialog_pay.show();
                         provider.closeSmartCard(WalletActivity.this);
                         // 首先清空集合
                         provider.openSmartCard(WalletActivity.this);
                         textViewcard.setText(getString(R.string.menu_pay_reading));
                         balanceResult.setText("0.00");
+
                     }
+                }else
+                {
+                    LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
+                        String money = localvo.getMoney();
+                        balanceResult.setText(money);
+                    MyLog.e(TAG,isreadRecord+"里面的方法执行了");
                 }
+
             }
             else
             {
@@ -364,12 +374,10 @@ public class WalletActivity extends ToolBarActivity {
                                     MyLog.e(TAG,"username:"+lntusername);
                                     PreferencesToolkits.saveLNTusername(WalletActivity.this,lntusername);
                                     RechargeUtil.recharge(WalletActivity.this,RechargeUtil.LINKLOVE,provider.getCurrentDeviceMac(), lntusername ,new RechargeCallbackInterface(){
-
                                         @Override
                                         public void onFail(String arg0) {
                                             Log.e(TAG, "充值onFail回调:"+arg0);
                                         }
-
                                         @Override
                                         public void onSuccess(String arg0) {
                                             Log.e(TAG, "充值onSuccess回调:"+arg0);
@@ -440,7 +448,6 @@ public class WalletActivity extends ToolBarActivity {
                             }
                         }
                     }
-
                     @Override
                     public void onFail(String s) {
                         if(dialog_pay!=null && dialog_pay.isShowing()){
@@ -495,15 +502,20 @@ public class WalletActivity extends ToolBarActivity {
         protected Activity getActivity() {
             return WalletActivity.this;
         }
-//        public void updateFor_handleExpense_record(boolean a){
-//            SharedPreferences sharedpreferences__1 = getSharedPreferences("__sharedpreferences__", MODE_PRIVATE);
-//            boolean isreadRecord = sharedpreferences__1.getBoolean("isreadRecord", true);
-//            MyLog.e("isreadRecord.....22....",isreadRecord+"---------a"+a);
-//
-//            MyLog.e("watchResponse","boolean执行"+a);
-//            MyLog.e("time1", Calendar.getInstance().getTime()+"");
-//            isNewRecord = a ;
-//        }
+        public void updateFor_handleExpense_record(boolean a){
+            MyLog.e(TAG, Calendar.getInstance().getTime()+"-----------time1");
+            if (a){
+                provider.cleanExpenseRecord(WalletActivity.this);
+            }else{
+
+            }
+            isreadRecord = a ;
+            SharedPreferences sharedpreferences = WalletActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedpreferences.edit();
+            edit.putBoolean("isreadRecord",a);
+            MyLog.e(TAG, a+"--------a");
+        }
+
 
         @Override
         public void updateFor_OpenSmc(boolean isSuccess) {
@@ -559,34 +571,41 @@ public class WalletActivity extends ToolBarActivity {
         public void updateFor_GetSmcTradeRecordAsync(LLTradeRecord record)
         {
             super.updateFor_GetSmcTradeRecordAsync(record);
-            if(list_qianbao.contains(record))
-            {
-                MyLog.d(TAG, "包含记录！！！"+record.toString());
-            }
-            else
-            {
-                MyLog.d(TAG, "新纪录："+record.toString());
-                record.setTradeCard(textViewcard.getText().toString());
-                record.setTradeBalance(balanceResult.getText().toString());
-                //此时清除 交易记录在用户注册之前的数据
-                UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
+            MyLog.e(TAG,"isreadRecord__updateFor_GetSmcTradeRecordAsync"+isreadRecord);
+            if (isreadRecord){
+                if(list_qianbao.contains(record))
+                {
+                    MyLog.d(TAG, "包含记录！！！"+record.toString());
+                }
+                else
+                {
+                    MyLog.d(TAG, "新纪录："+record.toString());
+                    record.setTradeCard(textViewcard.getText().toString());
+                    record.setTradeBalance(balanceResult.getText().toString());
+                    //此时清除 交易记录在用户注册之前的数据
+                    UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
 //                Date date = TimeUtil.stringToDate(userEntity.getUserBase().getRegister_time(),"yyyy-MM-dd HH:mm:ss.S");
 //                TEST:
-                Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0","yyyy-MM-dd HH:mm:ss.S");
-                if(date.getTime()/1000 < record.getTradeTimelong()){
-                    list_qianbao.add(record);
-                    MyLog.e(TAG,"record"+record.toString());
+                    Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0","yyyy-MM-dd HH:mm:ss.S");
+                    if(date.getTime()/1000 < record.getTradeTimelong()){
+                        list_qianbao.add(record);
+                        MyLog.e(TAG,"record"+record.toString());
 
-                }
-                walletAdapeter.notifyDataSetChanged();
+                    }
+                    walletAdapeter.notifyDataSetChanged();
 //              setListViewHeightBasedOnChildren(recordListview);
+                }
+            }else{
+
             }
+
         }
         //钱包集合
         @Override
         public void updateFor_GetSmcTradeRecord(List<LLTradeRecord> list)
         {
             super.updateFor_GetSmcTradeRecord(list);
+            MyLog.e(TAG,"updateFor_GetSmcTradeRecord"+isreadRecord);
             if(list.size() <= 0)
             {
                 MyLog.e(TAG, "没有记录！");

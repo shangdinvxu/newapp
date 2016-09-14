@@ -536,7 +536,7 @@ public abstract class BLEHandler extends Handler {
 				handleExpense_record((boolean)msg.obj);
 				Log.e("watchResponse","handlerlimiandde  ---"+(boolean)msg.obj);
 				break;
-			case BLEProvider.CLEANEXPENSERECORD:
+			case BLEProvider.CLEAN_EXPENSERECORD:
 				handlerClean_expenseCord((boolean)msg.obj);
 				break;
 		case BLEProvider.MSG_BLE_CONNECT_FAILED:

@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.service.carrier.CarrierService;
 import android.util.Log;
 
 import com.example.android.bluetoothlegatt.exception.BLENotBounded;
@@ -93,7 +92,7 @@ public  class BLEProvider
 	public static final int INDEX_ClOSE_FEIJIE = INDEX_SCHOOL_ID + 1;	
 	public static final int INDEX_OPEN_FEIJIE = INDEX_ClOSE_FEIJIE + 1;
 	public static final int EXPENSE_RECORD = INDEX_OPEN_FEIJIE+1 ;
-	public static final int CLEANEXPENSERECORD = EXPENSE_RECORD+1 ;
+	public static final int CLEAN_EXPENSERECORD = EXPENSE_RECORD+1 ;
 	/** for 一卡通相关的指令代码 END **/
 	
 	
@@ -1025,6 +1024,10 @@ public  class BLEProvider
 	   runIndexProess(context, INDEX_GET_SMC_BALANCE,deviceInfo);
    }
 
+	/**
+	 * 判断是否要读消费记录
+	 * @param context
+     */
 	public void readExpenseRecord(Context context)
 	{
 		runIndexProess(context,EXPENSE_RECORD);
@@ -1035,7 +1038,7 @@ public  class BLEProvider
 	 * @param context
      */
 	public void cleanExpenseRecord(Context context){
-		runIndexProess(context,CLEANEXPENSERECORD);
+		runIndexProess(context, CLEAN_EXPENSERECORD);
 	}
    /* 读取交易记录*/
    public void getSmartCardTradeRecord(Context contex,LPDeviceInfo deviceInfo)
@@ -1433,9 +1436,15 @@ public  class BLEProvider
 		   }
 		   else if(llTradeRecord.isVaild() && llTradeRecord.isHasRecord())
 		   {
-			   Message msg = handler.obtainMessage(MSG_GET_SMC_TRADE_RECORD_ASYNC,llTradeRecord);
-			   msg.sendToTarget();
-			   tmp.add(llTradeRecord);
+//			   if (mLepaoProtocalImpl.isReadExpenseRecord(true)){
+				   Log.e("bleprovider_1","isReadExpenseRecord返回为true");
+				   Message msg = handler.obtainMessage(MSG_GET_SMC_TRADE_RECORD_ASYNC,llTradeRecord);
+				   msg.sendToTarget();
+				   tmp.add(llTradeRecord);
+//			   }else{
+//				   Log.e("bleprovider","isReadExpenseRecord返回为false");
+//			   }
+
 		   }
 		   else if(!llTradeRecord.isVaild()){
 			  OwnLog.e(TAG, "非法");
@@ -1822,8 +1831,8 @@ public  class BLEProvider
 						msg=mHandler.obtainMessage(EXPENSE_RECORD,mLepaoProtocalImpl.isReadExpenseRecord(true));
 						msg.sendToTarget();
 						break;
-					case CLEANEXPENSERECORD:
-						msg=mHandler.obtainMessage(CLEANEXPENSERECORD,mLepaoProtocalImpl.isReadExpenseRecord(false));
+					case CLEAN_EXPENSERECORD:
+						msg=mHandler.obtainMessage(CLEAN_EXPENSERECORD,mLepaoProtocalImpl.isReadExpenseRecord(false));
 						msg.sendToTarget();
 						break;
 				    case INDEX_OPEN_SMC:
