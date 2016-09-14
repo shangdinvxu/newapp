@@ -155,8 +155,8 @@ public class WalletActivity extends ToolBarActivity {
         if(modelInfo==null){
             return;
         }
-//        SharedPreferences sp = getSharedPreferences("readRecord", MODE_PRIVATE);
-//        isreadRecord = sp.getBoolean("isreadRecord", true);
+        SharedPreferences sp = getSharedPreferences("readRecord", MODE_PRIVATE);
+        isreadRecord = sp.getBoolean("isreadRecord", true);
         MyLog.e(TAG, isreadRecord +"----------isreadRecord");
         //从卡号里面获知卡地址城市
         String card =  userEntity.getDeviceEntity().getCard_number();
@@ -513,7 +513,7 @@ public class WalletActivity extends ToolBarActivity {
             SharedPreferences sharedpreferences = WalletActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.putBoolean("isreadRecord",a);
-            MyLog.e(TAG, a+"--------a");
+            MyLog.e(TAG, isreadRecord+"-----------a---isreadRecord");
         }
 
 

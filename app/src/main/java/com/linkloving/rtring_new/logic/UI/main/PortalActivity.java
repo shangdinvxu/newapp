@@ -1637,6 +1637,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.putBoolean("isreadRecord",a);
             MyLog.e(TAG,a+"去读消费记录");
+
             edit.commit();
         }
     }
