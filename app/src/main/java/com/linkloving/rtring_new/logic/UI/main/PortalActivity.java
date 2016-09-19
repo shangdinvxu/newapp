@@ -136,11 +136,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     @InjectView(R.id.drawer_layout) DrawerLayout drawer;
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.recycler_view) RecyclerView menu_RecyclerView;
-
     @InjectView(R.id.user_head) ImageView user_head;    //头像
     @InjectView(R.id.device_img) ImageView device_img;
     @InjectView(R.id.user_name) TextView user_name;     //昵称
-
     @InjectView(R.id.text_battery) TextView text_Battery;
     @InjectView(R.id.text_wallet) TextView text_Wallet;
     @InjectView(R.id.text_sync) TextView text_sync;
@@ -233,9 +231,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         super.onPostResume();
         provider = BleService.getInstance(PortalActivity.this).getCurrentHandlerProvider();
         provider.setBleProviderObserver(bleProviderObserver);
-
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-
         if (userEntity == null || userEntity.getDeviceEntity() == null || userEntity.getUserBase() == null)
             return;
         MyLog.e(TAG, "u.getDeviceEntity().getDevice_type():" + userEntity.getDeviceEntity().getDevice_type());
@@ -248,7 +244,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             if(provider.isConnectedAndDiscovered())
                 BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
         }
-
         if (userEntity.getUserBase().getUser_avatar_file_name() == null){
             MyLog.e(TAG, "u.getUserBase().getUser_avatar_file_name()是空的........");
             return;
@@ -279,6 +274,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //            ScreenUtils.Dimension dimen2 = ScreenUtils.getAreaTwo(this);
 //            int top = (int) DensityUtils.px2dp(this,dimen1.mHeight-dimen2.mHeight);
 //        }
+//    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        //自动下拉刷新
+//        mScrollView.autoRefresh();
 //    }
 
     @Override
@@ -620,16 +621,15 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 if (modelInfo.getFiscard() == 0) { //不支持金融卡
                     Snackbar.make(drawer, getString(R.string.pay_no_function), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                 } else {
-
-                    if (provider.isConnectedAndDiscovered()) {
-                        if(isReadingCard){
-                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
-                        }else{
+//                    if (provider.isConnectedAndDiscovered()) {
+//                        if(isReadingCard){
+//                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
+//                        }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
-                        }
-                    } else {
-                        Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
-                    }
+//                        }
+//                    } else {
+//                        Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
+//                    }
                 }
             }
         }
@@ -1637,7 +1637,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.putBoolean("isreadRecord",a);
             MyLog.e(TAG,a+"去读消费记录");
-
             edit.commit();
         }
     }
