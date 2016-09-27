@@ -1225,6 +1225,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
             MyLog.e(TAG, "手环绑定成功");
         } else if (requestCode == CommParams.REQUEST_CODE_BOUND_WATCH && resultCode == Activity.RESULT_OK) {
+
         }
     }
 

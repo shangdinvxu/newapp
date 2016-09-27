@@ -7,7 +7,7 @@ package com.linkloving.rtring_new.prefrences.devicebean;
 public class DeviceSetting {
     /**用户id*/
     private String user_id = "";
-    /**闹钟1*/
+    /**闹钟1  06:30-0-0 时间 频率 开关*/
     private String alarm_one = "06:30-0-0";
     /**闹钟2*/
     private String alarm_two = "07:30-0-0";

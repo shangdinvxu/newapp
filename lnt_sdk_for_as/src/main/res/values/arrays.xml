@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lntsdk_cz_amount">
-        <!--<item >0.01</item>-->
+        <item >0.01</item>
         <item >50.00</item>
         <item >100.00</item>
         <item >150.00</item>

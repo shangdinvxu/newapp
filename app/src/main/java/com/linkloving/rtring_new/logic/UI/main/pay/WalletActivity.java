@@ -116,6 +116,9 @@ public class WalletActivity extends ToolBarActivity {
 
         ;
     };
+
+
+    //    是否要去读交易记录
     private boolean isreadRecord;
 
 
@@ -151,18 +154,18 @@ public class WalletActivity extends ToolBarActivity {
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
         provider.setBleProviderObserver(bleProviderObserver);
         provider.readExpenseRecord(WalletActivity.this);
-        MyLog.e(TAG,provider.isConnectedAndDiscovered()+"------------provider.isConnectedAndDiscovered()");
-        if(provider.isConnectedAndDiscovered()){
-            if (isReadingCard){
+        MyLog.e(TAG, provider.isConnectedAndDiscovered() + "------------provider.isConnectedAndDiscovered()");
+        if (provider.isConnectedAndDiscovered()) {
+            if (isReadingCard) {
                 dialog_pay.show();
-                MyLog.e(TAG,"dialog show l");
-            } else{
-                MyLog.e(TAG,"dialog no show l");
+                MyLog.e(TAG, "dialog show l");
+            } else {
+                MyLog.e(TAG, "dialog no show l");
                 initData();
             }
-        }else{
-            MyLog.e(TAG,"没用到dialog no show l");
-              Toast.makeText(WalletActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
+        } else {
+            MyLog.e(TAG, "没用到dialog no show l");
+            Toast.makeText(WalletActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -183,7 +186,7 @@ public class WalletActivity extends ToolBarActivity {
         int device_type = userEntity.getDeviceEntity().getDevice_type();
         deviceInfo = new LPDeviceInfo();
         MyLog.e(TAG, Calendar.getInstance().getTime() + "time2");
-      if (card.startsWith(LPDeviceInfo.SUZHOU_)) {
+        if (card.startsWith(LPDeviceInfo.SUZHOU_)) {
             MyLog.e(TAG, 2 + "SUZHOU_");
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
             list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this, userEntity.getDeviceEntity().getCard_number());
@@ -249,59 +252,60 @@ public class WalletActivity extends ToolBarActivity {
         if (!deviceInfo.customer.equals(LPDeviceInfo.UN_KNOW_)) {
             //已经城市 && 蓝牙已经连接
             if (provider.isConnectedAndDiscovered()) {
-                    if (deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)) {
-                        //开始去查询卡片信息了 弹出dialog
-
+                if (deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)) {
+                    //开始去查询卡片信息了 弹出dialog
+                    dialog_pay.show();
+                    provider.closeSmartCard(WalletActivity.this);
+                    Button btn = getRightButton();
+                    ViewGroup.LayoutParams layoutParams = btn.getLayoutParams();
+                    layoutParams.width = 200;
+                    layoutParams.height = 200;
+                    btn.setLayoutParams(layoutParams);
+                    btn.setText("投诉");
+                    btn.setTextColor(getResources().getColor(R.color.white));
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String username = PreferencesToolkits.getLNTusername(WalletActivity.this);
+                            if (CommonUtils.isStringEmpty(username)) {
+                                //用户从未登录过
+                                LoginUtil.login(WalletActivity.this, false, null, new LoginCallbackInterface() {
+                                    @Override
+                                    public void onLoginState(boolean success, String s, String lntusername) {
+                                        if (success) {
+                                            MyLog.e(TAG, "username:" + lntusername);
+                                            PreferencesToolkits.saveLNTusername(WalletActivity.this, lntusername);
+                                            lntTouSu(lntusername);
+                                        }
+                                    }
+                                });
+                            } else {
+                                //用户曾经登录过
+                                lntTouSu(username);
+                            }
+                        }
+                    });
+                    //岭南通内嵌读取流程
+                    RechargeUtil.setBluetoothBase(WalletActivity.this, provider);
+                    lntBalance();
+                    MyLog.e(TAG, "岭南通内嵌读取流程开始了");
+                } else {
+                    //开始去查询卡片信息了 弹出dialog
+                    if (card.startsWith(LPDeviceInfo.SUZHOU_) && !isreadRecord) {
+                        LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
+                        String money = localvo.getMoney();
+                        balanceResult.setText(money);
+                        MyLog.e(TAG, isreadRecord + "不要去读交易记录里面的方法执行了");
+                    } else {
+                        MyLog.e(TAG, "苏州卡,要去读信息");
                         dialog_pay.show();
                         provider.closeSmartCard(WalletActivity.this);
-                        Button btn = getRightButton();
-                        ViewGroup.LayoutParams layoutParams = btn.getLayoutParams();
-                        layoutParams.width = 200;
-                        layoutParams.height = 200;
-                        btn.setLayoutParams(layoutParams);
-                        btn.setText("投诉");
-                        btn.setTextColor(getResources().getColor(R.color.white));
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                String username = PreferencesToolkits.getLNTusername(WalletActivity.this);
-                                if (CommonUtils.isStringEmpty(username)) {
-                                    //用户从未登录过
-                                    LoginUtil.login(WalletActivity.this, false, null, new LoginCallbackInterface() {
-                                        @Override
-                                        public void onLoginState(boolean success, String s, String lntusername) {
-                                            if (success) {
-                                                MyLog.e(TAG, "username:" + lntusername);
-                                                PreferencesToolkits.saveLNTusername(WalletActivity.this, lntusername);
-                                                lntTouSu(lntusername);
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    //用户曾经登录过
-                                    lntTouSu(username);
-                                }
-                            }
-                        });
-                        //岭南通内嵌读取流程
-                        RechargeUtil.setBluetoothBase(WalletActivity.this, provider);
-                        lntBalance();
-                    } else {
-                        //开始去查询卡片信息了 弹出dialog
-                        if (isreadRecord){
-                            dialog_pay.show();
-                            provider.closeSmartCard(WalletActivity.this);
-                            // 首先清空集合
-                            provider.openSmartCard(WalletActivity.this);
-                            textViewcard.setText(getString(R.string.menu_pay_reading));
-                            balanceResult.setText("0.00");
-                        }else{
-                            LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(WalletActivity.this);
-                    String money = localvo.getMoney();
-                    balanceResult.setText(money);
-                    MyLog.e(TAG, isreadRecord + "里面的方法执行了");
-                        }
+                        // 首先清空集合
+                        provider.openSmartCard(WalletActivity.this);
+                        textViewcard.setText(getString(R.string.menu_pay_reading));
+                        balanceResult.setText("0.00");
                     }
+                }
             } else {
                 //蓝牙未连接
                 Toast.makeText(WalletActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
@@ -361,7 +365,6 @@ public class WalletActivity extends ToolBarActivity {
                                         public void onFail(String arg0) {
                                             Log.e(TAG, "充值onFail回调:" + arg0);
                                         }
-
                                         @Override
                                         public void onSuccess(String arg0) {
                                             Log.e(TAG, "充值onSuccess回调:" + arg0);
@@ -378,6 +381,7 @@ public class WalletActivity extends ToolBarActivity {
                             public void onFail(String arg0) {
                                 Log.e(TAG, "充值onFail回调:" + arg0);
                             }
+
                             @Override
                             public void onSuccess(String arg0) {
                                 Log.e(TAG, "充值onSuccess回调:" + arg0);
@@ -496,7 +500,7 @@ public class WalletActivity extends ToolBarActivity {
         public void updateFor_handleExpense_record(boolean a) {
             MyLog.e(TAG, Calendar.getInstance().getTime() + "-----------time1");
             if (a) {
-                MyLog.e(TAG,a+"返回的a是true还是false");
+                MyLog.e(TAG, a + "返回的a是true还是false");
                 provider.cleanExpenseRecord(WalletActivity.this);
                 provider.getSmartCardTradeRecord(WalletActivity.this, deviceInfo);
             } else {
@@ -539,14 +543,14 @@ public class WalletActivity extends ToolBarActivity {
         @Override
         public void updateFor_CardNumber(String id) {
             super.updateFor_CardNumber(id);
-            isReadingCard=false ;
+            isReadingCard = false;
         }
 
         //余额
         @Override
         public void updateFor_GetSmcBalance(Integer obj) {
             super.updateFor_GetSmcBalance(obj);
-            MyLog.e(TAG,"updateFor_GetSmcBalance执行了");
+            MyLog.e(TAG, "updateFor_GetSmcBalance执行了");
             String money = ToolKits.inttoStringMoney(obj);
             balanceResult.setText(money);
             //把余额保存到本地 方便主界面显示
@@ -562,11 +566,11 @@ public class WalletActivity extends ToolBarActivity {
                     deviceInfo.time = 0;
                 }
                 /**
-                 * 要去读取余额
+                 * 要去读交易记录
                  */
                 provider.getSmartCardTradeRecord(WalletActivity.this, deviceInfo);
             }
-            isReadingCard = false ;
+            isReadingCard = false;
         }
 
         //钱包单条
@@ -574,27 +578,26 @@ public class WalletActivity extends ToolBarActivity {
         public void updateFor_GetSmcTradeRecordAsync(LLTradeRecord record) {
             super.updateFor_GetSmcTradeRecordAsync(record);
             MyLog.e(TAG, "isreadRecord__updateFor_GetSmcTradeRecordAsync" + isreadRecord);
-                if (list_qianbao.contains(record)) {
-                    MyLog.d(TAG, "包含记录！！！" + record.toString());
-                } else {
-                    MyLog.d(TAG, "新纪录：" + record.toString());
-                    record.setTradeCard(textViewcard.getText().toString());
-                    record.setTradeBalance(balanceResult.getText().toString());
-                    //此时清除 交易记录在用户注册之前的数据
-                    UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
+            if (list_qianbao.contains(record)) {
+                MyLog.d(TAG, "包含记录！！！" + record.toString());
+            } else {
+                MyLog.d(TAG, "新纪录：" + record.toString());
+                record.setTradeCard(textViewcard.getText().toString());
+                record.setTradeBalance(balanceResult.getText().toString());
+                //此时清除 交易记录在用户注册之前的数据
+                UserEntity userEntity = MyApplication.getInstance(WalletActivity.this).getLocalUserInfoProvider();
 //                Date date = TimeUtil.stringToDate(userEntity.getUserBase().getRegister_time(),"yyyy-MM-dd HH:mm:ss.S");
 //                TEST:
-                    Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0", "yyyy-MM-dd HH:mm:ss.S");
-                    if (date.getTime() / 1000 < record.getTradeTimelong()) {
-                        list_qianbao.add(record);
-                        MyLog.e(TAG, "record" + record.toString());
-                    }
-                    walletAdapeter.notifyDataSetChanged();
-//              setListViewHeightBasedOnChildren(recordListview);
+                Date date = TimeUtil.stringToDate("2014-09-12 11:46:46.0", "yyyy-MM-dd HH:mm:ss.S");
+                if (date.getTime() / 1000 < record.getTradeTimelong()) {
+                    list_qianbao.add(record);
+                    MyLog.e(TAG, "record" + record.toString());
                 }
+                walletAdapeter.notifyDataSetChanged();
+//              setListViewHeightBasedOnChildren(recordListview);
+            }
 
         }
-
 
 
         //钱包集合
@@ -666,7 +669,7 @@ public class WalletActivity extends ToolBarActivity {
                 dialog_pay.dismiss();
             }
             provider.closeSmartCard(WalletActivity.this);
-            isreadRecord=false;
+            isreadRecord = false;
             SharedPreferences sharedpreferences = WalletActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedpreferences.edit();
             edit.putBoolean("isreadRecord", isreadRecord);
@@ -683,6 +686,11 @@ public class WalletActivity extends ToolBarActivity {
             }
             textViewcard.setText(getString(R.string.menu_pay_read_fail));
             balanceResult.setText("0.0");
+            MyLog.e(TAG,"updateFor_handleSendDataError+读取失败了");
+//            读取失败就开卡关卡再去读
+            provider.closeSmartCard(WalletActivity.this);
+            // 首先清空集合
+            provider.openSmartCard(WalletActivity.this);
         }
     }
 
