@@ -151,9 +151,9 @@ public class WalletActivity extends ToolBarActivity {
         setContentView(R.layout.activity_wallet);
         userEntity = MyApplication.getInstance(this).getLocalUserInfoProvider();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
+
         bleProviderObserver = new BLEProviderObserverAdapterImpl();
         provider.setBleProviderObserver(bleProviderObserver);
-        provider.readExpenseRecord(WalletActivity.this);
         MyLog.e(TAG, provider.isConnectedAndDiscovered() + "------------provider.isConnectedAndDiscovered()");
         if (provider.isConnectedAndDiscovered()) {
             if (isReadingCard) {
@@ -183,11 +183,9 @@ public class WalletActivity extends ToolBarActivity {
         MyLog.e(TAG, isreadRecord + "----------isreadRecord");
         //从卡号里面获知卡地址城市
         String card = userEntity.getDeviceEntity().getCard_number();
-        int device_type = userEntity.getDeviceEntity().getDevice_type();
         deviceInfo = new LPDeviceInfo();
         MyLog.e(TAG, Calendar.getInstance().getTime() + "time2");
         if (card.startsWith(LPDeviceInfo.SUZHOU_)) {
-            MyLog.e(TAG, 2 + "SUZHOU_");
             deviceInfo.customer = LPDeviceInfo.SUZHOU_;   //苏州
             list_qianbao = PreferencesToolkits.getQianbaoList(WalletActivity.this, userEntity.getDeviceEntity().getCard_number());
             for (int i = 0; i < list_qianbao.size(); i++) {
@@ -200,6 +198,8 @@ public class WalletActivity extends ToolBarActivity {
             img_card_city.setVisibility(View.VISIBLE);
             textViewcard.setText(card);
             cardtype.setText("苏州市民卡-B卡");
+//            苏州卡发消息去判断要不要读取记录
+            provider.readExpenseRecord(WalletActivity.this);
         }
         //柳州
         else if (card.startsWith(LPDeviceInfo.LIUZHOU_4) || card.startsWith(LPDeviceInfo.LIUZHOU_5)) {
@@ -289,6 +289,7 @@ public class WalletActivity extends ToolBarActivity {
                     RechargeUtil.setBluetoothBase(WalletActivity.this, provider);
                     lntBalance();
                     MyLog.e(TAG, "岭南通内嵌读取流程开始了");
+
                 } else {
                     //开始去查询卡片信息了 弹出dialog
                     if (card.startsWith(LPDeviceInfo.SUZHOU_) && !isreadRecord) {
@@ -489,6 +490,7 @@ public class WalletActivity extends ToolBarActivity {
         public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
             MyLog.e(TAG, "updateFor_notifyFor0x13ExecSucess_D");
             isReadingCard = true;
+
         }
 
 
@@ -687,10 +689,11 @@ public class WalletActivity extends ToolBarActivity {
             textViewcard.setText(getString(R.string.menu_pay_read_fail));
             balanceResult.setText("0.0");
             MyLog.e(TAG,"updateFor_handleSendDataError+读取失败了");
-//            读取失败就开卡关卡再去读
-            provider.closeSmartCard(WalletActivity.this);
-            // 首先清空集合
-            provider.openSmartCard(WalletActivity.this);
+////            读取失败就开卡关卡再去读
+//            provider.closeSmartCard(WalletActivity.this);
+//            // 首先清空集合
+//            provider.openSmartCard(WalletActivity.this);
+            initData();
         }
     }
 

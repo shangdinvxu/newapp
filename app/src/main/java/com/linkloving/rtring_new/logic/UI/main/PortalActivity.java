@@ -621,15 +621,21 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 if (modelInfo.getFiscard() == 0) { //不支持金融卡
                     Snackbar.make(drawer, getString(R.string.pay_no_function), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                 } else {
-//                    if (provider.isConnectedAndDiscovered()) {
-//                        if(isReadingCard){
-//                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
-//                        }else{
+                    if (provider.isConnectedAndDiscovered()) {
+//                        判断是否是LNT的卡,是的话就判断,不是就直接连
+                        if (deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)){
+                            if(isReadingCard){
+                                Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
+                            }else{
+                                startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
+                            }
+                        }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
-//                        }
-//                    } else {
-//                        Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
-//                    }
+                        }
+
+                    } else {
+                        Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }
@@ -1618,8 +1624,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_GetSmcBalance(Integer obj) {
             super.updateFor_GetSmcBalance(obj);
             MyLog.e(TAG, "updateFor_GetSmcBalance：");
-//            String balance = ToolKits.stringtofloat(obj+"")+"";
-//            MyLog.e(TAG,"读出来的余额是:"+balance);
+            String balance = ToolKits.stringtofloat(obj+"")+"";
+            MyLog.e(TAG,"读出来的余额是:"+balance);
             provider.closeSmartCard(PortalActivity.this);
             //把余额保存到本地 方便主界面显示
             LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
