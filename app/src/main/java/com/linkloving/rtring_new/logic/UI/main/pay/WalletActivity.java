@@ -474,6 +474,7 @@ public class WalletActivity extends ToolBarActivity {
                                     ComplaintUtil.Complaint(WalletActivity.this, username);
                                 } else if (chaxun.isChecked()) {
                                     ComplaintQueryUtil.ComplaintQuery(WalletActivity.this, username);
+
                                 }
                             }
                         })

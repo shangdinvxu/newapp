@@ -1691,7 +1691,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             refreshMoneyView();
                             isReadingCard = false;
                         }
-
                         @Override
                         public void onFail(String arg0) {
                             // TODO Auto-generated method stub
