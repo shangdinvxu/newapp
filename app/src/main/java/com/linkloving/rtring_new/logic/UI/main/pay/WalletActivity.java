@@ -77,6 +77,7 @@ public class WalletActivity extends ToolBarActivity {
     private LPDeviceInfo deviceInfo;
 
 
+
     /**
      * 钱包集合
      */

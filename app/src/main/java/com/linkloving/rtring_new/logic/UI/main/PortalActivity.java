@@ -194,6 +194,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     private int step_goal, distace_goal, cal_goal, runtime_goal;
     private float sleeptime_goal, weight_goal;
 
+
     /**
      * 下拉同步ui的超时复位延迟执行handler （防止意外情况下，一直处于“同步中”的状态）
      */
