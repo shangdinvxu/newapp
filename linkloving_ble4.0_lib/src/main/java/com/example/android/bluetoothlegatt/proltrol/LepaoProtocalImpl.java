@@ -1,5 +1,8 @@
 package com.example.android.bluetoothlegatt.proltrol;
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.example.android.bluetoothlegatt.BLEProvider;
 import com.example.android.bluetoothlegatt.exception.BLException;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
@@ -480,7 +483,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		WatchRequset req = new WatchRequset();
 		req.appendByte(seq++)
 				.appendByte(LepaoCommand.COMMAND_SET_MOTION_REMIND)
-				.appendByte((byte) 60)
+				.appendByte((byte) 5)
 				.appendByte((byte) deviceInfo.longsit_step)
 				.appendByte((byte) deviceInfo.startTime1_H)
 				.appendByte((byte) deviceInfo.startTime1_M)
@@ -491,6 +494,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 				.appendByte((byte) deviceInfo.endTime2_H)
 				.appendByte((byte) deviceInfo.endTime2_M).makeCheckSum();
 		WatchResponse resp = this.sendData2BLE(req);
+		// TODO: 2016/9/14  5修改成60 ;
 		LPUtil.printData(req.getData(), "setLongSitRemind");
 		if(resp.getData()[3]==LepaoCommand.COMMAND_SET_MOTION_REMIND && resp.getData()[4]==1)
 			return BLEProvider.INDEX_SET_DEVICE_LONGSIT;
@@ -1021,6 +1025,7 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		WatchResponse resp = this.sendData2BLE(req);
 		return resp.toReadCardBanlance(LepaoCommand.COMMAND_AID_CARD, "readCardBalance",deviceInfo);
 	}
+
 	
 	//钱包 交易记录
 	public LLTradeRecord getSmartCardTradeRecord(int index,LPDeviceInfo deviceInfo) throws LPException, BLException
@@ -1203,7 +1208,35 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		}
 		
 	}
-	
+
+	/**
+	 * 在读交易记录之前先做判断
+	 * @a  是否要去查,是的话添加的是0,不是的话添加1去清除
+	 * @return	ture有新消息,false 没有新消息本地拿
+     */
+	public boolean  isReadExpenseRecord(boolean  a) throws LPException, BLException {
+		WatchRequset req = new WatchRequset();
+		byte toSearch =0;
+		byte noSearch = 1 ;
+		if (a){
+			req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_EXPENSE_RECORD).appendByte(toSearch).makeCheckSum();
+		}else{
+			req.appendByte(seq++).appendByte(LepaoCommand.COMMAND_EXPENSE_RECORD).appendByte(noSearch).makeCheckSum();
+		}
+		LPUtil.printData(req.getData()," isReadExpenseRecord");
+		WatchResponse watchResponse = this.sendData2BLE(req);
+		LPUtil.printData(watchResponse.getData(),"watchResponse");
+		Log.e("LepaoProtocalImpl","watchResponse.getData()[4]"+watchResponse.getData()[4]+"------------"+Integer.toHexString((watchResponse.getData()[5] & 0xff)));
+		if (watchResponse.getData()[4]==0&&watchResponse.getData()[5]!=0){
+				Log.e("watchResponse","trueatchResponse执行了");
+				return  true ;
+		}else{
+			Log.e("watchResponse","false;watchResponse执行了");
+			return  false;
+		}
+	}
+
+
 	public boolean closeSmartCard() throws LPException, BLException 
 	{
 		WatchRequset req = new WatchRequset();  
@@ -1213,7 +1246,6 @@ public class LepaoProtocalImpl implements LepaoProtocol {
 		WatchResponse resp = this.sendData2BLE(req);
 		OwnLog.e(TAG, "关卡");
 		return resp.toCloseSmartCardOK(LepaoCommand.COMMAND_CONTROL_CARD, "closeSmartCard");
-		
 	}
 	
 	

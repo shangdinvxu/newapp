@@ -376,7 +376,7 @@ public class WatchResponse {
 		{//91,0,61,1D
 			
 			String hex2= Integer.toHexString((data[5] & 0xFF));
-			OwnLog.e(TAG, "ssssssssssssssss"+hex2);
+			OwnLog.e(TAG, "toAIDSmartCardOK-------------"+hex2);
 			if(deviceInfo.customer.equals(LPDeviceInfo.ZHENGYUAN) ){
 				
 				 if(!( data[3] == cmd && data[4] == 0x00  && data[5] == (byte)0x90) )

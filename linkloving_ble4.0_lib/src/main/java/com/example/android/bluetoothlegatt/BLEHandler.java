@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.example.android.bluetoothlegatt.proltrol.LPUtil;
 import com.example.android.bluetoothlegatt.proltrol.dto.LLTradeRecord;
@@ -43,10 +44,12 @@ public abstract class BLEHandler extends Handler {
 		public void updateFor_handleHaveNotConnectMsg();
 
 		public void updateFor_handleConnectSuccessMsg();
+		public void updateFor_handlerClean_expenseCord(boolean a);
 
 		public void updateFor_handleConnectLostMsg();
 
 		public void updateFor_handleConnectFailedMsg();
+		public void updateFor_handleExpense_record(boolean a) ;
 
 		public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo);
 
@@ -195,6 +198,13 @@ public abstract class BLEHandler extends Handler {
 
 		@Override
 		public void updateFor_FlashHeadSucess() {
+		}
+		public void updateFor_handleExpense_record(boolean a) {
+
+		}
+
+		public void updateFor_handlerClean_expenseCord(boolean a){
+
 		}
 
 		@Override
@@ -522,6 +532,13 @@ public abstract class BLEHandler extends Handler {
 	public void handleMessage(Message msg) {
 		super.handleMessage(msg);
 		switch (msg.what) {
+			case BLEProvider.EXPENSE_RECORD:
+				handleExpense_record((boolean)msg.obj);
+				Log.e("watchResponse","handlerlimiandde  ---"+(boolean)msg.obj);
+				break;
+			case BLEProvider.CLEAN_EXPENSERECORD:
+				handlerClean_expenseCord((boolean)msg.obj);
+				break;
 		case BLEProvider.MSG_BLE_CONNECT_FAILED:
 			handleConnectFailedMsg();
 			break;
@@ -852,6 +869,16 @@ public abstract class BLEHandler extends Handler {
 		OwnLog.e(TAG, "连接失败！！！！！！！！！！！！！！！！");
 		if (bleProviderObserver != null)
 			bleProviderObserver.updateFor_handleConnectFailedMsg();
+	}
+
+	protected void handleExpense_record(boolean a){
+		if (bleProviderObserver != null)
+			bleProviderObserver.updateFor_handleExpense_record(a);
+	}
+
+	protected void handlerClean_expenseCord(boolean a){
+		if (bleProviderObserver != null)
+			bleProviderObserver.updateFor_handlerClean_expenseCord(a);
 	}
 
 	protected void handleConnectLostMsg() {

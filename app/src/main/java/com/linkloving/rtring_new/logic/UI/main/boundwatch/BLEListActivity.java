@@ -493,7 +493,8 @@ public class BLEListActivity extends ToolBarActivity {
             if (resultFromServer!=null) {
                 if (((String) resultFromServer).equals("1")) {
                     Log.e(TAG, "绑定成功！");
-                    MyApplication.getInstance(BLEListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
+                    MyLog.e("getCurrentDeviceMac",provider.getCurrentDeviceMac().substring(6).toString());
+                    MyApplication.getInstance(BLEListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(6));
                     MyApplication.getInstance(BLEListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
                     if(dialog_server!=null && dialog_server.isShowing())
                         dialog_server.dismiss();
@@ -599,7 +600,7 @@ private void submitBoundMACToServer(String user_id,String Mac){
     progressDialog.show();
     if(MyApplication.getInstance(this).isLocalDeviceNetworkOk()){
         String last_sync_device_id2 =  MyApplication.getInstance(BLEListActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id2();
-        CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac.substring(3),MyApplication.DEVICE_WATCH,modelName), HttpCallback);
+        CallServer.getRequestInstance().add(getApplicationContext(), false, CommParams.HTTP_BOUND, NoHttpRuquestFactory.submitBoundMACToServer(user_id, Mac.substring(6),MyApplication.DEVICE_WATCH,modelName), HttpCallback);
         MyLog.e(TAG,"=====user_id======="+user_id+"==Mac=="+Mac+"===last_sync_device_id2==="+last_sync_device_id2);
     }else {
         MyToast.show(BLEListActivity.this, "当前网络不给力！", Toast.LENGTH_LONG);
@@ -625,7 +626,7 @@ private void submitBoundMACToServer(String user_id,String Mac){
                 MyLog.e(TAG, "绑定后返回结果=modelInfo==" +modelInfo.getMotor());
                 //该设备未绑定  执行绑定操作
                 UserEntity userEntity = MyApplication.getInstance(BLEListActivity.this).getLocalUserInfoProvider();
-                userEntity.getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(3));
+                userEntity.getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac().substring(6));
                 userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
                 userEntity.getDeviceEntity().setModel_name(modelName);
                 MyApplication.getInstance(BLEListActivity.this).setLocalUserInfoProvider(userEntity);

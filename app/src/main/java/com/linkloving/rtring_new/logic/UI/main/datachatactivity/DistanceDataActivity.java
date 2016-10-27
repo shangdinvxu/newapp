@@ -523,7 +523,6 @@ public class DistanceDataActivity extends ToolBarActivity implements View.OnClic
                 entries.add(new BarEntry(distance,6));
             }else {
                 entries.add(new BarEntry(distance,c.get(c.DAY_OF_WEEK)-2));
-
             }
 
         }

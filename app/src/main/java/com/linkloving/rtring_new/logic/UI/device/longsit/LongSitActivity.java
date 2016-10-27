@@ -134,7 +134,6 @@ public class LongSitActivity extends ToolBarActivity implements View.OnClickList
         toast.setDuration(Toast.LENGTH_LONG);
         //设置Toast对象所要展示的视图
         toast.setView(view);
-
         if (mCheckBox.isChecked()) {
             mLinearLayout.setVisibility(View.VISIBLE);
             mTextView.setTextColor(Color.parseColor("#FF7700"));

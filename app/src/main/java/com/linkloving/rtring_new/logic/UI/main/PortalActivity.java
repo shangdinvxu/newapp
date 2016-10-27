@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -135,11 +136,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     @InjectView(R.id.drawer_layout) DrawerLayout drawer;
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.recycler_view) RecyclerView menu_RecyclerView;
-
     @InjectView(R.id.user_head) ImageView user_head;    //头像
     @InjectView(R.id.device_img) ImageView device_img;
     @InjectView(R.id.user_name) TextView user_name;     //昵称
-
     @InjectView(R.id.text_battery) TextView text_Battery;
     @InjectView(R.id.text_wallet) TextView text_Wallet;
     @InjectView(R.id.text_sync) TextView text_sync;
@@ -233,9 +232,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         super.onPostResume();
         provider = BleService.getInstance(PortalActivity.this).getCurrentHandlerProvider();
         provider.setBleProviderObserver(bleProviderObserver);
-
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-
         if (userEntity == null || userEntity.getDeviceEntity() == null || userEntity.getUserBase() == null)
             return;
         MyLog.e(TAG, "u.getDeviceEntity().getDevice_type():" + userEntity.getDeviceEntity().getDevice_type());
@@ -248,7 +245,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             if(provider.isConnectedAndDiscovered())
                 BleService.getInstance(PortalActivity.this).syncAllDeviceInfoAuto(PortalActivity.this, false, null);
         }
-
         if (userEntity.getUserBase().getUser_avatar_file_name() == null){
             MyLog.e(TAG, "u.getUserBase().getUser_avatar_file_name()是空的........");
             return;
@@ -279,6 +275,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //            ScreenUtils.Dimension dimen2 = ScreenUtils.getAreaTwo(this);
 //            int top = (int) DensityUtils.px2dp(this,dimen1.mHeight-dimen2.mHeight);
 //        }
+//    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        //自动下拉刷新
+//        mScrollView.autoRefresh();
 //    }
 
     @Override
@@ -543,10 +545,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             }
             if (userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_WATCH) {
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_watch));
-                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_WATCH);
-            } else {
+            } else if(userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND){
                 device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_band_on));
-                userEntity.getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
+            }else if(userEntity.getDeviceEntity().getDevice_type()==MyApplication.DEVICE_BAND_VERSION3){
+                device_img.setImageDrawable(getResources().getDrawable(R.mipmap.bound_3_on));
             }
             ModelInfo modelInfo = PreferencesToolkits.getInfoBymodelName(PortalActivity.this,userEntity.getDeviceEntity().getModel_name());
             if(modelInfo!=null){
@@ -620,13 +622,18 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 if (modelInfo.getFiscard() == 0) { //不支持金融卡
                     Snackbar.make(drawer, getString(R.string.pay_no_function), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
                 } else {
-
                     if (provider.isConnectedAndDiscovered()) {
-                        if(isReadingCard){
-                            Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
+//                        判断是否是LNT的卡,是的话就判断,不是就直接连
+                        if (deviceInfo.customer.equals(LPDeviceInfo.LINGNANTONG)){
+                            if(isReadingCard){
+                                Snackbar.make(drawer, getString(R.string.pay_isreading), Snackbar.LENGTH_SHORT).setAction("Dismiss", null).show();
+                            }else{
+                                startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
+                            }
                         }else{
                             startActivity(IntentFactory.start_WalletActivityIntent(PortalActivity.this));
                         }
+
                     } else {
                         Toast.makeText(PortalActivity.this, getString(R.string.pay_no_connect), Toast.LENGTH_LONG).show();
                     }
@@ -1225,6 +1232,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
             MyLog.e(TAG, "手环绑定成功");
         } else if (requestCode == CommParams.REQUEST_CODE_BOUND_WATCH && resultCode == Activity.RESULT_OK) {
+
         }
     }
 
@@ -1617,8 +1625,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_GetSmcBalance(Integer obj) {
             super.updateFor_GetSmcBalance(obj);
             MyLog.e(TAG, "updateFor_GetSmcBalance：");
-//            String balance = ToolKits.stringtofloat(obj+"")+"";
-//            MyLog.e(TAG,"读出来的余额是:"+balance);
+            String balance = ToolKits.stringtofloat(obj+"")+"";
+            MyLog.e(TAG,"读出来的余额是:"+balance);
             provider.closeSmartCard(PortalActivity.this);
             //把余额保存到本地 方便主界面显示
             LocalInfoVO localvo = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
@@ -1627,6 +1635,17 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             //此时调用是为了刷新金额
             refreshMoneyView();
             isReadingCard = false;
+        }
+
+        /********判断是否要读消费记录回调***********/
+        @Override
+        public void updateFor_handleExpense_record(boolean a) {
+            super.updateFor_handleExpense_record(a);
+            SharedPreferences sharedpreferences = PortalActivity.this.getSharedPreferences("readRecord", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedpreferences.edit();
+            edit.putBoolean("isreadRecord",a);
+            MyLog.e(TAG,a+"去读消费记录");
+            edit.commit();
         }
     }
 
@@ -1673,7 +1692,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             refreshMoneyView();
                             isReadingCard = false;
                         }
-
                         @Override
                         public void onFail(String arg0) {
                             // TODO Auto-generated method stub

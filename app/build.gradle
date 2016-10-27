@@ -108,4 +108,5 @@ dependencies {
     compile files('libs/baidumapapi_base_v3_7_3.jar')
     compile files('libs/youzan-sdk-v2.1.6.jar')
     compile files('libs/mpandroidchartlibrary-2-1-6.jar')
+//    compile files('libs/LntsdkResourceFile.jar')
 }
